@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Model, surveyLocalization } from "survey-core";
 import { SurveyModule } from 'survey-angular-ui';
-import { themeJson } from "../theme";
+import "survey-core/defaultV2.min.css";
 import "survey-core/i18n/ukrainian.js";
 import { json } from "../models/json";
 surveyLocalization.defaultLocale = "uk";
