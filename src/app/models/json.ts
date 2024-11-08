@@ -10,7 +10,7 @@ export const json= {
           "name": "title",
           "html": {
             "default": "<h2 style='text-align: center'>Ваучер на навчання</h2><br>\nВаучер на навчання - що змінилось в моєму житті?\nШановний клієнте! Запрошуємо Вас взяти участь в опитуванні, яке допоможе нам покращити якість послуги «Ваучер на навчання». Нам важлива Ваша думка!",
-            "ua": "<div style='background-image: url(\"src/assets/images/fonvaucher.png\"); background-size: cover; background-position: center;'>\n<h4>Ваучер на навчання - що змінилось в моєму житті?</h4>\n<h4 style='text-align: center'><b>Шановний клієнте!</b></h4>\n<h5 style='display: block; width: 100%; text-align: justify'>Запрошуємо Вас взяти участь в анонімному опитуванні, яке допоможе нам покращити якість послуги «Ваучер на навчання».</h5>\n<h5 style='text-align: center'>Нам важлива Ваша думка!</h5></div>"
+            "ua": "<div >\n<h4>Ваучер на навчання - що змінилось в моєму житті?</h4>\n<h4 style='text-align: center'><b>Шановний клієнте!</b></h4>\n<h5 style='display: block; width: 100%; text-align: justify'>Запрошуємо Вас взяти участь в анонімному опитуванні, яке допоможе нам покращити якість послуги «Ваучер на навчання».</h5>\n<h5 style='text-align: center'>Нам важлива Ваша думка!</h5></div>"
           }
         }
       ]
