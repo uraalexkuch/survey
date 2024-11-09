@@ -2,8 +2,16 @@
   padding-right: 5% !important;" >
   <xng-breadcrumb></xng-breadcrumb></div>
 <section class="section section-lg bg-gray-100 " style="margin-top: 1rem;margin-bottom: 1rem;padding-left:0;padding-right: 0">
+  <div *ngIf="!isSurvey" >
+    <div class="col-12 nameposlug">
+      <h4 class="  fw-bold" style='text-align: center;font-weight: bold'>Шановний клієнте!</h4>
+    </div>
 
-  <survey [model]="model"  >
+    <h5 style='display: block; width: 100%; text-align: justify'>Запрошуємо Вас взяти участь в анонімному опитуванні, яке допоможе нам покращити якість послуги «Ваучер на навчання».</h5>
+    <h5 style='text-align: center;font-weight: bold' >Нам важлива Ваша думка!</h5></div>
+<div *ngIf="!isSurvey" style=" text-align: center">  <button class="btn h7 cabinet " (click)="onChoice()" style="width: 50%; text-align: center">Розпочати опитування</button>
+</div>
+  <survey *ngIf="isSurvey" [model]="model" >
 
 </survey>
 </section>

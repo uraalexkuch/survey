@@ -2,192 +2,51 @@
   <div class="container">
     <div class="frame-container justify-content-between">
       <div class="group-parent">
-        <img class="group-icon" alt="" src="assets/images/logosvg.svg" routerLink="/">
+        <img class="group-icon" alt="" src="/assets/logosvg.svg" routerLink="/">
         <!-- For mobile version -->
         <div *ngIf="isMobile" class="div h7 col-md-8">Державна служба зайнятості</div>
         <!-- For web version -->
-        <div *ngIf="!isMobile"  style="font-size: 1.625rem" class="div col-auto" routerLink="/">Державна служба зайнятості</div>
+        <div *ngIf="!isMobile"  style="font-size: 1.625rem" class="div col-auto">Державна служба зайнятості</div>
       </div>
-      <div *ngIf="!isMobile" class="parent d-flex mt-3 mt-lg-0" (click)="toggleHighContrast()"  style="cursor: pointer;">
+      <div *ngIf="!isMobile" class="parent d-flex mt-3 mt-lg-0" (click)="toggleHighContrast()"  style="margin-right: 1rem">
         <img class="carbonview" alt="" src="assets/images/carbonview.svg">
         <span class="div h7" >Налаштування доступності</span>
       </div>
-
       <div *ngIf="isMobile" class="col-auto">
         <div mat-icon-button (click)="sidenav?.toggle()" matTooltip="Menu">
           <mat-icon class="maticon" style="color: white;">menu</mat-icon>
         </div>
       </div>
     </div>
+    <mat-sidenav-container *ngIf="isMobile" class="app-container">
+      <mat-sidenav #sidenav mode="over" [class.mat-elevation-z4]="true" class="app-sidenav">
+        <!-- Close Button -->
+        <div class="row justify-content-between"
+             style="display: flex; margin-top:.5rem;height:max-content;justify-items: center;justify-content: left">
 
-    <div class="menu-box row">
-      <div class="row justify-content-between" style="display:flex;justify-content: flex-end;padding-right: 0">
-        <div class="left-menu col-lg-9 col-md-12">
-          <div *ngIf="!isMobile" class="header-top-menu-container">
-            <ul id="header-top-menu" class="menu">
-              <ng-container *ngFor="let menuItem of menuItems; let i = index">
-                <li class="menu-item menu-item-type-taxonomy menu-item-has-children h7" (click)="toggleMenuTop(i)">
-
-                  <!-- Conditionally render link for 'Зроблено в Україні' -->
-                  <ng-container *ngIf="menuItem.title === 'Зроблено в Україні' && menuItem.link === '/madeukraine'; else defaultMenuLink">
-                    <a [routerLink]="menuItem.link" [ngStyle]="{'background-color': i === activeIndex ? '#273043' : ''}">
-                      {{menuItem.title}}
-                    </a>
-                  </ng-container>
-
-                  <!-- Default menu link -->
-                  <ng-template #defaultMenuLink>
-                    <a [ngStyle]="{'background-color': i === activeIndex ? '#273043' : ''}">
-                      {{menuItem.title}}
-                    </a>
-                  </ng-template>
-
-                  <!-- Submenu for each item -->
-                  <ul [ngClass]="{'visible-menu': menuItem.visible}" class="sub-menu h7">
-                    <ng-container *ngFor="let subItem of menuItem.subItems; let t = index">
-                      <li class="menu-item menu-item-type-taxonomy" (click)="closeAllMenus(); $event.stopPropagation()">
-                        <a routerLink="{{subItem.link}}">{{subItem.title}}</a>
-                      </li>
-                    </ng-container>
-                  </ul>
-                </li>
-              </ng-container>
-
-              <li class="menu-item menu-item-type-taxonomy menu-item-has-children col-auto "  (click)="closeDropdown()"> <a  href="https://old.dcz.gov.ua/" target="_blank" rel="noopener noreferrer"   (click)="toggleSidenav()">
-                Стара версія сайту</a></li>
-            </ul>
-          </div>
-        </div>
-        <div *ngIf="!isMobile" class="col-auto " style="width: auto!important;margin-right: -1rem;padding: 0">
-          <button type="button " class="btn h7 btn-primary  cabinet" routerLink="/cabinet">
-            Електронний кабінет
+          <button mat-icon-button style="padding: 6px;" (click)="toggleSidenav()" class=" close-button">
+            <mat-icon>close</mat-icon>
           </button>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div *ngIf="!isMobile" class="header-bottom">
-  <div class="header-bottom-menu-container ">
-    <ul id="header-bottom-menu" class="menu row">
+        <mat-divider style="background-color: white"></mat-divider>
 
-      <li class="menu-item menu-item-type-taxonomy  col-12 "  (click)="closeDropdown()"><a routerLink="/people"><i
-        class=" fas fa-users fa-2x" style="color: rgba(16,6,58,0.33);margin-right: .5rem;"></i>Громадянам</a></li>
-      <li class="menu-item menu-item-type-taxonomy  col-12 "  (click)="closeDropdown()"><a routerLink="/onewindow"><i
-        class="fas fa-chalkboard-teacher fa-2x" style="color: #aaadb1;margin-right: .5rem;"></i>Єдине вікно послуг</a></li>
-      <li class="menu-item menu-item-type-taxonomy  col-12 "  (click)="closeDropdown()"><a routerLink="/employer"><i
-        class="fas fa-city fa-2x" style="color: #aaadb1;margin-right: .5rem;"></i>Роботодавцям</a></li>
-      <li class="menu-item menu-item-type-taxonomy  col-12"  (click)="closeDropdown()"><a routerLink="/proforient"><i
-        class="fas fa-book-open-reader fa-2x" style="color: #898d94;margin-right: .5rem;"  (click)="closeDropdown()"></i>Профорієнтація </a></li>
-      <li class="menu-item menu-item-type-taxonomy  col-12"><a routerLink="/profnavch"><i
-        class="fas fa-graduation-cap fa-2x" style="color: #898d94;margin-right: .5rem;"  (click)="closeDropdown()"></i>Навчання</a></li>
-      <li class="menu-item menu-item-type-taxonomy  col-12 "  (click)="closeDropdown()"><a routerLink="/stat"><i
-        class="fas fa-chart-pie fa-2x" style="color: rgba(16,6,58,0.33);margin-right: .5rem;"  (click)="closeDropdown()"></i>Статистика</a></li>
-      <li class="menu-item menu-item-type-taxonomy" style="cursor: pointer;">
-        <a aria-expanded="false" (click)="toggleDropdown()">
-          <i class="fas fa-location-dot fa-2x" style="color: #898d94;margin-right: .5rem;"></i>
-          Оберіть Вашу область
-        </a>
-        <ul class="dropdown-menu" [class.show]="dropdownOpen">
-          <li *ngFor="let item of regions">
-            <a [href]="item.url" target="_blank"  (click)="closeDropdown()">{{item.name}}</a>
+        <ul>
+          <li class="col-12 parent" style="justify-items: end;color: white;margin-top: 1rem" (click)="toggleHighContrast()">
+            <img class="carbonview" alt="" src="assets/images/carbonview.svg">
+            <span class="div">Налаштування доступності</span>
           </li>
-
         </ul>
-      </li>
+      </mat-sidenav>
 
-
-
-
-    </ul>
+      <mat-sidenav-content>
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
 
   </div>
 </div>
-<mat-sidenav-container *ngIf="isMobile" class="app-container">
-  <mat-sidenav #sidenav mode="over" [class.mat-elevation-z4]="true" class="app-sidenav">
-    <!-- Close Button -->
-    <div class="row justify-content-between"
-         style="display: flex; margin-top:.5rem;height:max-content;justify-items: center;justify-content: left">
-      <button type="button" style=" margin-left:1rem;" class="btn  btn-primary  cabinet" routerLink="/cabinet" (click)="toggleSidenav()">
-        Електронний кабінет
-      </button>
-      <button mat-icon-button style="padding: 6px;color: white" (click)="toggleSidenav()" class=" close-button">
-        <mat-icon>close</mat-icon>
-      </button>
-    </div>
-    <mat-divider style="background-color: white"></mat-divider>
-    <ul>
-      <ng-container *ngFor="let menuItem of menuItems; let i = index">
-        <li class="menu-item menu-item-type-taxonomy menu-item-has-children"
-            (click)="menuItem.subItems && menuItem.subItems.length ? toggleMenuTopMob(i) : toggleSidenav()">
-          <!-- Check if menuItem.title is 'Зроблено в Україні' -->
-          <ng-container *ngIf="menuItem.title === 'Зроблено в Україні' && menuItem.link === '/madeukraine'; else defaultMenuLink">
-            <!-- If true, use routerLink -->
-            <a [routerLink]="menuItem.link" [ngStyle]="{'color': i === activeIndex ? '#ebe236' : ''}">
-              {{menuItem.title}}
-            </a>
-          </ng-container>
-          <!-- Default case: Render the regular link -->
-          <ng-template #defaultMenuLink>
-            <a [ngStyle]="{'color': i === activeIndex ? '#ebe236' : ''}">
-              {{menuItem.title}}
-            </a>
-          </ng-template>
 
-          <ul [ngClass]="{'visible-menu': menuItem.visible}" class="sub-menu">
-            <ng-container *ngFor="let subItem of menuItem.subItems">
-              <li class="menu-item menu-item-type-taxonomy" (click)="navigateTo(subItem.link)">
-                <a routerLink="{{subItem.link}}">{{subItem.title}}</a>
-              </li>
-            </ng-container>
-            <li class="menu-item menu-item-type-taxonomy col-12" (click)="closeDropdown()">
-              <a href="https://dcz.gov.ua/" target="_blank" rel="noopener noreferrer">
-                Стара версія сайту
-              </a>
-            </li>
-          </ul>
-        </li>
 
-      </ng-container>
-    </ul>
-    <div class="header-bottom  ">
-      <ul id="header-bottom-menu1" class="menu row">
-        <li class="menu-item menu-item-type-taxonomy  col-12  " (click)= "toggleSidenav()"><a routerLink="/people">Громадянам</a></li>
-        <li class="menu-item menu-item-type-taxonomy  col-12  " (click)= "toggleSidenav()"><a routerLink="/onewindow">Єдине вікно послуг</a></li>
-        <li class="menu-item menu-item-type-taxonomy  col-12  " (click)= "toggleSidenav()"><a routerLink="/employer">Роботодавцям</a></li>
-        <li class="menu-item menu-item-type-taxonomy  col-12" (click)= "toggleSidenav()"><a routerLink="/proforient">Профорієнтація </a></li>
-        <li class="menu-item menu-item-type-taxonomy  col-12" (click)= "toggleSidenav()"><a routerLink="/profnavch">Навчання</a></li>
-        <li class="menu-item menu-item-type-taxonomy  col-12 " (click)= "toggleSidenav()"><a routerLink="/stat">Статистика</a></li>
-        <li class="menu-item menu-item-type-taxonomy col-12" (click)="toggleDropdown(); $event.stopPropagation()">
-          <a>
-            <i class="fas fa-location-dot fa-2x" style="color: #898d94;margin-right: .5rem;"></i>
-            Оберіть Вашу область
-          </a>
-          <ul *ngIf="dropdownOpen"  >
-            <ng-container *ngFor="let subItem of regions; let i = index" (click)="toggleMenuTopMob(i)">
-              <li class="menu-item menu-item-type-taxonomy" (click)="navigateTo(subItem.url)">
-                <a  [href]="subItem.url">{{subItem.name}}</a>
-              </li>
-            </ng-container>
-          </ul>
-        <li class="menu-item menu-item-type-taxonomy  col-12 "  (click)="closeDropdown()"> <a  href="https://old.dcz.gov.ua/" target="_blank" rel="noopener noreferrer"   (click)="toggleSidenav()">
-          Стара версія сайту</a></li>
 
-      </ul>
-
-    </div>
-    <mat-divider style="background-color: white"></mat-divider>
-    <ul>
-      <li class="col-12 parent" style="justify-items: end;color: white;margin-top: 1rem" (click)="toggleHighContrast()">
-        <img class="carbonview" alt="" src="assets/images/carbonview.svg">
-        <span class="div">Налаштування доступності</span>
-      </li>
-    </ul>
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
 
 

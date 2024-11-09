@@ -2,22 +2,9 @@ export const json= {
   "locale": "ua",
 
   "pages": [
-    {
-      "name": "page1",
-      "elements": [
-        {
-          "type": "html",
-          "name": "title",
-          "html": {
-            "default": "<h2 style='text-align: center'>Ваучер на навчання</h2><br>\nВаучер на навчання - що змінилось в моєму житті?\nШановний клієнте! Запрошуємо Вас взяти участь в опитуванні, яке допоможе нам покращити якість послуги «Ваучер на навчання». Нам важлива Ваша думка!",
-            "ua": "<div >\n<h4>Ваучер на навчання - що змінилось в моєму житті?</h4>\n<h4 style='text-align: center'><b>Шановний клієнте!</b></h4>\n<h5 style='display: block; width: 100%; text-align: justify'>Запрошуємо Вас взяти участь в анонімному опитуванні, яке допоможе нам покращити якість послуги «Ваучер на навчання».</h5>\n<h5 style='text-align: center'>Нам важлива Ваша думка!</h5></div>"
-          }
-        }
-      ]
-    },
 
     {
-      "name": "page2",
+      "name": "page1",
       "elements": [
   {
     "type": "dropdown",
@@ -79,7 +66,7 @@ export const json= {
       ]
     },
     {
-      "name": "page3",
+      "name": "page2",
       "elements": [
         {
           "type": "dropdown",
@@ -249,7 +236,7 @@ export const json= {
       ]
     },
     {
-      "name": "page4",
+      "name": "page3",
       "elements": [
         {
           "type": "dropdown",
@@ -1197,7 +1184,7 @@ export const json= {
       ]
     },
     {
-      "name": "page5",
+      "name": "page4",
       "elements": [
         {
           "type": "boolean",
@@ -1213,7 +1200,7 @@ export const json= {
       ]
     },
     {
-      "name": "page6",
+      "name": "page5",
       "elements": [
         {
           "type": "text",
@@ -1231,7 +1218,7 @@ export const json= {
       ]
     },
     {
-      "name": "page7",
+      "name": "page6",
       "elements": [
         {
           "type": "dropdown",
@@ -1259,10 +1246,10 @@ export const json= {
       ]
     },
     {
-      "name": "page8",
+      "name": "page7",
       "elements": [
         {
-          "type": "tagbox",
+          "type": "dropdown",
           "name": "voucherafter",
           "title": {
             "ua": " Як вплинуло навчання за ваучером на Вашу трудову діяльність?"
@@ -1320,7 +1307,7 @@ export const json= {
       ]
     },
     {
-      "name": "page9",
+      "name": "page8",
       "elements": [
         {
           "type": "radiogroup",
@@ -1361,7 +1348,7 @@ export const json= {
       ]
     },
     {
-      "name": "page10",
+      "name": "page9",
       "elements": [
         {
           "type": "dropdown",
@@ -1409,7 +1396,7 @@ export const json= {
       ]
     },
     {
-      "name": "page11",
+      "name": "page10",
       "elements": [
         {
           "type": "rating",
@@ -1424,7 +1411,7 @@ export const json= {
       ]
     },
     {
-      "name": "page12",
+      "name": "page11",
       "elements": [
         {
           "type": "rating",
@@ -1439,7 +1426,7 @@ export const json= {
       ]
     },
     {
-      "name": "page13",
+      "name": "page12",
       "elements": [
         {
           "type": "comment",

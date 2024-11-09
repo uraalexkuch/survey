@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Model, surveyLocalization } from "survey-core";
 import { SurveyModule } from 'survey-angular-ui';
-import "survey-core/defaultV2.min.css";
+
 import "survey-core/i18n/ukrainian.js";
 import { json } from "../models/json";
 surveyLocalization.defaultLocale = "uk";
 
 import { BreadcrumbComponent } from 'xng-breadcrumb';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-survey',
   standalone: true,
-  imports: [SurveyModule, BreadcrumbComponent],
+  imports: [SurveyModule, BreadcrumbComponent, NgIf],
   templateUrl: './survey.component.html',
   styleUrls: ['./survey.component.css']
 })
 export class SurveyComponent implements OnInit {
   model: Model = null!;
-
+  isSurvey: boolean = false;
   surveyComplete(survey: Model) {
     const userId = 1;
     survey.setValue("userId", userId);
@@ -43,7 +44,9 @@ export class SurveyComponent implements OnInit {
     });
     this.model = survey;
   }
-
+onChoice(){
+    this.isSurvey=!this.isSurvey;
+}
   flattenSurveyResult(data: any, userId: number) {
     return {
       qved: data.qved,

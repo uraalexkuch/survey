@@ -7,7 +7,7 @@ import {DeviceDetectorService} from 'ngx-device-detector';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, DczFooterFullComponent, DczHeadNewComponent],
+  imports: [RouterOutlet, DczHeadNewComponent, DczFooterFullComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

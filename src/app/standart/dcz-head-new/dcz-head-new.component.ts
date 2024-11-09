@@ -1,13 +1,14 @@
-import {AfterViewInit, Component, ElementRef, HostListener, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
-import {MatSidenav, MatSidenavContainer, MatSidenavModule} from "@angular/material/sidenav";
+import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/material/sidenav";
 import {Router, RouterLink, RouterOutlet} from "@angular/router";
 import {MatMenu} from "@angular/material/menu";
-import {NgClass, NgForOf, NgIf, NgStyle} from '@angular/common';
-import {MatIcon} from '@angular/material/icon';
+
 import {MatDivider} from '@angular/material/divider';
-import {MatIconButton} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
+import {MatTooltip} from '@angular/material/tooltip';
+import {NgIf} from '@angular/common';
 
 
 @Component({
@@ -16,18 +17,15 @@ import {MatIconButton} from '@angular/material/button';
   styleUrls: ['./dcz-head-new.component.css'],
   standalone: true,
   imports: [
-    NgStyle,
-    NgClass,
-    RouterLink,
-    MatSidenavModule,
-    MatSidenavContainer,
-    MatSidenav,
-    MatIcon,
+    RouterOutlet,
+    MatSidenavContent,
     MatDivider,
-    MatIconButton,
+    MatIcon,
+    MatSidenav,
+    MatSidenavContainer,
+    MatTooltip,
     NgIf,
-    NgForOf,
-    RouterOutlet
+    RouterLink
   ],
   animations: [
     trigger('slideInOut', [
@@ -53,33 +51,26 @@ export class DczHeadNewComponent implements AfterViewInit {
           title: 'Документи',
           link: '/low'
         },
-        {title: 'Правління Фонду', link: '/Fond'},
-        {title: 'Бюджет', link: '/budget'}
-      ],
+        {title: 'Правління фонду', link: '/fond'},
+        {title: 'Бюджет', link: '/budget'},],
       visible: false
     },
     {
       title: 'Діяльність',
-      subItems: [{
-        title: 'Звіти про роботу', link: '/result'},
-        {
+      subItems: [{title: 'Звіти про роботу', link: '/low'}, {
         title: 'Відкриті дані',
         link: '/opendate'
-      }, {title: 'Публічні закупівлі', link: '/publictrade'},
-        {
+      }, {title: 'Публічні закупівлі', link: '/publictrade'}, {
         title: 'Запобігання корупції',
         link: '/korup'
       },
-       {title: 'Додаткова інформація', link: '/other'}
-      ],
+        {title: 'Додаткова інформація', link: '/leadership'}],
       visible: false
     },
-    {title: 'Зроблено в Україні', link: '/madeukraine'},
-
     {
       title: 'Прес-центр',
       subItems: [{title: 'Новини', link: '/news'},
-        {title: 'Анонси', link: '/previewnews'},
+        {title: 'Анонси подій', link: '/news/previewnews'},
 
         {title: 'Контакти прес-служби', link: '/presscontact'}],
       visible: false
@@ -87,10 +78,11 @@ export class DczHeadNewComponent implements AfterViewInit {
     {
       title: 'Контакти',
       subItems: [{title: 'Апарат', link: '/aparat'},
-        {title: 'Регіональні ЦЗ (філії)', link: '/regioncz'},
-        {title: 'Навчальні заклади', link: '/regioncpto'},
-
-        {title: 'Телефонна "гаряча лінія"', link: '/hotline'}],
+        {title: 'Регіональні ЦЗ (філії)', link: '/regionchoice'},
+        {
+          title: 'Мапа ЦЗ',
+          link: '/maps'
+        }, {title: 'Телефонна "гаряча лінія"', link: '/hotline'}],
       visible: false
     }
   ];
@@ -103,8 +95,8 @@ export class DczHeadNewComponent implements AfterViewInit {
     {name: 'Закарпатська', url: 'https://zak.dcz.gov.ua'},
     {name: 'Запорізька', url: 'https://zap.dcz.gov.ua'},
     {name: 'Івано-Франківська', url: 'https://ifr.dcz.gov.ua'},
-    {name: 'Київ', url: 'https://kie.dcz.gov.ua'},
     {name: 'Київська', url: 'https://kir.dcz.gov.ua'},
+    {name: 'Київський міський', url: 'http://kie.dcz.gov.ua'},
     {name: 'Кіровоградська', url: 'https://kid.dcz.gov.ua'},
     {name: 'Луганська', url: 'https://lug.dcz.gov.ua'},
     {name: 'Львівська', url: 'https://lviv.dcz.gov.ua'},
@@ -115,11 +107,11 @@ export class DczHeadNewComponent implements AfterViewInit {
     {name: 'Сумська', url: 'https://sum.dcz.gov.ua'},
     {name: 'Тернопільська', url: 'https://ter.dcz.gov.ua'},
     {name: 'Харківська', url: 'https://kha.dcz.gov.ua'},
-    {name: 'Херсонська', url: 'https://khe.dcz.gov.ua'},
+    {name: 'Херсонська', url: 'https://kherson.dcz.gov.ua'},
     {name: 'Хмельницька', url: 'https://khm.dcz.gov.ua'},
     {name: 'Черкаська', url: 'https://chk.dcz.gov.ua'},
     {name: 'Чернівецька', url: 'https://chn.dcz.gov.ua'},
-    {name: 'Чернігівська', url: 'https://chg.dcz.gov.ua/'}
+    {name: 'Чернігівська', url: 'https://chernigiv.dcz.gov.ua'}
   ];
   @ViewChild('sidenav') sidenav?: MatSidenav;
 
@@ -137,6 +129,9 @@ export class DczHeadNewComponent implements AfterViewInit {
 
   }
 
+
+
+
   toggleHighContrast() {
     this.isHighContrast = !this.isHighContrast;
     if (this.isHighContrast) {
@@ -147,26 +142,14 @@ export class DczHeadNewComponent implements AfterViewInit {
   }
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
-    if (this.dropdownOpen) {
-    this.closeAllMenus();
-    }
+    console.log(this.dropdownOpen)
   }
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: Event): void {
-    const target = event.target as HTMLElement;
-    // Перевіряємо, чи клік відбувається поза поточним меню та не на іншому елементі меню
-    if (target && !target.closest('.menu-item') && !target.closest('.menu-item-type-taxonomy')) {
-      this.dropdownOpen = false;
-    }
-  }
-  closeDropdown() {
-    if (this.dropdownOpen) {
-      this.dropdownOpen = false;
-    }
-  }
+
+
   resetMenuState() {
     // Reset active menu item
     this.activeIndex = -1;
+
     // Hide all sub-menus
     this.menuItems.forEach(item => {
       item.visible = false;
@@ -183,9 +166,9 @@ export class DczHeadNewComponent implements AfterViewInit {
   }
 
   navigateTo(link: string) {
-    if (this.sidenav) {
-      this.sidenav.toggle();
-    }
+    // Якщо у вас є служба маршрутизації, можете використовувати її для перенаправлення
+    this.router.navigate([link]);
+    this.toggleSidenav();
   }
 
   toggleSidenav(): void {
@@ -193,9 +176,9 @@ export class DczHeadNewComponent implements AfterViewInit {
       this.sidenav.toggle();
     }
   }
+
   closeAllMenus() {
     this.menuItems.forEach(item => item.visible = false);
-
     this.resetMenuState()
   }
 
@@ -203,19 +186,17 @@ export class DczHeadNewComponent implements AfterViewInit {
     if (this.menuItems[index].visible) {
       this.menuItems[index].visible = false;
       this.activeIndex = -1;
-
     } else {
       this.closeAllMenus();
       this.menuItems[index].visible = true;
       this.activeIndex = index;
-      this.dropdownOpen = false;
     }
   }
 
   handleSubItemClick(): void {
     // Navigate to the link
     // assuming you have injected the Router
-    this.dropdownOpen = false;
+
     // Close all menus
     this.closeAllMenus();
   }
@@ -227,12 +208,8 @@ export class DczHeadNewComponent implements AfterViewInit {
       return;
     }
     this.menuItems.forEach(item => item.visible = false); // Close all other menus
-    if (this.dropdownOpen) {
-      this.dropdownOpen = false;
-    }
     this.menuItems[index].visible = true;
     this.activeIndex = index;
-
   }
 
   ngAfterViewInit() {
