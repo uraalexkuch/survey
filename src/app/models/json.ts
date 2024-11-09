@@ -35,28 +35,24 @@ export const json= {
       {
         "value": "4",
         "text": {
-          "default": "Сайт Державної служби зайнятості",
           "ua": "Сайт Державної служби зайнятості"
         }
       },
       {
         "value": "5",
         "text": {
-          "default": "Знайомі/родичі/соцмережі",
           "ua": "Знайомі/родичі/соцмережі"
         }
       },
       {
         "value": "6",
         "text": {
-          "default": "ЗМІ",
           "ua": "ЗМІ"
         }
       },
       {
         "value": "7",
         "text": {
-          "default": "Реклама",
           "ua": "Реклама"
         }
       }
@@ -240,7 +236,7 @@ export const json= {
       "elements": [
         {
           "type": "dropdown",
-          "name": "prof",
+          "name": "professionvoucher",
           "title": {
             "ua": "За якою професією/спеціальністю Ви навчалися?"
           },
@@ -1188,7 +1184,7 @@ export const json= {
       "elements": [
         {
           "type": "boolean",
-          "name": "region",
+          "name": "workbefore",
           "title": {
             "ua": "Чи працювали Ви на момент отримання ваучера?"
           },
@@ -1204,7 +1200,7 @@ export const json= {
       "elements": [
         {
           "type": "text",
-          "name": "profwork",
+          "name": "profworkbefore",
           "title": {
             "ua": "Якщо працювали, вкажіть, за якою професією/спеціальністю/посадою"
           },
@@ -1222,7 +1218,7 @@ export const json= {
       "elements": [
         {
           "type": "dropdown",
-          "name": "year",
+          "name": "yearvoucherend",
           "title": {
             "ua": "В якому році Ви закінчили навчання за ваучером?"
           },
@@ -1250,7 +1246,7 @@ export const json= {
       "elements": [
         {
           "type": "dropdown",
-          "name": "voucherafter",
+          "name": "voucherafterinfluence",
           "title": {
             "ua": " Як вплинуло навчання за ваучером на Вашу трудову діяльність?"
           },
@@ -1311,7 +1307,7 @@ export const json= {
       "elements": [
         {
           "type": "radiogroup",
-          "name": "vouvherafterlife",
+          "name": "voucherafterlife",
           "title": {
             "ua": "Які зміни відбулися у Вашому житті після навчання за ваучером?"
           },
@@ -1400,10 +1396,10 @@ export const json= {
       "elements": [
         {
           "type": "rating",
-          "name": "rateone",
+          "name": "ratevoucher",
           "rateType": "stars",
           "title": {
-            "ua": "Якщо працювали, вкажіть, за якою професією/спеціальністю/посадою"
+            "ua": "Оцініть, будь ласка, важливість програми ваучерів на навчання, враховуючи Ваше загальне враження"
           },
           "isRequired": true,
 
@@ -1415,7 +1411,7 @@ export const json= {
       "elements": [
         {
           "type": "rating",
-          "name": "ratetwo",
+          "name": "rateserviceoffice",
           "rateType": "stars",
           "title": {
             "ua": "Оцініть, будь ласка, роботу нашого фахівця щодо наданої послуги з видачі ваучера"
