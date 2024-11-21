@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { SurveyCreatorModel } from "survey-creator-core";
 import {SurveyCreatorModule} from 'survey-creator-angular';
-// survey-creator.component.ts
 import "survey-core/defaultV2.css";
 import "survey-creator-core/survey-creator-core.css";
 
@@ -10,12 +9,8 @@ const creatorOptions = {
   isAutoSave: true
 };
 const defaultJson ={
-  "title": "NPS Survey Question",
-  "description": "NPS (net promoter score) is a metric used to evaluate customer loyalty and business growth opportunities. To measure NPS, respondents should rate on a scale of 0 to 10 how likely they would recommend your product or service to a friend or colleague.",
-  "logo": "https://api.surveyjs.io/private/Surveys/files?name=52f2ca1e-9604-4d41-a887-0ee358b37625",
-  "logoWidth": "auto",
-  "logoHeight": "80px",
-  "logoFit": "cover",
+
+
   "focusFirstQuestionAutomatic": false,
   pages: [{
     elements: [{
@@ -41,35 +36,8 @@ const defaultJson ={
       ],
       isRequired: true
     }]
-  }, {
-    elements: [{
-      name: "what-would-make-you-more-satisfied",
-      title: "What can we do to make your experience more satisfying?",
-      type: "comment",
-      visibleIf: "{satisfaction-score} = 4"
-    }, {
-      name: "nps-score",
-      title: "On a scale of zero to ten, how likely are you to recommend our product to a friend or colleague?",
-      type: "rating",
-      rateMin: 0,
-      rateMax: 10
-    }],
-    visibleIf: "{satisfaction-score} >= 4"
-  }, {
-    elements: [{
-      name: "how-can-we-improve",
-      title: "In your opinion, how could we improve our product?",
-      type: "comment"
-    }],
-    visibleIf: "{satisfaction-score} = 3"
-  }, {
-    elements: [{
-      name: "disappointing-experience",
-      title: "Please let us know why you had such a disappointing experience with our product",
-      type: "comment"
-    }],
-    visibleIf: "{satisfaction-score} =< 2"
-  }],
+  }
+  ],
   showQuestionNumbers: "off",
   pageNextText: "Forward",
   completeText: "Submit",

@@ -1,17 +1,25 @@
-<div class="parent6"  style="padding-left: 6% !important;
-  padding-right: 5% !important;" >
+<div class="parent6" style="padding-left: 6% !important;
+  padding-right: 5% !important;" xmlns="http://www.w3.org/1999/html">
   <xng-breadcrumb></xng-breadcrumb></div>
 <section class="section section-lg bg-gray-100 " style="margin-top: 1rem;margin-bottom: 1rem;padding-left:0;padding-right: 0">
   <div *ngIf="!isSurvey" >
     <div class="col-12 nameposlug">
-      <h4 class="  fw-bold" style='text-align: center;font-weight: bold'>Шановний клієнте!</h4>
+      <h4 class="  fw-bold" style='text-align: center;font-weight: bold'>Шановний роботодавцю!</h4>
     </div>
 
-    <h5 style='display: block; width: 100%; text-align: justify'>Запрошуємо Вас взяти участь в анонімному опитуванні, яке допоможе нам покращити якість послуги «Ваучер на навчання».</h5>
-    <h5 style='text-align: center;font-weight: bold' >Нам важлива Ваша думка!</h5></div>
+    <h5 style='display: block; width: 100%; text-align: justify'>Державна служба прагне залишатись вашим надійним партнером в ці непрості для країни часи. Ми формуємо та прагнемо змінити на краще державну політику зайнятості і потребуємо вашої безпосередньої  залученості до цього процесу.
+      З цією метою ми розробили опитування роботодавців, яке допоможе нам впровадити якісні зміни, щоб задовільнити ваші потреби та сприяти відновленню та розвитку економіки України.
+    </h5>
+    <h5 style='text-align: center;font-weight: bold' >Ми прагнемо:</h5>
+      <h5 style='display: block; width: 100%; text-align: justify'>- виявити поточні та перспективні потреби у працівниках та затребуваних навичках з метою подальшої актуалізації навчальних програм для дорослого населення та  підготовки кадрів для ваших підприємств,  швидкого та якісного підбору персоналу;
+     <br/> - надати детальну інформацію про активні та компенсаційні програми для роботодавців з метою стимулювання працевлаштування особливих категорій населення;
+        <br/>  - створювати нові актуальні сервіси для роботодавців.</h5>
+    <h5 style='text-align: center;font-weight: bold' ><br/> Ваша участь є надважливою для нас.
+        <br/> Заздалегідь вдячні за співпрацю.
+    </h5></div>
   <div *ngIf="isSurvey" >
     <div class="col-12 nameposlug">
-      <h4 class="  fw-bold" style='text-align: center;font-weight: bold'>Ваучер на навчання - що змінилось в моєму житті?</h4>
+      <h5 class="  fw-bold" style='text-align: center;font-weight: bold'>Опитування  щодо потреб роботодавців для  відновлення та розвитку економіки України</h5>
     </div>
     </div>
 <div *ngIf="!isSurvey" style=" text-align: center">  <button class="btn h7 cabinet " (click)="onChoice()" style="width: 50%; text-align: center">Розпочати опитування</button>
