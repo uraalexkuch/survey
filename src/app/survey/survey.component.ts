@@ -120,7 +120,7 @@ export class SurveyComponent implements OnInit {
         this.filterRayon(options.value);
         const rayonDropdown = sender.getQuestionByName("rayonselect");
         if (rayonDropdown) {
-          rayonDropdown.choices = this.filteredRayon.map(item => ({
+          rayonDropdown['choices'] = this.filteredRayon.map(item => ({
             value: item.rayon,
             text: item.name,
           }));
@@ -130,7 +130,7 @@ export class SurveyComponent implements OnInit {
         this.filterGromada(options.value);
         const gromadaDropdown = sender.getQuestionByName("gromadaselect");
         if (gromadaDropdown) {
-          gromadaDropdown.choices = this.filteredGromada.map(item => ({
+          gromadaDropdown['choices'] = this.filteredGromada.map(item => ({
             value: item.gromada,
             text: item.name,
           }));
