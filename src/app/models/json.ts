@@ -199,6 +199,7 @@ export const json= {
           "title": {
             "ua": "Вкажіть ЄДРПОУ Вашого підприємства (РНОКПП для ФОП)"
           },
+
           "isRequired": true,
           "placeholder": {
             "ua": "Напишіть..."
@@ -212,20 +213,24 @@ export const json= {
       "name": "page4",
       "elements": [
         {
-          "type": "text",
+          "type": "dropdown",
           "name": "qved",
           "title": {
-            "ua": "Вкажіть основний вид діяльності Вашого підприємства згідно КВЕД   "
+            "ua": "Вкажіть основний вид діяльності Вашого підприємства згідно КВЕД"
+          },
+          "choicesByUrl": {
+            "url": "/assets/kved.json",
+            "valueName": "kved_number",
+            "titleName": "kved_text"
           },
           "isRequired": true,
           "placeholder": {
-            "ua": "Напишіть..."
-
+            "ua": "Оберіть зі списку..."
           }
-
-        },
+        }
       ]
     },
+
     {
       "name": "page5",
       "elements": [
@@ -269,7 +274,7 @@ export const json= {
         {
           "type": "matrixdropdown",
           "name": "staffquality",
-          "title": "Вкажіть кількість або відсоток, перелічених категорій працівників, які на даний час працюють на підприємстві?  Якщо Ви не володієте точною інформацією по можливості проконсультуйтесь із колегами або поставте орієнтовну цифру)",
+          "title": "Вкажіть кількість , перелічених категорій працівників, які на даний час працюють на підприємстві?  Якщо Ви не володієте точною інформацією по можливості проконсультуйтесь із колегами або поставте орієнтовну цифру)",
           "clearIfInvisible": "none",
           "columns": [
             {
@@ -468,7 +473,7 @@ export const json= {
         {
           "type": "matrixdropdown",
           "visibleIf": "{staffin24} = true",
-          "name": "staffqualityin24",
+          "name": "staffcategoryin24",
           "title": "Вкажіть кількість, перелічених категорій працівників, які , були прийняті на підприємство протягом 2024?  Якщо Ви не володієте точною інформацією по можливості проконсультуйтесь із колегами або поставте орієнтовну цифру)",
           "clearIfInvisible": "none",
           "columns": [
@@ -573,6 +578,116 @@ export const json= {
         },
       ]
     },
+    {
+      "name": "page15",
+      "elements": [
+        {
+          "type": "matrixdynamic",
+          "name": "staffqualityin24",
+          "title": "Працівників яких професій Ви наймали до штату протягом 2024 року?(не більше 5)",
+          "visibleIf": "{staffin24} = true",
+          "clearIfInvisible": "none",
+          "rowCount": 1,
+          "minRowCount": 1,
+          "maxRowCount": 5,
+          "addRowText": "Додати професію",
+          "removeRowText": "Видалити професію",
+          "columns": [
+            {
+              "name": "profession",
+              "title": "Назва професії",
+              "cellType": "dropdown",
+              "choicesLazyLoadEnabled": true,
+              "choicesLazyLoadPageSize": 25,
+              "choices": [] // Choices will be dynamically loaded in the component
+            },
+            {
+              "name": "count",
+              "title": "Кількість працівників",
+              "cellType": "text",
+              "inputType": "number",
+              "validators": [
+                {
+                  "type": "numeric",
+                  "minValue": 0,
+                  "text": "Кількість повинна бути не менше 0."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ,
 
+    {
+      "name": "page16",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "salary24",
+          "title": "Чи переглядався розмір заробітних плат на підприємстві протягом 2024 року?",
+          "labelTrue": "Так",
+          "labelFalse": "Ні",
+          "swapOrder": true
+        },
+      ]
+    },
+    {
+      "name": "page17",
+      "elements": [
+        {
+          "type": "dropdown",
+          "visibleIf": "{salary24} = true",
+          "name": "salaryup",
+          "title": "Як саме змінювались заробітні плати на підприємстві протягом 2024?",
+          "choices": [
+            {
+              "value": "1",
+              "text": "Підвищення зарплати ключовим співробітникам"
+            },
+            {
+              "value": "2",
+              "text": "Підвищення зарплати усім співробітникам"
+            },
+            {
+              "value": "3",
+              "text": "Зниження зарплати окремим категоріям співробітників"
+            },
+            {
+              "value": "4",
+              "text": "Зниження зарплати всім співробітникам"
+            }
+          ]
+
+        },
+      ]
+    },
+    {
+      "name": "page18",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "salary25",
+          "title": "Чи планує підприємство підвищення зарплат у 2025 році?",
+          "labelTrue": "Так",
+          "labelFalse": "Ні",
+          "swapOrder": true
+        },
+      ]
+    },
+    {
+      "name": "page19",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "hiringtrouble24",
+          "title": "Чи планує підприємство підвищення зарплат у 2025 році?",
+          "labelTrue": "Так",
+          "labelFalse": "Ні",
+          "swapOrder": true
+        },
+      ]
+    },
   ]
 }

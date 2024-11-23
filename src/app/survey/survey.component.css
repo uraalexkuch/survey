@@ -18,6 +18,9 @@
   :host ::ng-deep.sd-root-modern.sd-root-modern--full-container {
     width: 100%;
   }
+  :host ::ng-deep.sd-dropdown__value{
+    white-space: pre-wrap;
+  }
 }
 survey{
  display: flex;
