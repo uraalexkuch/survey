@@ -173,6 +173,46 @@ export const json= {
       ]
     },
     {
+      "name": "page1r",
+      "elements": [
+        {
+          "type": "dropdown",
+          "visibleIf": "{region} != ''",
+          "name": "rayonselect",
+          "title": {
+            "ua": "Вкажіть район де ви зареєстровані  ( в якому ви знаходитесь та провадите діяльність)?"
+          },
+          "isRequired": true,
+
+          "choices": [],
+          "placeholder": {
+            "ua": "Вибрати район..."
+          }
+
+        },
+      ]
+    },
+    {
+      "name": "page1g",
+      "elements": [
+        {
+          "type": "dropdown",
+          "visibleIf": "{rayonselect} != ''",
+          "name": "gromadaselect",
+          "title": {
+            "ua": "Вкажіть громаду де ви зареєстровані  ( в якому ви знаходитесь та провадите діяльність)?"
+          },
+          "isRequired": true,
+
+          "choices": [],
+          "placeholder": {
+            "ua": "Вибрати громаду..."
+          }
+
+        },
+      ]
+    },
+    {
       "name": "page2",
       "elements": [
         {

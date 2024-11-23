@@ -7,11 +7,10 @@ import { json } from "../models/json"; // Ensure this path is correct
 surveyLocalization.defaultLocale = "uk";
 import { BreadcrumbComponent } from 'xng-breadcrumb';
 import { NgIf } from '@angular/common';
-
-interface ClassifikatorItem {
-  cod_group_posad: string;
-  name_posad: string;
-}
+import { ClassifikatorItem } from '../models/classifikator-item';
+import { KoattgItem } from '../models/koattg-item';
+import { SurveyDataService } from '../service/survey-data.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-survey',
@@ -25,15 +24,17 @@ export class SurveyComponent implements OnInit {
   isSurvey: boolean = false;
   cacheKey = 'classifikatorCache';
   classifikatorItems: ClassifikatorItem[] = [];
+  koattgItems: KoattgItem[] = [];
+  filteredRayon: KoattgItem[] = [];
+  filteredGromada: KoattgItem[] = [];
 
-  constructor() {
-    // Load classifikatorItems in ngOnInit
-  }
+  constructor(private surveyDataService: SurveyDataService) {}
 
   async ngOnInit() {
     try {
-      // Load the classifikator items
+      // Load the classifikator and koattg items
       await this.loadClassifikator();
+      await this.loadKoattg();
 
       // Deep copy the JSON object and modify it
       const surveyJson = JSON.parse(JSON.stringify(json));
@@ -48,11 +49,10 @@ export class SurveyComponent implements OnInit {
               ) {
                 element.columns = element.columns.map((column: any) => {
                   if (column.name === "profession" && column.cellType === "dropdown") {
-                    // Enable lazy loading and set placeholder
                     return {
                       ...column,
                       choicesLazyLoadEnabled: true,
-                      choicesLazyLoadPageSize: 25, // Optional: Set page size
+                      choicesLazyLoadPageSize: 25,
                       placeholder: "Введіть текст для пошуку..."
                     };
                   }
@@ -65,17 +65,15 @@ export class SurveyComponent implements OnInit {
           return page;
         });
       }
-
       console.log("Survey JSON with dynamic choices:", surveyJson);
 
       // Initialize the survey model
       const survey = new Model(surveyJson);
 
-      // Add event handler for lazy loading choices
+      // Add event handlers
       survey.onChoicesLazyLoad.add(this.onChoicesLazyLoad.bind(this));
-
       survey.onComplete.add(this.surveyComplete.bind(this));
-      survey.onComplete.add((sender, options) => {
+      survey.onComplete.add((sender) => {
         console.log("Survey completed data:", JSON.stringify(sender.data, null, 3));
       });
 
@@ -83,103 +81,136 @@ export class SurveyComponent implements OnInit {
     } catch (error) {
       console.error("Error initializing survey:", error);
     }
+    this.filterObl();
   }
 
-  async loadClassifikator(): Promise<void> {
-    try {
-      let data = localStorage.getItem(this.cacheKey);
-      if (data) {
-        this.classifikatorItems = JSON.parse(data) as ClassifikatorItem[];
-      } else {
-        const response = await fetch('/assets/classifikator.json');
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+  loadClassifikator(): void {
+    let data = localStorage.getItem(this.cacheKey);
+    if (data) {
+      this.classifikatorItems = JSON.parse(data) as ClassifikatorItem[];
+    } else {
+      this.surveyDataService.loadClassifikator().subscribe({
+        next: (response) => {
+          this.classifikatorItems = response;
+          localStorage.setItem(this.cacheKey, JSON.stringify(this.classifikatorItems));
+        },
+        error: (error) => {
+          console.error("Error loading classifikator.json:", error);
+          this.classifikatorItems = [];
         }
-        this.classifikatorItems = await response.json();
-        localStorage.setItem(this.cacheKey, JSON.stringify(this.classifikatorItems));
-      }
-    } catch (error) {
-      console.error("Error loading classifikator.json:", error);
-      this.classifikatorItems = [];
+      });
     }
+  }
+  loadKoattg(): void {
+    this.surveyDataService.loadKoattg().subscribe({
+      next: (response) => {
+        this.koattgItems = response;
+        console.log(this.koattgItems);
+      },
+      error: (error) => {
+        console.error("Error loading koattg.json:", error);
+        this.koattgItems = [];
+      }
+    });
+  }
+
+  filterObl() {
+    this.model.onValueChanged.add((sender, options) => {
+      if (options.name === "region") {
+        this.filterRayon(options.value);
+        const rayonDropdown = sender.getQuestionByName("rayonselect");
+        if (rayonDropdown) {
+          rayonDropdown.choices = this.filteredRayon.map(item => ({
+            value: item.rayon,
+            text: item.name,
+          }));
+        }
+      }
+      if (options.name === "rayonselect") {
+        this.filterGromada(options.value);
+        const gromadaDropdown = sender.getQuestionByName("gromadaselect");
+        if (gromadaDropdown) {
+          gromadaDropdown.choices = this.filteredGromada.map(item => ({
+            value: item.gromada,
+            text: item.name,
+          }));
+        }
+      }
+    });
+  }
+
+  filterRayon(cod_rayon: string) {
+    const searchTerm = cod_rayon.toLowerCase();
+    this.filteredRayon = this.koattgItems.filter((item: KoattgItem) => {
+      return item.category === "P" && item.rayon.slice(0, 4).toLowerCase() === searchTerm.slice(0, 4);
+    });
+    console.log(this.filteredRayon);
+  }
+
+  filterGromada(cod_rayon: string) {
+    const searchTerm = cod_rayon.toLowerCase();
+    this.filteredGromada = this.koattgItems.filter((item: KoattgItem) => {
+      return item.category === "H" && item.rayon.slice(0, 7).toLowerCase() === searchTerm.slice(0, 7);
+    });
+    console.log(this.filteredGromada);
   }
 
   onChoicesLazyLoad(sender: any, options: any) {
-    const searchText = options.filter || '';
-    const skip = options.skip || 0;
-    const take = options.take || 25; // Adjust page size if needed
+    try {
+      const searchText = options.filter || '';
+      const skip = options.skip || 0;
+      const take = options.take || 25;
 
-    // Filter items based on the search text
-    let filteredItems = this.classifikatorItems;
-    if (searchText) {
-      const lowerSearchText = searchText.toLowerCase();
-      filteredItems = filteredItems.filter((item: ClassifikatorItem) =>
-        item.name_posad.toLowerCase().includes(lowerSearchText)
-      );
+      let filteredItems = this.classifikatorItems;
+      if (searchText) {
+        filteredItems = filteredItems.filter(item =>
+          item.name_posad.toLowerCase().includes(searchText.toLowerCase())
+        );
+      }
+
+      const pagedItems = filteredItems.slice(skip, skip + take);
+      const choices = pagedItems.map(({ cod_group_posad, name_posad }) => ({
+        value: cod_group_posad,
+        text: name_posad,
+      }));
+
+      options.setItems(choices, filteredItems.length);
+    } catch (error) {
+      console.error("Error during lazy loading choices:", error);
     }
-
-    // Slice the items for pagination
-    const pagedItems = filteredItems.slice(skip, skip + take);
-
-    // Map items to choices format
-    const choices = pagedItems.map(({ cod_group_posad, name_posad }: ClassifikatorItem) => ({
-      value: cod_group_posad,
-      text: name_posad,
-    }));
-
-    // Set the items and total count for pagination
-    options.setItems(choices, filteredItems.length);
-  }
-
-  onChoice() {
-    this.isSurvey = !this.isSurvey;
   }
 
   flattenSurveyResult({ data }: { data: any }) {
     return {
-      info: data.info,
-      region: data.region,
-      professionvoucher: data.professionvoucher,
-      workbefore: data.workbefore ? 1 : 0,
-      profworkbefore: data.profworkbefore,
-      yearvoucherend: data.yearvoucherend,
-      voucherafterinfluence: data.voucherafterinfluence,
-      voucherafterlife: data.voucherafterlife,
-      category: data.category,
-      ratevoucher: data.ratevoucher,
-      rateserviceoffice: data.rateserviceoffice,
-      response: data.response,
+      info: data?.info || '',
+      region: data?.region || '',
+      professionvoucher: data?.professionvoucher || '',
+      workbefore: data?.workbefore ? 1 : 0,
+      profworkbefore: data?.profworkbefore || '',
+      yearvoucherend: data?.yearvoucherend || '',
+      voucherafterinfluence: data?.voucherafterinfluence || '',
+      voucherafterlife: data?.voucherafterlife || '',
+      category: data?.category || '',
+      ratevoucher: data?.ratevoucher || 0,
+      rateserviceoffice: data?.rateserviceoffice || 0,
+      response: data?.response || '',
     };
   }
 
   surveyComplete(survey: Model) {
     const flattenedResult = this.flattenSurveyResult({ data: survey.data });
-
     saveSurveyResults(
       "http://localhost:3000/api/post",
-      {
-        flattenedResult // Pass flattenedResult as surveyResult
-      }
+      { flattenedResult }
     );
+  }
+
+  onChoice() {
+    this.isSurvey = !this.isSurvey;
   }
 }
 
-function saveSurveyResults(url: string, data: {
-  flattenedResult: {
-    ratevoucher: any;
-    professionvoucher: any;
-    response: any;
-    voucherafterinfluence: any;
-    voucherafterlife: any;
-    profworkbefore: any;
-    yearvoucherend: any;
-    workbefore: number;
-    region: any;
-    category: any;
-    rateserviceoffice: any;
-    info: any;
-  }
-}) {
+function saveSurveyResults(url: string, data: any) {
   fetch(url, {
     method: 'POST',
     headers: {
@@ -191,7 +222,7 @@ function saveSurveyResults(url: string, data: {
       if (response.ok) {
         console.log("Survey results saved successfully");
       } else {
-        console.error("Error saving survey results");
+        console.error(`Failed to save survey results. Status: ${response.status}`);
       }
     })
     .catch(error => {
