@@ -10,12 +10,13 @@ import { NgIf } from '@angular/common';
 import { ClassifikatorItem } from '../models/classifikator-item';
 import { KoattgItem } from '../models/koattg-item';
 import { SurveyDataService } from '../service/survey-data.service';
-import { firstValueFrom } from 'rxjs';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @Component({
   selector: 'app-survey',
   standalone: true,
-  imports: [SurveyModule, BreadcrumbComponent, NgIf],
+  providers: [SurveyDataService],
+  imports: [SurveyModule, BreadcrumbComponent, NgIf, HttpClientModule],
   templateUrl: './survey.component.html',
   styleUrls: ['./survey.component.css']
 })
