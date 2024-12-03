@@ -117,9 +117,9 @@ export class SurveyComponent implements OnInit {
 
   filterObl() {
     this.model.onValueChanged.add((sender, options) => {
-      if (options.name === "region") {
+      if (options.name === "regionreestr") {
         this.filterRayon(options.value);
-        const rayonDropdown = sender.getQuestionByName("rayonselect");
+        const rayonDropdown = sender.getQuestionByName("rayonselectreestr");
         if (rayonDropdown) {
           rayonDropdown['choices'] = this.filteredRayon.map(item => ({
             value: item.rayon,
@@ -127,9 +127,29 @@ export class SurveyComponent implements OnInit {
           }));
         }
       }
-      if (options.name === "rayonselect") {
+      if (options.name === "rayonselectreestr") {
         this.filterGromada(options.value);
-        const gromadaDropdown = sender.getQuestionByName("gromadaselect");
+        const gromadaDropdown = sender.getQuestionByName("gromadaselectreestr");
+        if (gromadaDropdown) {
+          gromadaDropdown['choices'] = this.filteredGromada.map(item => ({
+            value: item.gromada,
+            text: item.name,
+          }));
+        }
+      }
+      if (options.name === "regionfact") {
+        this.filterRayon(options.value);
+        const rayonDropdown = sender.getQuestionByName("rayonselectfact");
+        if (rayonDropdown) {
+          rayonDropdown['choices'] = this.filteredRayon.map(item => ({
+            value: item.rayon,
+            text: item.name,
+          }));
+        }
+      }
+      if (options.name === "rayonselectfact") {
+        this.filterGromada(options.value);
+        const gromadaDropdown = sender.getQuestionByName("gromadaselectfact");
         if (gromadaDropdown) {
           gromadaDropdown['choices'] = this.filteredGromada.map(item => ({
             value: item.gromada,
