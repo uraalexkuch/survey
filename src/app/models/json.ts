@@ -735,6 +735,7 @@ export const json= {
           "title": "Чи надаєте Ви  можливість працювати неповний робочий день?",
           "labelTrue": "Так",
           "labelFalse": "Ні",
+          "isRequired": true,
           "swapOrder": true
         },
       ]
@@ -748,6 +749,7 @@ export const json= {
           "title": "Чи стикалися Ви з труднощами при наборі персоналу у 2024 році?",
           "labelTrue": "Так",
           "labelFalse": "Ні",
+          "isRequired": true,
           "swapOrder": true
         },
       ]
@@ -786,6 +788,7 @@ export const json= {
           "title": "Чи організовували Ви навчання для ваших працівників у 2024 році?",
           "labelTrue": "Так",
           "labelFalse": "Ні",
+          "isRequired": true,
           "swapOrder": true
         },
       ]
@@ -1032,6 +1035,7 @@ export const json= {
           "title": "Чи планується  підвищення розміру заробітної плати у  2025 році?",
           "labelTrue": "Так",
           "labelFalse": "Ні",
+          "isRequired": true,
           "swapOrder": true
         },
   ]
@@ -1266,6 +1270,7 @@ export const json= {
           "title": "Чи співпрацюєте Ви з Державною службою зайнятості?",
           "labelTrue": "Так",
           "labelFalse": "Ні",
+          "isRequired": true,
           "swapOrder": true
         },
       ]
@@ -1331,6 +1336,7 @@ export const json= {
           "title": "Чи співпрацюєте Ви з Центрами професійно – технічної освіти Державної служби зайнятості?",
           "labelTrue": "Так",
           "labelFalse": "Ні",
+          "isRequired": true,
           "swapOrder": true
         },
       ]
@@ -1370,6 +1376,7 @@ export const json= {
           "title": "Чи працюють у Вас працівники, які навчались в Центрах професійно – технічної освіти Державної служби зайнятості?",
           "labelTrue": "Так",
           "labelFalse": "Ні",
+          "isRequired": true,
           "swapOrder": true
         },
       ]
