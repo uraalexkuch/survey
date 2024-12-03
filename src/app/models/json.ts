@@ -6,10 +6,70 @@ export const json= {
       "name": "page1",
       "elements": [
         {
-          "type": "dropdown",
-          "name": "region",
+          "type": "text",
+          "name": "namepou",
           "title": {
-            "ua": "Вкажіть регіон де ви зареєстровані  ( в якому ви знаходитесь та провадите діяльність)?"
+            "ua": "Назва Вашого підприємства (установи, організації, ФОП)"
+          },
+          "isRequired": true,
+          "placeholder": {
+            "ua": "Напишіть..."
+
+          }
+
+        },
+      ]
+    },
+    {
+      "name": "page2",
+      "elements": [
+        {
+          "type": "text",
+          "inputType": "number",
+          "name": "edrpou",
+          "title": {
+            "ua": "ЄДРПОУ Вашого підприємства (установи, організації) (РНОКПП для ФОП)"
+          },
+
+          "isRequired": true,
+          "placeholder": {
+            "ua": "Напишіть..."
+
+          }
+
+        },
+      ]
+    },
+    {
+      "name": "page3",
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "qved",
+          "title": {
+            "ua": "Основний вид діяльності згідно  з КВЕД  "
+          },
+          "choicesByUrl": {
+            "url": "/assets/kved.json",
+            "valueName": "kved_number",
+            "titleName": "kved_text"
+          },
+          "isRequired": true,
+          "placeholder": {
+            "ua": "Оберіть зі списку..."
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "page4",
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "regionreestr",
+          "title": {
+            "ua": "Регіон, де зареєстровано  Ваше підприємство (установа, організація, ФОП)"
           },
           "isRequired": true,
 
@@ -173,14 +233,14 @@ export const json= {
       ]
     },
     {
-      "name": "page1r",
+      "name": "page4r",
       "elements": [
         {
           "type": "dropdown",
-          "visibleIf": "{region} != ''",
-          "name": "rayonselect",
+          "visibleIf": "{regionreestr} != ''",
+          "name": "rayonselectreestr",
           "title": {
-            "ua": "Вкажіть район де ви зареєстровані  ( в якому ви знаходитесь та провадите діяльність)?"
+            "ua": "Вкажіть район, де зареєстровано  Ваше підприємство (установа, організація, ФОП)?"
           },
           "isRequired": true,
 
@@ -193,14 +253,14 @@ export const json= {
       ]
     },
     {
-      "name": "page1g",
+      "name": "page4g",
       "elements": [
         {
           "type": "dropdown",
-          "visibleIf": "{rayonselect} != ''",
-          "name": "gromadaselect",
+          "visibleIf": "{rayonselectreestr} != ''",
+          "name": "gromadaselectreestr",
           "title": {
-            "ua": "Вкажіть громаду де ви зареєстровані  ( в якому ви знаходитесь та провадите діяльність)?"
+            "ua": "Вкажіть громаду, де зареєстровано  Ваше підприємство (установа, організація, ФОП)?"
           },
           "isRequired": true,
 
@@ -212,73 +272,225 @@ export const json= {
         },
       ]
     },
-    {
-      "name": "page2",
-      "elements": [
-        {
-          "type": "text",
-          "name": "namepou",
-          "title": {
-            "ua": "Вкажіть назву Вашого підприємства  (ПІБ для ФОП)"
-          },
-          "isRequired": true,
-          "placeholder": {
-            "ua": "Напишіть..."
-
-          }
-
-        },
-      ]
-    },
-    {
-      "name": "page3",
-      "elements": [
-        {
-          "type": "text",
-          "name": "edrpou",
-          "title": {
-            "ua": "Вкажіть ЄДРПОУ Вашого підприємства (РНОКПП для ФОП)"
-          },
-
-          "isRequired": true,
-          "placeholder": {
-            "ua": "Напишіть..."
-
-          }
-
-        },
-      ]
-    },
-    {
-      "name": "page4",
-      "elements": [
-        {
-          "type": "dropdown",
-          "name": "qved",
-          "title": {
-            "ua": "Вкажіть основний вид діяльності Вашого підприємства згідно КВЕД"
-          },
-          "choicesByUrl": {
-            "url": "/assets/kved.json",
-            "valueName": "kved_number",
-            "titleName": "kved_text"
-          },
-          "isRequired": true,
-          "placeholder": {
-            "ua": "Оберіть зі списку..."
-          }
-        }
-      ]
-    },
 
     {
       "name": "page5",
       "elements": [
         {
+          "type": "dropdown",
+          "name": "regionfact",
+          "title": {
+            "ua": "Регіон, де Ваше підприємство (установа, організація, ФОП) здійснює господарську діяльність"
+          },
+          "isRequired": true,
+
+          "choices": [
+            {
+              "value": "UA05",
+              "text": {
+                "ua": "Вінницька"
+              }
+            },
+            {
+              "value": "UA07",
+              "text": {
+                "ua": "Волинська"
+              }
+            },
+            {
+              "value": "UA12",
+              "text": {
+                "ua": "Дніпропетровська"
+              }
+            },
+            {
+              "value": "UA14",
+              "text": {
+                "ua": "Донецька"
+              }
+            },
+            {
+              "value": "UA18",
+              "text": {
+                "ua": "Житомирська"
+              }
+            },
+            {
+              "value": "UA21",
+              "text": {
+                "ua": "Закарпатська"
+              }
+            },
+            {
+              "value": "UA23",
+              "text": {
+                "ua": "Запорізька"
+              }
+            },
+            {
+              "value": "UA26",
+              "text": {
+                "ua": "Івано-Франківська"
+              }
+            },
+            {
+              "value": "UA32",
+              "text": {
+                "ua": "Київська"
+              }
+            },
+            {
+              "value": "UA35",
+              "text": {
+                "ua": "Кіровоградська"
+              }
+            },
+            {
+              "value": "UA44",
+              "text": {
+                "ua": "Луганська"
+              }
+            },
+            {
+              "value": "UA46",
+              "text": {
+                "ua": "Львівська"
+              }
+            },
+            {
+              "value": "UA48",
+              "text": {
+                "ua": "Миколаївська"
+              }
+            },
+            {
+              "value": "UA51",
+              "text": {
+                "ua": "Одеська"
+              }
+            },
+            {
+              "value": "UA53",
+              "text": {
+                "ua": "Полтавська"
+              }
+            },
+            {
+              "value": "UA56",
+              "text": {
+                "ua": "Рівненська"
+              }
+            },
+            {
+              "value": "UA59",
+              "text": {
+                "ua": "Сумська"
+              }
+            },
+            {
+              "value": "UA61",
+              "text": {
+                "ua": "Тернопільська"
+              }
+            },
+            {
+              "value": "UA63",
+              "text": {
+                "ua": "Харківська"
+              }
+            },
+            {
+              "value": "UA65",
+              "text": {
+                "ua": "Херсонська"
+              }
+            },
+            {
+              "value": "UA68",
+              "text": {
+                "ua": "Хмельницька"
+              }
+            },
+            {
+              "value": "UA71",
+              "text": {
+                "ua": "Черкаська"
+              }
+            },
+            {
+              "value": "UA73",
+              "text": {
+                "ua": "Чернівецька"
+              }
+            },
+            {
+              "value": "UA74",
+              "text": {
+                "ua": "Чернігівська"
+              }
+            },
+            {
+              "value": "UA80",
+              "text": {
+                "ua": "Київ"
+              }
+            }
+          ],
+          "placeholder": {
+            "ua": "Вибрати область..."
+          }
+
+        },
+      ]
+    },
+    {
+      "name": "page5r",
+      "elements": [
+        {
+          "type": "dropdown",
+          "visibleIf": "{regionfact} != ''",
+          "name": "rayonselectfact",
+          "title": {
+            "ua": "Вкажіть район, де Ваше підприємство (установа, організація, ФОП) здійснює господарську діяльність ?"
+          },
+          "isRequired": true,
+
+          "choices": [],
+          "placeholder": {
+            "ua": "Вибрати район..."
+          }
+
+        },
+      ]
+    },
+    {
+      "name": "page5g",
+      "elements": [
+        {
+          "type": "dropdown",
+          "visibleIf": "{rayonselectfact} != ''",
+          "name": "gromadaselectfact",
+          "title": {
+            "ua": "Вкажіть громаду, де Ваше підприємство (установа, організація, ФОП) здійснює господарську діяльність ?"
+          },
+          "isRequired": true,
+
+          "choices": [],
+          "placeholder": {
+            "ua": "Вибрати громаду..."
+          }
+
+        },
+      ]
+    },
+   {
+      "name": "page6",
+      "elements": [
+        {
           "type": "text",
           "name": "staff010124",
           "title": {
-            "ua": "Вкажіть середньоспискову чисельність персоналу станом на 01.01.2024"
+            "ua": "Середньоспискова чисельність персоналу станом на 01.01.2024 р."
           },
           "inputType": "number",
           "isRequired": true,
@@ -291,13 +503,33 @@ export const json= {
       ]
     },
     {
+      "name": "page7",
+      "elements": [
+        {
+          "type": "text",
+          "inputType": "number",
+          "name": "staffout24",
+          "title": {
+            "ua": "Чисельність звільнених працівників у 2024 році"
+          },
+          "isRequired": true,
+          "placeholder": {
+            "ua": "Напишіть..."
+
+          }
+
+        },
+      ]
+    },
+    {
       "name": "page6",
       "elements": [
         {
           "type": "text",
+          "inputType": "number",
           "name": "staff010125",
           "title": {
-            "ua": "Вкажіть, яка планується,приблизно, середньоспискова чисельність персоналу станом на 01.01.2025"
+            "ua": "Орієнтовна середньоспискова чисельність персоналу станом на 01.01.2025р."
           },
           "isRequired": true,
           "placeholder": {
@@ -314,7 +546,7 @@ export const json= {
         {
           "type": "matrixdropdown",
           "name": "staffquality",
-          "title": "Вкажіть кількість , перелічених категорій працівників, які на даний час працюють на підприємстві?  Якщо Ви не володієте точною інформацією по можливості проконсультуйтесь із колегами або поставте орієнтовну цифру)",
+          "title": "Кількість працівників з перелічених категорій, які сьогодні у Вас працюють? ",
           "clearIfInvisible": "none",
           "columns": [
             {
@@ -340,7 +572,7 @@ export const json= {
               "text": "Професіонали та Спеціалісти"
             },
             {
-              "value": "prof1",
+              "value": "servants",
               "text": "Службовці та адміністративні працівники"
             },
             {
@@ -356,52 +588,42 @@ export const json= {
               "text": "Жінки"
             },
             {
-              "value": "teengere",
+              "value": "young",
               "text": "Молодь у віці до 25 років"
+            },
+            {
+              "value": "old",
+              "text": "Люди віком 60+"
+            },
+            {
+              "value": "inv",
+              "text": "Люди з інвалідністю"
             },
             {
               "value": "vpo",
               "text": "Внутрішньо переміщені особи"
             },
             {
-              "value": "inv",
-              "text": "Особи з інвалідністю"
+              "value": "veteran",
+              "text": "Ветерани (ветеранки) війни"
             },
             {
-              "value": "veteran",
-              "text": "Ветерани ООС та війни з рф"
-            }
+              "value": "foreign",
+              "text": "Іноземні громадяни"
+            },
+
           ]
         },
         ]
     },
-    {
-      "name": "page8",
-      "elements": [
-        {
-          "type": "text",
-          "name": "staffout24",
-          "title": {
-            "ua": "Вкажіть чисельність звільнених у 2024 році працівників з Вашого підприємства"
-          },
-          "isRequired": true,
-          "placeholder": {
-            "ua": "Напишіть..."
-
-          }
-
-        },
-      ]
-    },
-
-    {
+   {
       "name": "page8",
       "elements": [
         {
           "type": "dropdown",
           "name": "workregim",
           "title": {
-            "ua": " Який формат роботи впроваджений на підприємстві?"
+            "ua": "Який формат роботи у Вас використовується?"
           },
           "isRequired": true,
           "choices": [
@@ -432,35 +654,181 @@ export const json= {
       "name": "page9",
       "elements": [
         {
+          "type": "boolean",
+          "name": "halfwork",
+          "title": "Чи надаєте Ви  можливість працювати неповний робочий день?",
+          "labelTrue": "Так",
+          "labelFalse": "Ні",
+          "swapOrder": true
+        },
+      ]
+    },
+    {
+      "name": "page10",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "hiring2024",
+          "title": "Ви наймали працівників протягом 2024 року?",
+          "labelTrue": "Так",
+          "labelFalse": "Ні",
+          "swapOrder": true
+        },
+      ]
+    },
+    {
+      "name": "page11",
+      "elements": [
+        {
           "type": "dropdown",
+          "visibleIf": "{hiring2024} = true",
           "name": "valuetrade24",
-          "title": "Як змінилися обсяги виробництва/ продажів / виконаних робіт або наданих послуг Вашим підприємством протягом 2024?",
+          "title": "На яких умовах Ви наймали працівників протягом 2024 року?",
           "clearIfInvisible": "none",
           "choices": [
             {
               "value": "1",
-              "text": "Істотно зросли"
+              "text": "На постійній основі (штатні працівники)"
             },
             {
               "value": "2",
-              "text": "Помірно зросли"
+              "text": "За строковим  трудовим договором"
             },
             {
               "value": "3",
-              "text": "Не змінилися"
+              "text": "За договором ЦПХ"
             },
             {
               "value": "4",
-              "text": "Помірно знизились"
-            },
-            {
-              "value": "5",
-              "text": "Істотно знизились"
+              "text": "За гіг - контрактом"
             }
       ]
     },
   ]
         },
+    {
+      "name": "page12",
+      "elements": [
+        {
+          "type": "dropdown",
+          "visibleIf": "{hiring2024} = true",
+          "name": "valuetrade24",
+          "title": "Зазначте кількість з нижчеперелічених категорій працівників, які  були прийняті протягом 2024 року?",
+
+          "clearIfInvisible": "none",
+          "columns": [
+            {
+              "name": "Column 1",
+              "title": "Кількість",
+              "cellType": "text",
+              "validators": [
+                {
+                  "type": "expression"
+                }
+              ],
+              "inputType": "number"
+            }
+          ],
+          "cellType": "text",
+          "rows": [
+            {
+              "value": "woman",
+              "text": "Жінки"
+            },
+            {
+              "value": "young",
+              "text": "Молодь у віці до 25 років"
+            },
+            {
+              "value": "old",
+              "text": "Люди віком 60+"
+            },
+            {
+              "value": "inv",
+              "text": "Люди з інвалідністю"
+            },
+            {
+              "value": "veteran",
+              "text": "Ветерани (ветеранки) війни"
+            },
+            {
+              "value": "vpo",
+              "text": "Внутрішньо переміщені особи"
+            },
+            {
+              "value": "foreign",
+              "text": "Іноземні громадяни"
+            },
+            {
+              "value": "cpto",
+              "text": "Люди, які навчались в Центрах професійно – технічної освіти Державної служби зайнятості"
+            },
+
+          ]
+        },
+      ]
+    },
+    {
+      "name": "page13",
+      "elements": [
+        {
+          "type": "dropdown",
+          "visibleIf": "{hiring2024} = true",
+          "name": "valuetrade24",
+          "title": "На яких умовах Ви наймали працівників протягом 2024 року?",
+          "clearIfInvisible": "none",
+          "choices": [
+            {
+              "value": "1",
+              "text": "На постійній основі (штатні працівники)"
+            },
+            {
+              "value": "2",
+              "text": "За строковим  трудовим договором"
+            },
+            {
+              "value": "3",
+              "text": "За договором ЦПХ"
+            },
+            {
+              "value": "4",
+              "text": "За гіг - контрактом"
+            }
+          ]
+        },
+      ]
+    },
+    {
+      "name": "page14",
+      "elements": [
+        {
+          "type": "dropdown",
+          "visibleIf": "{valuetrade24} = 'cpto'",
+          "name": "valuetrade24",
+          "title": "На яких умовах Ви наймали працівників протягом 2024 року?",
+          "clearIfInvisible": "none",
+          "choices": [
+            {
+              "value": "1",
+              "text": "На постійній основі (штатні працівники)"
+            },
+            {
+              "value": "2",
+              "text": "За строковим  трудовим договором"
+            },
+            {
+              "value": "3",
+              "text": "За договором ЦПХ"
+            },
+            {
+              "value": "4",
+              "text": "За гіг - контрактом"
+            }
+          ]
+        },
+      ]
+    },
+
     {
       "name": "page10",
       "elements": [
