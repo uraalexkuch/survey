@@ -485,7 +485,7 @@ export const json= {
         },
       ]
     },
-   {
+    {
       "name": "page6",
       "elements": [
         {
@@ -534,12 +534,15 @@ export const json= {
           "isRequired": true,
           "columns": [
             {
-              "name": "Column 1",
+              "name": "count",
               "title": "Кількість",
               "cellType": "text",
+              "isRequired": true,
               "validators": [
                 {
-                  "type": "expression"
+                  "type": "numeric",
+                  "minValue": 0,
+                  "text": "Кількість повинна бути не менше 0."
                 }
               ],
               "inputType": "number"
@@ -549,23 +552,28 @@ export const json= {
           "rows": [
             {
               "value": "manager",
-              "text": "Керівники/менеджери"
+              "text": "Керівники/менеджери",
+              "isRequired": true,
             },
             {
               "value": "prof",
-              "text": "Професіонали та Спеціалісти"
+              "text": "Професіонали та Спеціалісти",
+              "isRequired": true,
             },
             {
               "value": "servants",
-              "text": "Службовці та адміністративні працівники"
+              "text": "Службовці та адміністративні працівники",
+              "isRequired": true,
             },
             {
               "value": "qwalwork",
-              "text": "Кваліфіковані робітники"
+              "text": "Кваліфіковані робітники",
+              "isRequired": true,
             },
             {
               "value": "notqwalwork",
-              "text": "Некваліфіковані робітники"
+              "text": "Некваліфіковані робітники",
+              "isRequired": true,
             }
           ]
         },
@@ -582,12 +590,15 @@ export const json= {
           "clearIfInvisible": "none",
           "columns": [
             {
-              "name": "Column 1",
+              "name": "count",
               "title": "Кількість",
               "cellType": "text",
+              "isRequired": true,
               "validators": [
                 {
-                  "type": "expression"
+                  "type": "numeric",
+                  "minValue": 0,
+                  "text": "Кількість повинна бути не менше 0."
                 }
               ],
               "inputType": "number"
@@ -597,11 +608,13 @@ export const json= {
           "rows": [
             {
               "value": "man",
-              "text": "Чоловіки"
+              "text": "Чоловіки",
+              "isRequired": true
             },
             {
               "value": "woman",
-              "text": "Жінки"
+              "text": "Жінки",
+              "isRequired": true
             }
           ]
         },
@@ -618,12 +631,15 @@ export const json= {
           "clearIfInvisible": "none",
           "columns": [
             {
-              "name": "Column 1",
+              "name": "count",
               "title": "Кількість",
               "cellType": "text",
+              "isRequired": true,
               "validators": [
                 {
-                  "type": "expression"
+                  "type": "numeric",
+                  "minValue": 0,
+                  "text": "Кількість повинна бути не менше 0."
                 }
               ],
               "inputType": "number"
@@ -634,11 +650,13 @@ export const json= {
 
             {
               "value": "young",
-              "text": "Молодь у віці до 25 років"
+              "text": "Молодь у віці до 25 років",
+              "isRequired": true
             },
             {
               "value": "old",
-              "text": "Люди віком 60+"
+              "text": "Люди віком 60+",
+              "isRequired": true
             }
 
           ]
@@ -656,12 +674,15 @@ export const json= {
           "clearIfInvisible": "none",
           "columns": [
             {
-              "name": "Column 1",
+              "name": "count",
               "title": "Кількість",
+              "isRequired": true,
               "cellType": "text",
               "validators": [
                 {
-                  "type": "expression"
+                  "type": "numeric",
+                  "minValue": 0,
+                  "text": "Кількість повинна бути не менше 0."
                 }
               ],
               "inputType": "number"
@@ -672,26 +693,31 @@ export const json= {
 
             {
               "value": "inv",
-              "text": "Люди з інвалідністю"
+              "text": "Люди з інвалідністю",
+              "isRequired": true,
+
             },
             {
               "value": "vpo",
-              "text": "Внутрішньо переміщені особи"
+              "text": "Внутрішньо переміщені особи",
+              "isRequired": true
             },
             {
               "value": "veteran",
-              "text": "Ветерани (ветеранки) війни"
+              "text": "Ветерани (ветеранки) війни",
+              "isRequired": true
             },
             {
               "value": "foreign",
-              "text": "Іноземні громадяни"
+              "text": "Іноземні громадяни",
+              "isRequired": true
             },
 
           ]
         },
       ]
     },
-   {
+    {
       "name": "page12",
       "elements": [
         {
@@ -890,6 +916,8 @@ export const json= {
               "cellType": "dropdown",
               "choicesLazyLoadEnabled": true,
               "choicesLazyLoadPageSize": 25,
+              "width": "50%",
+            "cellCssClass": "wrap-text",
               "choices": [] // Choices will be dynamically loaded in the component
             },
             {
@@ -897,6 +925,8 @@ export const json= {
               "title": "Кількість працівників",
               "cellType": "text",
               "inputType": "number",
+              "width": "20%",
+              "isRequired": true,
               "validators": [
                 {
                   "type": "numeric",
@@ -909,6 +939,7 @@ export const json= {
               "name": "salary",
               "title": "Середній розмір заробітної плати (включаючи додаткові виплати), гривень",
               "cellType": "text",
+              "width": "30%",
               "inputType": "number",
               "validators": [
                 {
@@ -941,7 +972,7 @@ export const json= {
                 "Так",
                 "Ні"
               ],
-              "colCount": 0
+              "colCount": 2
             },
             {
               "type": "radiogroup",
@@ -953,7 +984,7 @@ export const json= {
                 "Так",
                 "Ні"
               ],
-              "colCount": 0
+              "colCount": 2
             },
             {
               "type": "radiogroup",
@@ -975,7 +1006,7 @@ export const json= {
                 "Так",
                 "Ні"
               ],
-              "colCount": 0
+              "colCount": 2
             },]
 
     },
@@ -1306,7 +1337,7 @@ export const json= {
       "name": "page36",
       "elements": [
         {
-          "type": "tagbox",
+          "type": "chekbox",
           "visibleIf": "{coloborationdcz} =false",
           "name": "coloborationtfalse",
           "title": "З яких причин Ви  НЕ співпрацюєте з Державною службою зайнятості?",
@@ -1346,7 +1377,7 @@ export const json= {
       "name": "page38",
       "elements": [
         {
-          "type": "tagbox",
+          "type": "chekbox",
           "visibleIf": "{coloborationcpto} = true",
           "name": "coloborationttrue",
           "title": "У  чому полягає Ваша співпраця з Центрами професійно – технічної освіти Державної служби зайнятості?",
