@@ -3,14 +3,16 @@
   justify-items: center!important;
 }
 /* Забезпечення переносу тексту для таблиці SurveyJS */
-:host ::ng-deep.wrap-text {
-  white-space: normal !important; /* Включає нормальний перенос тексту */
-  word-wrap: break-word; /* Переносить слова на новий рядок, якщо вони занадто довгі */
-  overflow-wrap: break-word; /* Додатковий параметр для сучасних браузерів */
+:host ::ng-deep.sd-dropdown__value {
+  white-space: normal !important; /* Дозволяє перенос тексту */
+  word-wrap: break-word; /* Переносить слова, які не влазять */
+  overflow-wrap: anywhere; /* Додатковий параметр для переносу слів */
+  text-align: left; /* Вирівнювання тексту для покращення читабельності */
 }
 
+
 :host ::ng-deep.sv_matrix_dynamic .sv_matrix_cell .wrap-text {
-  max-width: 100%; /* Обмежує ширину клітинки */
+  max-width: 100%!important; /* Обмежує ширину клітинки */
   overflow: hidden; /* Приховує зайвий текст */
 }
 
