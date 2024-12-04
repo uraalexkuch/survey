@@ -917,7 +917,7 @@ export const json= {
               "choicesLazyLoadEnabled": true,
               "choicesLazyLoadPageSize": 25,
               "width": "50%",
-            "cellCssClass": "wrap-text",
+              "cellCssClass": "wrap-text",
               "choices": [] // Choices will be dynamically loaded in the component
             },
             {
