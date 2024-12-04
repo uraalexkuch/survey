@@ -853,22 +853,19 @@ export const json= {
       "name": "page19",
       "elements": [
         {
-          "type": "dropdown",
+          "type": "chekbox",
           "visibleIf": "{hiring25} = true",
           "isRequired": true,
           "name": "valuetrade24",
           "title": "На які  робочі місця плануєте приймати працівників у 2025 році?",
           "clearIfInvisible": "none",
           "choices": [
-            {
-              "value": "1",
-              "text": "Новостворені робочі місця"
-            },
-            {
-              "value": "2",
-              "text": "Вакантні робочі місця"
-            }
-          ]
+            "Новостворені робочі місця",
+             "Вакантні робочі місця"
+
+          ],
+          "colCount": 2,
+          "minSelectedChoices": 1,
         },
       ]
     },
