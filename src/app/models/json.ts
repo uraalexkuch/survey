@@ -987,6 +987,7 @@ export const json= {
         {
           "type": "dropdown",
           "name": "hiringwomen25",
+          "visibleIf": "{hiring25} = true",
           "isRequired": true,
           "title": "Чи готові Ви наймати жінок на вакансії за умовно чоловічими професіями?",
           "clearIfInvisible": "none",
@@ -1013,6 +1014,7 @@ export const json= {
         {
           "type": "dropdown",
           "name": "hiringforeign25",
+          "visibleIf": "{hiring25} = true",
           "isRequired": true,
           "title": "Чи розглядаєте Ви можливість залучення іноземних працівників у 2025 році?",
           "clearIfInvisible": "none",
