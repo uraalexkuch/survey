@@ -1568,16 +1568,10 @@ export const json= {
     {
       "name": "page45",
       "type": "panel",
+      "visibleIf": "{faqdcz} notcontains 'Додаткова інформація непотрібна'",
+      "title": "Будь ласка, надайте Ваші контактні дані, щоб ми могли зв’язатися з Вами та якомога швидше вирішити зазначені питання",
+      "titleLocation": "top",
       "elements": [
-        {
-          "type": "text",
-          "name": "contacttitle",
-          "visibleIf": "{faqdcz} notcontains 'Додаткова інформація непотрібна'",
-          "width": "100%",
-          "minWidth": "256px",
-          "title": "Будь ласка, надайте Ваші контактні дані, щоб ми могли зв’язатися з Вами та якомога швидше вирішити зазначені питання",
-          "titleLocation": "top"
-        },
         {
           "type": "text",
           "title": "Email",
