@@ -236,10 +236,11 @@ export const json= {
     },
     {
       "name": "page4r",
+
       "elements": [
         {
           "type": "dropdown",
-          "visibleIf": "{regionreestr} != ''",
+          "visibleIf": "{regionreestr} != '' and {regionreestr} != 'UA80'",
           "name": "rayonselectreestr",
           "title": {
             "ua": "Вкажіть район, де зареєстровано  Ваше підприємство (установа, організація, ФОП)?"
@@ -449,7 +450,7 @@ export const json= {
       "elements": [
         {
           "type": "dropdown",
-          "visibleIf": "{regionfact} != ''",
+          "visibleIf": "{regionfact} != '' and {regionfact} != 'UA80'",
           "name": "rayonselectfact",
           "title": {
             "ua": "Вкажіть район, де Ваше підприємство (установа, організація, ФОП) здійснює господарську діяльність ?"
@@ -530,6 +531,7 @@ export const json= {
           "name": "staffquality",
           "title": "Кількість працівників за професійними групами, які сьогодні у Вас працюють? ",
           "clearIfInvisible": "none",
+          "isRequired": true,
           "columns": [
             {
               "name": "Column 1",
@@ -575,6 +577,7 @@ export const json= {
         {
           "type": "matrixdropdown",
           "name": "staffquality",
+          "isRequired": true,
           "title": "Кількість працівників за гендерною ознакою, які сьогодні у Вас працюють? ",
           "clearIfInvisible": "none",
           "columns": [
@@ -609,6 +612,7 @@ export const json= {
       "elements": [
         {
           "type": "matrixdropdown",
+          "isRequired": true,
           "name": "staffquality",
           "title": "Кількість працівників за віком, які сьогодні у Вас працюють? ",
           "clearIfInvisible": "none",
@@ -647,6 +651,7 @@ export const json= {
         {
           "type": "matrixdropdown",
           "name": "staffquality",
+          "isRequired": true,
           "title": "Кількість працівників з перелічених категорій, які сьогодні у Вас працюють? ",
           "clearIfInvisible": "none",
           "columns": [
@@ -824,6 +829,7 @@ export const json= {
         {
           "type": "dropdown",
           "name": "hiring25",
+          "isRequired": true,
           "title": "Чи плануєте приймати працівників у 2025 році?",
           "clearIfInvisible": "none",
           "choices": [
@@ -849,6 +855,7 @@ export const json= {
         {
           "type": "dropdown",
           "visibleIf": "{hiring25} = true",
+          "isRequired": true,
           "name": "valuetrade24",
           "title": "На які  робочі місця плануєте приймати працівників у 2025 році?",
           "clearIfInvisible": "none",
@@ -865,7 +872,6 @@ export const json= {
         },
       ]
     },
-
     {
       "name": "page20",
       "elements": [
@@ -877,6 +883,7 @@ export const json= {
           "clearIfInvisible": "none",
           "rowCount": 1,
           "minRowCount": 1,
+          "isRequired": true,
           "addRowText": "Додати професію",
           "removeRowText": "Видалити професію",
           "columns": [
@@ -925,6 +932,7 @@ export const json= {
           "type": "panel",
           "visibleIf": "{hiring25} = true",
           "name": "hiringgategory25",
+          "isRequired": true,
           "title": "Чи плануєте Ви наймати працівників з нижчеперелічених категорій осіб у 2025 році?",
           "elements": [
             {
@@ -982,6 +990,7 @@ export const json= {
         {
           "type": "dropdown",
           "name": "hiringwomen25",
+          "isRequired": true,
           "title": "Чи готові Ви наймати жінок на вакансії за умовно чоловічими професіями?",
           "clearIfInvisible": "none",
           "choices": [
@@ -1007,6 +1016,7 @@ export const json= {
         {
           "type": "dropdown",
           "name": "hiringforeign25",
+          "isRequired": true,
           "title": "Чи розглядаєте Ви можливість залучення іноземних працівників у 2025 році?",
           "clearIfInvisible": "none",
           "choices": [
@@ -1067,9 +1077,8 @@ export const json= {
         },
       ]
     },
-
     {
-      "name": "page25",
+      "name": "page26",
       "elements": [
         {
           "type": "checkbox",
@@ -1078,11 +1087,7 @@ export const json= {
           "choices": [
             "Відсутність облаштованих робочих місць",
             "Потрібні особливі умови праці на підприємстві",
-            "Брак знань, як поводитися з  людьми з інвалідністю",
-            "Нормативні та регуляторні обмеження",
-            "Пересторога щодо низької мотивації до праці",
-            "Ці люди не звертаються за роботою",
-            "Відсутність (часткова відсутність) потрібних  послуг або інфраструктури (медичне обслуговування, психологічна підтримка, доступний транспорт, житло, догляд за дітьми тощо)",
+            "Брак знань, як поводитися з людьми з інвалідністю",
             "Жодних перешкод немає"
           ],
           "showOtherItem": true,
@@ -1090,12 +1095,14 @@ export const json= {
           "colCount": 2,
           "isRequired": true,
           "maxSelectedChoices": 3,
-          "minSelectedChoices": 1
-        },
-  ]
-        },
+          "minSelectedChoices": 1,
+          "choicesEnableIf": "{troubleinv} notcontains 'Жодних перешкод немає' or {item} = 'Жодних перешкод немає'"
+        }
+      ]
+    },
+
     {
-      "name": "page26",
+      "name": "page27",
       "elements": [
         {
           "type": "checkbox",
@@ -1105,37 +1112,35 @@ export const json= {
             "Фінансова підтримка для облаштування робочих місць",
             "Компенсаційні програми",
             "Фінансування навчання ",
-            "Фінансова підтримка додаткового персоналу, який підтримує цих людей",
-            "Покращення якості та доступності потрібних послуг або інфраструктури, (медичне обслуговування, психологічна підтримка, доступний транспорт, житло, догляд за дітьми тощо)",
             "Підтримка не потрібна"
           ],
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",
           "colCount": 2,
           "isRequired": true,
+          "choicesEnableIf": "{profitinv} notcontains 'Підтримка не потрібна' or {item} = 'Підтримка не потрібна'",
           "maxSelectedChoices": 3,
           "minSelectedChoices": 1
         },
       ]
     },
-
     {
-      "name": "page27",
+      "name": "page28",
       "elements": [
         {
           "type": "checkbox",
           "name": "troubleveteran",
           "title": "Які перешкоди існують, на Ваш погляд, для працевлаштування ветеранів (ветеранок) війни? (оберіть до 3 ключових перешкод)",
           "choices": [
-            "Відсутність необхідної освіти, професійного досвіду ",
+            "Відсутність необхідної професійної кваліфікації",
             "Вимоги до високого рівня зарплати",
-            "Відсутність (часткова відсутність) потрібних послуг або інфраструктури (медичне обслуговування, психологічна підтримка, житло, догляд за дітьми тощо)",
             "Необхідні додаткові заходи для соціалізації та адаптації на робочому місці",
             "Жодних перешкод немає"
           ],
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",
           "colCount": 2,
+          "choicesEnableIf": "{troubleveteran} notcontains 'Жодних перешкод немає' or {item} = 'Жодних перешкод немає'",
           "maxSelectedChoices": 3,
           "minSelectedChoices": 1,
           "isRequired": true
@@ -1143,7 +1148,7 @@ export const json= {
       ]
     },
     {
-      "name": "page28",
+      "name": "page29",
       "elements": [
         {
           "type": "checkbox",
@@ -1153,37 +1158,10 @@ export const json= {
             "Фінансова підтримка для облаштування робочих місць",
             "Компенсаційні програми",
             "Фінансування навчання ",
-            "Фінансова підтримка додаткового персоналу, який підтримує цих людей",
-            "Покращення якості та доступності потрібних послуг або інфраструктури, (медичне обслуговування, психологічна підтримка, доступний транспорт, житло, догляд за дітьми тощо)",
             "Підтримка не потрібна"
           ],
           "showOtherItem": true,
-          "otherText": "Інше (вкажіть)",
-          "colCount": 2,
-          "maxSelectedChoices": 3,
-          "minSelectedChoices": 1,
-          "isRequired": true
-        },
-      ]
-    },
-
-    {
-      "name": "page29",
-      "elements": [
-        {
-          "type": "checkbox",
-          "name": "troublevpo",
-          "title": "Які перешкоди існують, на Ваш погляд, для працевлаштування внутрішньо переміщених осіб? (оберіть до 3 ключових перешкод)",
-          "choices": [
-            "Відсутність необхідної професійної кваліфікації",
-            "Пересторога щодо низької мотивації до праці",
-            "Ці люди не звертаються за роботою",
-            "Пересторога щодо частої зміни місця проживання",
-            "Відсутність необхідних документів",
-            "Відсутність (часткова відсутність) потрібних  послуг або інфраструктури (психологічна підтримка, доступний транспорт, житло, догляд за дітьми або людьми похилого віку тощо)",
-            "Жодних перешкод немає"
-          ],
-          "showOtherItem": true,
+          "choicesEnableIf": "{profitveteran} notcontains 'Підтримка не потрібна' or {item} = 'Підтримка не потрібна'",
           "otherText": "Інше (вкажіть)",
           "colCount": 2,
           "maxSelectedChoices": 3,
@@ -1197,15 +1175,40 @@ export const json= {
       "elements": [
         {
           "type": "checkbox",
+          "name": "troublevpo",
+          "title": "Які перешкоди існують, на Ваш погляд, для працевлаштування внутрішньо переміщених осіб? (оберіть до 3 ключових перешкод)",
+          "choices": [
+            "Відсутність необхідної професійної кваліфікації",
+            "Пересторога щодо низької мотивації до праці",
+            "Ці люди не звертаються за роботою",
+            "Пересторога щодо частої зміни місця проживання",
+            "Відсутність необхідних документів",
+            "Жодних перешкод немає"
+          ],
+          "showOtherItem": true,
+          "choicesEnableIf": "{troublevpo} notcontains 'Жодних перешкод немає' or {item} = 'Жодних перешкод немає'",
+          "otherText": "Інше (вкажіть)",
+          "colCount": 2,
+          "maxSelectedChoices": 3,
+          "minSelectedChoices": 1,
+          "isRequired": true
+        },
+      ]
+    },
+    {
+      "name": "page31",
+      "elements": [
+        {
+          "type": "checkbox",
           "name": "profitvpo",
           "title": " Які програми збільшать кількість працевлаштованих до Вас внутрішньо переміщених осіб?  (оберіть  не більше 3)",
           "choices": [
             "Компенсаційні програми",
             "Фінансування навчання",
-            "Покращення якості та доступності потрібних послуг або інфраструктури, (медичне обслуговування, психологічна підтримка, доступний транспорт, житло, догляд за дітьми тощо)",
             "Підтримка не потрібна"
           ],
           "showOtherItem": true,
+          "choicesEnableIf": "{profitvpo} notcontains 'Підтримка не потрібна' or {item} = 'Підтримка не потрібна'",
           "otherText": "Інше (вкажіть)",
           "colCount": 2,
           "maxSelectedChoices": 3,
@@ -1214,9 +1217,8 @@ export const json= {
         },
       ]
     },
-
     {
-      "name": "page31",
+      "name": "page32",
       "elements": [
         {
           "type": "checkbox",
@@ -1224,14 +1226,14 @@ export const json= {
           "title": "Які перешкоди існують, на Ваш погляд, для працевлаштування  людей  віком 60+? (оберіть до 3 ключових перешкод)",
           "choices": [
             "Відсутність необхідної професійної кваліфікації",
-            "Пересторога щодо низьких темпів виконання завдань",
-            "Відсутність мотивації до навчання",
             "Низькі можливості в опануванні сучасних технологій та інноваційних інструментів",
-            "Стан здоров’я",
+            "Відсутність мотивації до навчання",
+            "Пересторога щодо низької мотивації до праці",
             "Ці люди не звертаються за роботою",
             "Жодних перешкод немає"
           ],
           "showOtherItem": true,
+          "choicesEnableIf": "{troubleold} notcontains 'Жодних перешкод немає' or {item} = 'Жодних перешкод немає'",
           "otherText": "Інше (вкажіть)",
           "colCount": 2,
           "maxSelectedChoices": 3,
@@ -1240,12 +1242,12 @@ export const json= {
       ]
     },
     {
-      "name": "page32",
+      "name": "page33",
       "elements": [
         {
           "type": "checkbox",
           "name": "profitold",
-          "title": " Які програми збільшать кількість працевлаштованих до Вас людей віком 60+?   (оберіть  не більше 3)",
+          "title": " Які програми збільшать кількість працевлаштованих до Вас людей віком 60+? (оберіть  не більше 3)",
           "choices": [
             "Фінансування навчання",
             "Компенсаційні виплати витрат на наставництво",
@@ -1254,15 +1256,15 @@ export const json= {
           ],
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",
+          "choicesEnableIf": "{profitold} notcontains 'Підтримка не потрібна' or {item} = 'Підтримка не потрібна'",
           "colCount": 2,
           "maxSelectedChoices": 3,
           "minSelectedChoices": 1,
           "isRequired": true      },
       ]
     },
-
     {
-      "name": "page33",
+      "name": "page34",
       "elements": [
         {
           "type": "boolean",
@@ -1276,7 +1278,7 @@ export const json= {
       ]
     },
     {
-      "name": "page34",
+      "name": "page35",
       "elements": [
         {
           "type": "tagbox",
@@ -1302,7 +1304,7 @@ export const json= {
           ]
     },
     {
-      "name": "page35",
+      "name": "page36",
       "elements": [
         {
           "type": "tagbox",
@@ -1328,7 +1330,7 @@ export const json= {
       ]
     },
     {
-      "name": "page36",
+      "name": "page37",
       "elements": [
         {
           "type": "boolean",
@@ -1342,7 +1344,7 @@ export const json= {
       ]
     },
     {
-      "name": "page37",
+      "name": "page38",
       "elements": [
         {
           "type": "tagbox",
@@ -1366,9 +1368,8 @@ export const json= {
         }
       ]
     },
-
     {
-      "name": "page38",
+      "name": "page39",
       "elements": [
         {
           "type": "boolean",
@@ -1416,7 +1417,7 @@ export const json= {
           "isRequired": true
         },
       ]
-    }  ,
+    },
     {
       "name": "page41",
       "elements": [
@@ -1450,7 +1451,7 @@ export const json= {
           "isRequired": true,
         },
       ]
-    }  ,
+    },
     {
       "name": "page42",
       "elements": [
@@ -1459,6 +1460,7 @@ export const json= {
           "name": "bestdcz",
           "title": "Які напрямки діяльності Державної служби зайнятості організовано найкраще?",
           "clearIfInvisible": "none",
+          "isRequired": true,
           "choices": [
 
             {
@@ -1493,13 +1495,14 @@ export const json= {
           ],
         },
       ]
-    }  ,
+    },
     {
       "name": "page43",
       "elements": [
         {
           "type": "dropdown",
           "name": "worstdcz",
+          "isRequired": true,
           "title": "Які напрямки діяльності Державної служби зайнятості потрібно удосконалити?",
           "clearIfInvisible": "none",
           "choices": [
@@ -1536,7 +1539,7 @@ export const json= {
           ],
         },
       ]
-    }  ,
+    },
     {
       "name": "page44",
       "elements": [
@@ -1549,7 +1552,7 @@ export const json= {
             "Подання вакансій Державній службі зайнятості",
             "Підбір фахівцями служби зайнятості кандидатів на вільні робочі місця",
             "Навчання працівників під потреби підприємства",
-            "Участь у  компенсаційних програмах",
+            "Участь у компенсаційних програмах",
             "Участь працівників у семінарах (тренінгах)",
             "Консультації з питань законодавства про зайнятість",
             "Участь у грантових програмах",
@@ -1558,10 +1561,45 @@ export const json= {
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",
           "minSelectedChoices": 1,
-          "isRequired": true,
+          "isRequired": true
         }
       ]
     },
+    {
+      "name": "page45",
+      "type": "panel",
+      "elements": [
+        {
+          "type": "text",
+          "name": "contacttitle",
+          "visibleIf": "{faqdcz} notcontains 'Додаткова інформація непотрібна'",
+          "width": "100%",
+          "minWidth": "256px",
+          "title": "Будь ласка, надайте Ваші контактні дані, щоб ми могли зв’язатися з Вами та якомога швидше вирішити зазначені питання",
+          "titleLocation": "top"
+        },
+        {
+          "type": "text",
+          "title": "Email",
+          "visibleIf": "{faqdcz} notcontains 'Додаткова інформація непотрібна'",
+          "name": "contactemail",
+          "width": "65%",
+          "minWidth": "256px",
+          "inputType": "email",
+          "placeholder": "Email"
+        },
+        {
+          "type": "text",
+          "visibleIf": "{faqdcz} notcontains 'Додаткова інформація непотрібна'",
+          "title": "Телефон",
+          "name": "contacthone",
+          "width": "35%",
+          "minWidth": "208px",
+          "startWithNewLine": false,
+          "placeholder": "Телефон"
+        }
+      ]
+    }
 
   ]
 }
