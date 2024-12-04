@@ -1574,7 +1574,7 @@ export const json= {
       "name": "page44",
       "elements": [
         {
-          "type": "tagbox",
+          "type": "chekbox",
           "name": "faqdcz",
           "title": "З яких питань Ви б хотіли отримати додаткову інформацію?",
           "clearIfInvisible": "none",
@@ -1607,8 +1607,7 @@ export const json= {
           "title": "Email",
           "visibleIf": "{faqdcz} notcontains 'Додаткова інформація непотрібна'",
           "name": "contactemail",
-          "width": "65%",
-          "minWidth": "256px",
+          "width": "50%",
           "inputType": "email",
           "placeholder": "Email"
         },
@@ -1617,8 +1616,7 @@ export const json= {
           "visibleIf": "{faqdcz} notcontains 'Додаткова інформація непотрібна'",
           "title": "Телефон",
           "name": "contacthone",
-          "width": "35%",
-          "minWidth": "208px",
+          "width": "50%",
           "startWithNewLine": false,
           "placeholder": "Телефон"
         }
