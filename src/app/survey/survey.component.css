@@ -2,6 +2,19 @@
   width: 50%!important;
   justify-items: center!important;
 }
+/* Забезпечення переносу тексту для таблиці SurveyJS */
+:host ::ng-deep.wrap-text {
+  white-space: normal !important; /* Включає нормальний перенос тексту */
+  word-wrap: break-word; /* Переносить слова на новий рядок, якщо вони занадто довгі */
+  overflow-wrap: break-word; /* Додатковий параметр для сучасних браузерів */
+}
+
+:host ::ng-deep.sv_matrix_dynamic .sv_matrix_cell .wrap-text {
+  max-width: 100%; /* Обмежує ширину клітинки */
+  overflow: hidden; /* Приховує зайвий текст */
+}
+
+
 .sd-body {
   max-width: 50%!important;
   padding: 1rem;

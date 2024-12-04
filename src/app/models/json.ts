@@ -1311,7 +1311,7 @@ export const json= {
       "name": "page35",
       "elements": [
         {
-          "type": "tagbox",
+          "type": "checkbox",
           "visibleIf": "{coloborationdcz} = true",
           "name": "coloborationtrue",
           "title": "За якими напрямками Ви співпрацюєте з Державною службою зайнятості?",
@@ -1337,7 +1337,7 @@ export const json= {
       "name": "page36",
       "elements": [
         {
-          "type": "chekbox",
+          "type": "checkbox",
           "visibleIf": "{coloborationdcz} =false",
           "name": "coloborationtfalse",
           "title": "З яких причин Ви  НЕ співпрацюєте з Державною службою зайнятості?",

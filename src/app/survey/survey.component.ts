@@ -46,7 +46,7 @@ export class SurveyComponent implements OnInit {
             page.elements = page.elements.map((element: any) => {
               if (
                 element.type === "matrixdynamic" &&
-                element.name === "staffqualityin24"
+                element.name === "hiringquality25"
               ) {
                 element.columns = element.columns.map((column: any) => {
                   if (column.name === "profession" && column.cellType === "dropdown") {
@@ -202,6 +202,7 @@ export class SurveyComponent implements OnInit {
   }
 
   flattenSurveyResult({ data }: { data: any }) {
+    console.log(data)
     return {
       info: data?.info || '',
       region: data?.region || '',
