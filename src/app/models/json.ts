@@ -553,26 +553,31 @@ export const json = {
             {
               "value": "manager",
               "text": "Керівники/менеджери",
+              "defaultValue": { "count": 0 },
               "isRequired": true,
             },
             {
               "value": "prof",
               "text": "Професіонали та Спеціалісти",
+              "defaultValue": { "count": 0 },
               "isRequired": true,
             },
             {
               "value": "servants",
               "text": "Службовці та адміністративні працівники",
+              "defaultValue": { "count": 0 },
               "isRequired": true,
             },
             {
               "value": "qwalwork",
               "text": "Кваліфіковані робітники",
+              "defaultValue": { "count": 0 },
               "isRequired": true,
             },
             {
               "value": "notqwalwork",
               "text": "Некваліфіковані робітники",
+              "defaultValue": { "count": 0 },
               "isRequired": true,
             }
           ]
@@ -609,11 +614,13 @@ export const json = {
             {
               "value": "man",
               "text": "Чоловіки",
+              "defaultValue": { "count": 0 },
               "isRequired": true
             },
             {
               "value": "woman",
               "text": "Жінки",
+              "defaultValue": { "count": 0 },
               "isRequired": true
             }
           ]
@@ -651,11 +658,13 @@ export const json = {
             {
               "value": "young",
               "text": "Молодь у віці до 25 років",
+              "defaultValue": { "count": 0 },
               "isRequired": true
             },
             {
               "value": "old",
               "text": "Люди віком 60+",
+              "defaultValue": { "count": 0 },
               "isRequired": true
             }
 
@@ -694,22 +703,26 @@ export const json = {
             {
               "value": "inv",
               "text": "Люди з інвалідністю",
+              "defaultValue": { "count": 0 },
               "isRequired": true,
 
             },
             {
               "value": "vpo",
               "text": "Внутрішньо переміщені особи",
+              "defaultValue": { "count": 0 },
               "isRequired": true
             },
             {
               "value": "veteran",
               "text": "Ветерани (ветеранки) війни",
+              "defaultValue": { "count": 0 },
               "isRequired": true
             },
             {
               "value": "foreign",
               "text": "Іноземні громадяни",
+              "defaultValue": { "count": 0 },
               "isRequired": true
             },
 
