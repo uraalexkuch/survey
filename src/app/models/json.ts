@@ -1,4 +1,4 @@
-export const json= {
+export const json = {
   "locale": "ua",
 
   "pages": [
@@ -47,7 +47,7 @@ export const json= {
           "type": "dropdown",
           "name": "qved",
           //"choicesLazyLoadEnabled": true,
-         // "choicesLazyLoadPageSize": 25,
+          // "choicesLazyLoadPageSize": 25,
           "title": {
             "ua": "Основний вид діяльності згідно  з КВЕД  "
           },
@@ -577,14 +577,14 @@ export const json= {
             }
           ]
         },
-        ]
+      ]
     },
     {
       "name": "page9",
       "elements": [
         {
           "type": "matrixdropdown",
-          "name": "staffquality",
+          "name": "staffgender",
           "isRequired": true,
           "title": "Кількість працівників за гендерною ознакою, які сьогодні у Вас працюють? ",
           "clearIfInvisible": "none",
@@ -626,7 +626,7 @@ export const json= {
         {
           "type": "matrixdropdown",
           "isRequired": true,
-          "name": "staffquality",
+          "name": "staffyears",
           "title": "Кількість працівників за віком, які сьогодні у Вас працюють? ",
           "clearIfInvisible": "none",
           "columns": [
@@ -668,7 +668,7 @@ export const json= {
       "elements": [
         {
           "type": "matrixdropdown",
-          "name": "staffquality",
+          "name": "staffqualitynow",
           "isRequired": true,
           "title": "Кількість працівників з перелічених категорій, які сьогодні у Вас працюють? ",
           "clearIfInvisible": "none",
@@ -794,21 +794,42 @@ export const json= {
           "name": "trouble24",
           "title": "З якими саме труднощами Ви стикались при підборі кадрів?",
           "choices": [
-            "Наявність / посилення дефіциту кадрів",
-            "Невідповідність очікувань претендентів щодо розміру заробітної плати",
-            "Завищені очікування претендентів щодо соціального пакету",
-            "Труднощі, пов’язані із місцем розташування підприємства",
-            "Мобілізація (небажання чоловіків офіційно оформлюватись на роботу)",
-            "Недостатня кваліфікація  претендентів ",
-            "Відсутність у кандидатів необхідних документів (втрачені документи)",
-      ],
+            {
+              "value": "trouble241",
+              "text": "Наявність/посилення дефіциту кадрів"
+            },
+            {
+              "value": "trouble242",
+              "text": "Невідповідність очікувань претендентів щодо розміру заробітної плати"
+            },
+            {
+              "value": "trouble243",
+              "text": "Завищені очікування претендентів щодо соціального пакету"
+            },
+            {
+              "value": "trouble244",
+              "text": "Труднощі, пов’язані із місцем розташування підприємства"
+            },
+            {
+              "value": "trouble245",
+              "text": "Мобілізація (небажання чоловіків офіційно оформлюватись на роботу)"
+            },
+            {
+              "value": "trouble245",
+              "text": "Недостатня кваліфікація  претендентів"
+            },
+            {
+              "value": "trouble246",
+              "text": "Відсутність у кандидатів необхідних документів (втрачені документи)"
+            },
+          ],
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",
           "isRequired": true,
           "colCount": 2
-    },
-  ]
         },
+      ]
+    },
     {
       "name": "page16",
       "elements": [
@@ -832,15 +853,24 @@ export const json= {
           "name": "educationform24",
           "title": "Які форми Ви використовуєте  для навчання / підвищення кваліфікації персоналу?",
           "choices": [
-            "Підготовка працівників у  Центрах професійно – технічної освіти Державної    служби зайнятості",
-            "Підготовка працівників у власних учбових центрах",
-            "Навчання на робочому місці",
-            "Короткотермінові профільні тренінги від зовнішніх провайдерів",
-            "Постійнодіючі внутрішні тренінгові програми",
-            "Періодичні тренінги від постачальників продукції або обладнання",
-            "Освітні онлайн-платформи (Coursera, Prometheus тощо)",
-            "Отримання  міжнародних та професійних  сертифікацій",
-            "Підтвердження повної або часткової професійної кваліфікації осіб у кваліфікаційних центрах"
+            { "value": "educationform241",
+              "text": "Підготовка працівників у  Центрах професійно–технічної освіти Державної служби зайнятості"},
+            {"value": "educationform242",
+              "text": "Підготовка працівників у власних учбових центрах"},
+            {"value": "educationform243",
+              "text": "Навчання на робочому місці"},
+            {"value": "educationform244",
+              "text":"Короткотермінові профільні тренінги від зовнішніх провайдерів"},
+            {"value": "educationform245",
+              "text":"Постійнодіючі внутрішні тренінгові програми"},
+            {"value": "educationform246",
+              "text":"Періодичні тренінги від постачальників продукції або обладнання"},
+            {"value": "educationform247",
+              "text":"Освітні онлайн-платформи (Coursera, Prometheus тощо)"},
+            {"value": "educationform248",
+              "text":"Отримання  міжнародних та професійних  сертифікацій"},
+            {"value": "educationform249",
+              "text":"Підтвердження повної або часткової професійної кваліфікації осіб у кваліфікаційних центрах"}
           ],
           "showOtherItem": true,
           "isRequired": true,
@@ -850,51 +880,61 @@ export const json= {
       ]
     },
     {
-      "name": "page18",
-      "elements": [
+      "pages": [
         {
-          "type": "dropdown",
-          "name": "hiring25",
-          "isRequired": true,
-          "title": "Чи плануєте приймати працівників у 2025 році?",
-          "clearIfInvisible": "none",
-          "choices": [
+          "name": "page18",
+          "elements": [
             {
-              "value": "1",
-              "text": "Так"
-            },
-            {
-              "value": "2",
-              "text": "Ні"
-            },
-            {
-              "value": "3",
-              "text": "Важко відповісти"
+              "type": "dropdown",
+              "name": "hiring25",
+              "isRequired": true,
+              "title": "Чи плануєте приймати працівників у 2025 році?",
+              "clearIfInvisible": "none",
+              "choices": [
+                {
+                  "value": "1",
+                  "text": "Так"
+                },
+                {
+                  "value": "2",
+                  "text": "Ні"
+                },
+                {
+                  "value": "3",
+                  "text": "Важко відповісти"
+                }
+              ]
             }
           ]
         },
-      ]
-    },
-    {
-      "name": "page19",
-      "elements": [
         {
-          "type": "chekbox",
-          "visibleIf": "{hiring25} = true",
-          "isRequired": true,
-          "name": "valuetrade24",
-          "title": "На які  робочі місця плануєте приймати працівників у 2025 році?",
-          "clearIfInvisible": "none",
-          "choices": [
-            "Новостворені робочі місця",
-             "Вакантні робочі місця"
-
-          ],
-          "colCount": 2,
-          "minSelectedChoices": 1,
-        },
+          "name": "page19",
+          "elements": [
+            {
+              "type": "checkbox",
+              "visibleIf": "{hiring25} = '1'",
+              "isRequired": true,
+              "name": "hiringfuture25",
+              "title": "На які робочі місця плануєте приймати працівників у 2025 році?",
+              "clearIfInvisible": "none",
+              "choices": [
+                {
+                  "value": "new",
+                  "text": "Новостворені робочі місця"
+                },
+                {
+                  "value": "vac",
+                  "text": "Вакантні робочі місця"
+                }
+              ],
+              "colCount": 2,
+              "minSelectedChoices": 1
+            }
+          ]
+        }
       ]
     },
+
     {
       "name": "page20",
       "elements": [
@@ -917,7 +957,6 @@ export const json= {
               "choicesLazyLoadEnabled": true,
               "choicesLazyLoadPageSize": 25,
               "width": "50%",
-              "cellCssClass": "wrap-text",
               "choices": [] // Choices will be dynamically loaded in the component
             },
             {
@@ -1009,9 +1048,9 @@ export const json= {
               "colCount": 2
             },]
 
-    },
-  ]
         },
+      ]
+    },
     {
       "name": "page22",
       "elements": [
@@ -1078,8 +1117,8 @@ export const json= {
           "isRequired": true,
           "swapOrder": true
         },
-  ]
-        },
+      ]
+    },
     {
       "name": "page25",
       "elements": [
@@ -1088,16 +1127,26 @@ export const json= {
           "name": "socialsupport25",
           "title": "Які додаткові програми соціальної підтримки Ви  можете надати працівникам?",
           "choices": [
-            "Приватне медичне страхування",
-            "Безкоштовна доставка до місця роботи ",
-            "Абонемент в спортзал/басейн",
-            "Забезпечення харчуванням",
-            "Надання/компенсація вартості житла (наймане житло або гуртожиток)",
-            "Оплата мобільного зв’язку",
-            "Оплата проїзду",
-            "Допомога на оздоровлення",
-            "Оплата навчання (іноземна мова, курси особистого розвитку тощо)",
-            "Відсутні програми соціальної підтримки"
+            {"value": "socialsupport251",
+              "text":"Приватне медичне страхування"},
+            {"value": "socialsupport252",
+              "text":"Безкоштовна доставка до місця роботи"},
+            {"value": "socialsupport253",
+              "text":"Абонемент в спортзал/басейн"},
+            {"value": "socialsupport254",
+              "text":"Забезпечення харчуванням"},
+            {"value": "socialsupport255",
+              "text":"Надання/компенсація вартості житла (наймане житло або гуртожиток)"},
+            {"value": "socialsupport256",
+              "text":"Оплата мобільного зв’язку"},
+            {"value": "socialsupport257",
+              "text":"socialsupport258"},
+            {"value": "socialsupport259",
+              "text":"Допомога на оздоровлення"},
+            {"value": "socialsupport260",
+              "text":"Оплата навчання (іноземна мова, курси особистого розвитку тощо)"},
+            {"value": "socialsupport261",
+              "text":"Відсутні програми соціальної підтримки"}
           ],
           "showOtherItem": true,
           "minSelectedChoices": 1,
@@ -1115,10 +1164,14 @@ export const json= {
           "name": "troubleinv",
           "title": "Які перешкоди існують, на Ваш погляд, для працевлаштування людей з інвалідністю? (оберіть до 3 ключових перешкод)",
           "choices": [
-            "Відсутність облаштованих робочих місць",
-            "Потрібні особливі умови праці на підприємстві",
-            "Брак знань, як поводитися з людьми з інвалідністю",
-            "Жодних перешкод немає"
+            {"value": "troubleinv1",
+              "text":"Відсутність облаштованих робочих місць"},
+            {"value": "troubleinv2",
+              "text":"Потрібні особливі умови праці на підприємстві"},
+            {"value": "troubleinv3",
+              "text":"Брак знань, як поводитися з людьми з інвалідністю"},
+            {"value": "troubleinv4",
+              "text":"Жодних перешкод немає"}
           ],
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",
@@ -1139,10 +1192,14 @@ export const json= {
           "name": "profitinv",
           "title": "Які програми збільшать кількість працевлаштованих до Вас людей з інвалідністю? (оберіть не більше 3)",
           "choices": [
-            "Фінансова підтримка для облаштування робочих місць",
-            "Компенсаційні програми",
-            "Фінансування навчання ",
-            "Підтримка не потрібна"
+            {"value": "profitinv1",
+              "text":"Фінансова підтримка для облаштування робочих місць"},
+            {"value": "profitinv2",
+              "text":"Компенсаційні програми"},
+            {"value": "profitinv3",
+              "text":"Фінансування навчання "},
+            {"value": "profitinv4",
+              "text":"Підтримка не потрібна"}
           ],
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",
@@ -1162,10 +1219,14 @@ export const json= {
           "name": "troubleveteran",
           "title": "Які перешкоди існують, на Ваш погляд, для працевлаштування ветеранів (ветеранок) війни? (оберіть до 3 ключових перешкод)",
           "choices": [
-            "Відсутність необхідної професійної кваліфікації",
-            "Вимоги до високого рівня зарплати",
-            "Необхідні додаткові заходи для соціалізації та адаптації на робочому місці",
-            "Жодних перешкод немає"
+            {"value": "troubleveteran1",
+              "text":"Відсутність необхідної професійної кваліфікації"},
+            {"value": "troubleveteran2",
+              "text":"Вимоги до високого рівня зарплати"},
+            {"value": "troubleveteran3",
+              "text":"Необхідні додаткові заходи для соціалізації та адаптації на робочому місці"},
+            {"value": "troubleveteran4",
+              "text":"Жодних перешкод немає"}
           ],
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",
@@ -1185,10 +1246,14 @@ export const json= {
           "name": "profitveteran",
           "title": "Які програми збільшать кількість працевлаштованих до Вас ветеранів (ветеранок) війни? (оберіть  не більше 3)",
           "choices": [
-            "Фінансова підтримка для облаштування робочих місць",
-            "Компенсаційні програми",
-            "Фінансування навчання ",
-            "Підтримка не потрібна"
+            {"value": "profitveteran1",
+              "text":"Фінансова підтримка для облаштування робочих місць"},
+            {"value": "profitveteran2",
+              "text":"Компенсаційні програми"},
+            {"value": "profitveteran3",
+              "text":"Фінансування навчання"},
+            {"value": "profitveteran4",
+              "text":"Підтримка не потрібна"}
           ],
           "showOtherItem": true,
           "choicesEnableIf": "{profitveteran} notcontains 'Підтримка не потрібна' or {item} = 'Підтримка не потрібна'",
@@ -1268,7 +1333,8 @@ export const json= {
           "colCount": 2,
           "maxSelectedChoices": 3,
           "minSelectedChoices": 1,
-          "isRequired": true,        },
+          "isRequired": true,
+        },
       ]
     },
     {
@@ -1290,7 +1356,8 @@ export const json= {
           "colCount": 2,
           "maxSelectedChoices": 3,
           "minSelectedChoices": 1,
-          "isRequired": true      },
+          "isRequired": true
+        },
       ]
     },
     {
@@ -1329,9 +1396,9 @@ export const json= {
           "otherText": "Інше (вкажіть)",
           "minSelectedChoices": 1,
           "isRequired": true,
-            }
+        }
 
-          ]
+      ]
     },
     {
       "name": "page36",
@@ -1519,7 +1586,7 @@ export const json= {
             },
             {
               "value": "7",
-              "text":  "Участь у грантових програмах"
+              "text": "Участь у грантових програмах"
             },
 
           ],
@@ -1563,7 +1630,7 @@ export const json= {
             },
             {
               "value": "7",
-              "text":  "Участь у грантових програмах"
+              "text": "Участь у грантових програмах"
             },
 
           ],
@@ -1625,3 +1692,4 @@ export const json= {
 
   ]
 }
+
