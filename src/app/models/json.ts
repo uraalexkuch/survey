@@ -963,6 +963,7 @@ export const json = {
               "name": "profession",
               "title": "Назва професії",
               "cellType": "dropdown",
+              "isRequired": true,
               "choicesLazyLoadEnabled": true,
               "choicesLazyLoadPageSize": 25,
               "width": "50%",
