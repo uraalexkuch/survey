@@ -1020,7 +1020,7 @@ export const json = {
                 "Так",
                 "Ні"
               ],
-              "colCount": 2
+              "colCount": 0
             },
             {
               "type": "radiogroup",
@@ -1032,7 +1032,7 @@ export const json = {
                 "Так",
                 "Ні"
               ],
-              "colCount": 2
+              "colCount":0
             },
             {
               "type": "radiogroup",
@@ -1054,7 +1054,7 @@ export const json = {
                 "Так",
                 "Ні"
               ],
-              "colCount": 2
+              "colCount": 0
             },]
 
         },
