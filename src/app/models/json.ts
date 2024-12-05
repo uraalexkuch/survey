@@ -879,8 +879,6 @@ export const json = {
         },
       ]
     },
-    {
-      "pages": [
         {
           "name": "page18",
           "elements": [
@@ -931,9 +929,7 @@ export const json = {
               "minSelectedChoices": 1
             }
           ]
-        }
-      ]
-    },
+        },
 
     {
       "name": "page20",
