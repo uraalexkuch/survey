@@ -10,7 +10,9 @@ import { NgIf } from '@angular/common';
 import { ClassifikatorItem } from '../models/classifikator-item';
 import { KoattgItem } from '../models/koattg-item';
 import { SurveyDataService } from '../service/survey-data.service';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
+import {EmployerItem} from '../models/employers';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-survey',
@@ -26,16 +28,20 @@ export class SurveyComponent implements OnInit {
   cacheKey = 'classifikatorCache';
   classifikatorItems: ClassifikatorItem[] = [];
   koattgItems: KoattgItem[] = [];
+  employerItems: EmployerItem[] = [];
   filteredRayon: KoattgItem[] = [];
   filteredGromada: KoattgItem[] = [];
-
-  constructor(private surveyDataService: SurveyDataService) {}
+  private edrpouParam: string | null = null;
+  constructor(private surveyDataService: SurveyDataService,private route: ActivatedRoute) {}
 
   async ngOnInit() {
     try {
-      // Load the classifikator and koattg items
+      this.route.paramMap.subscribe(params => {
+        this.edrpouParam = params.get('id');
+      });
       await this.loadClassifikator();
       await this.loadKoattg();
+      await this. loadEmployers(this.edrpouParam);
 
       // Deep copy the JSON object and modify it
       const surveyJson = JSON.parse(JSON.stringify(json));
@@ -66,17 +72,11 @@ export class SurveyComponent implements OnInit {
           return page;
         });
       }
-      console.log("Survey JSON with dynamic choices:", surveyJson);
-
       // Initialize the survey model
       const survey = new Model(surveyJson);
-
       // Add event handlers
       survey.onChoicesLazyLoad.add(this.onChoicesLazyLoad.bind(this));
       survey.onComplete.add(this.surveyComplete.bind(this));
-      survey.onComplete.add((sender) => {
-        console.log("Survey completed data:", JSON.stringify(sender.data, null, 3));
-      });
 
       this.model = survey;
     } catch (error) {
@@ -102,6 +102,36 @@ export class SurveyComponent implements OnInit {
       });
     }
   }
+
+  loadEmployers(edrpouParam: string | null): void {
+    this.surveyDataService.loadDbEmployers(edrpouParam).subscribe({
+      next: (response) => {
+        this.employerItems = response;
+        console.log(this.employerItems);
+
+        // Якщо параметр edrpouParam задано, знайдемо відповідне підприємство
+        if (edrpouParam) {
+          const employer = this.employerItems.find(e => e.edrpou === edrpouParam);
+          if (employer && this.model) {
+            // Встановлюємо значення в модель безпосередньо
+            this.model.setValue("edrpou", employer.edrpou);
+            this.model.setValue("namepou", employer.name);
+            this.model.setValue("qwed", employer.qwed);
+          } else {
+            // Якщо не знайдено, очистимо поля
+            this.model.setValue("edrpou", "");
+            this.model.setValue("namepou", "");
+            this.model.setValue("qwed", "");
+          }
+        }
+      },
+      error: (error) => {
+        console.error("Error loading koattg.json:", error);
+        this.employerItems= [];
+      }
+    });
+  }
+
   loadKoattg(): void {
     this.surveyDataService.loadKoattg().subscribe({
       next: (response) => {
@@ -157,6 +187,20 @@ export class SurveyComponent implements OnInit {
           }));
         }
       }
+      /*if (options.name === "edrpou") {
+        const selectedEdrpou = options.value;
+        const employer = this.employerItems.find(e => e.edrpou === selectedEdrpou);
+        if (employer) {
+          // Автоматично встановлюємо назву підприємства у поле namepou
+          sender.setValue("namepou", employer.name);
+          sender.setValue("qwed", employer.qwed);
+          // Передбачається, що qwed - це код КВЕД, який є у вашому файлі kved.json.
+        } else {
+          sender.setValue("namepou", "");
+          sender.setValue("qwed", "");
+        }
+      }*/
+
     });
   }
 
@@ -165,7 +209,6 @@ export class SurveyComponent implements OnInit {
     this.filteredRayon = this.koattgItems.filter((item: KoattgItem) => {
       return item.category === "P" && item.rayon.slice(0, 4).toLowerCase() === searchTerm.slice(0, 4);
     });
-    console.log(this.filteredRayon);
   }
 
   filterGromada(cod_rayon: string) {
@@ -173,29 +216,49 @@ export class SurveyComponent implements OnInit {
     this.filteredGromada = this.koattgItems.filter((item: KoattgItem) => {
       return item.category === "H" && item.rayon.slice(0, 7).toLowerCase() === searchTerm.slice(0, 7);
     });
-    console.log(this.filteredGromada);
   }
 
   onChoicesLazyLoad(sender: any, options: any) {
     try {
-      const searchText = options.filter || '';
+      const searchText = options.filter?.toLowerCase() || '';
       const skip = options.skip || 0;
       const take = options.take || 25;
 
-      let filteredItems = this.classifikatorItems;
-      if (searchText) {
-        filteredItems = filteredItems.filter(item =>
-          item.name_posad.toLowerCase().includes(searchText.toLowerCase())
+      let filteredItems: any[] = [];
+
+      // Determine the dataset based on the question name
+      if (options.question.name === "profession") {
+        // Filter for classifikatorItems (e.g., profession dropdown)
+        filteredItems = this.classifikatorItems.filter(item =>
+          item.name_posad.toLowerCase().includes(searchText)
         );
+
+        // Map results to Survey.js choices format
+        const pagedItems = filteredItems.slice(skip, skip + take);
+        const choices = pagedItems.map(({ cod_group_posad, name_posad }) => ({
+          value: cod_group_posad,
+          text: name_posad,
+        }));
+
+        options.setItems(choices, filteredItems.length);
+      } else if (options.question.name === "edrpou") {
+        console.log(searchText)
+        // Filter for employerItems (e.g., EDRPOU dropdown)
+        filteredItems = this.employerItems.filter(item =>
+          item.edrpou.toLowerCase().includes(searchText)
+        );
+
+        // Map results to Survey.js choices format
+        const pagedItems = filteredItems.slice(skip, skip + take);
+        const choices = pagedItems.map(({ edrpou, name }) => ({
+          value: edrpou,
+          text: edrpou,
+        }));
+
+        options.setItems(choices, filteredItems.length);
+      } else {
+        console.warn("No matching dataset for question:", options.question.name);
       }
-
-      const pagedItems = filteredItems.slice(skip, skip + take);
-      const choices = pagedItems.map(({ cod_group_posad, name_posad }) => ({
-        value: cod_group_posad,
-        text: name_posad,
-      }));
-
-      options.setItems(choices, filteredItems.length);
     } catch (error) {
       console.error("Error during lazy loading choices:", error);
     }
@@ -220,11 +283,50 @@ export class SurveyComponent implements OnInit {
   }
 
   surveyComplete(survey: Model) {
-    const flattenedResult = this.flattenSurveyResult({ data: survey.data });
-    saveSurveyResults(
-      "http://localhost:3000/api/post",
-      { flattenedResult }
-    );
+    const results = survey.data;
+
+    survey.getAllQuestions().forEach((question: any) => {
+      const questionType = question.getType();
+
+      // Process dropdown
+      if (questionType === "dropdown" && results[question.name]) {
+        const selectedValue = results[question.name];
+        const selectedText = question['choices']?.find((choice: any) => {
+          return choice.value === selectedValue;
+        })?.text;
+
+        if (selectedText) {
+          results[`${question.name}_text`] = selectedText.ua || selectedText;
+        }
+      }
+
+      // Process checkbox
+      if (questionType === "checkbox" && Array.isArray(results[question.name])) {
+        const selectedValues = results[question.name];
+        results[`${question.name}_withText`] = selectedValues.map((value: any) => {
+          const choice = question['choices']?.find((choice: any) => choice.value === value);
+          return {
+            value,
+            text: choice?.text || value
+          };
+        });
+      }
+
+      // Process matrixdropdown
+      if (questionType === "matrixdropdown" && results[question.name]) {
+        const matrixData = results[question.name];
+        Object.keys(matrixData).forEach((rowValue: any) => {
+          const rowText = question['rows']?.find((row: any) => row.value === rowValue)?.text;
+          if (rowText) {
+            results[question.name][`${rowValue}_text`] = rowText;
+          }
+        });
+      }
+    });
+
+    console.log("Final results with text:", results);
+    const flattenedResult = this.flattenSurveyResult({ data: results });
+    saveSurveyResults("http://localhost:3000/api/post", { flattenedResult });
   }
 
   onChoice() {

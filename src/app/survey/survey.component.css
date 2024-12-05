@@ -9,8 +9,14 @@
   overflow-wrap: anywhere; /* Додатковий параметр для переносу слів */
   text-align: left; /* Вирівнювання тексту для покращення читабельності */
 }
-
-
+:host ::ng-deep.sd-input.sd-input {
+  word-wrap: normal!important;
+  white-space: normal!important;
+}
+:host ::ng-deep.sd-input.sd-input--readonly {
+  word-wrap: normal!important;
+  white-space: normal!important;
+}
 :host ::ng-deep.sv_matrix_dynamic .sv_matrix_cell .wrap-text {
   max-width: 100%!important; /* Обмежує ширину клітинки */
   overflow: hidden; /* Приховує зайвий текст */
