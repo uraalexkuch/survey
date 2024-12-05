@@ -937,7 +937,7 @@ export const json = {
         {
           "type": "matrixdynamic",
           "name": "hiringquality25",
-          "visibleIf": "{hiring25} = true",
+          "visibleIf": "{hiring25} = '1'",
           "title": "Працівників яких професій Ви плануєте наймати у 2025 році?",
           "clearIfInvisible": "none",
           "rowCount": 1,
@@ -1136,7 +1136,7 @@ export const json = {
             {"value": "socialsupport256",
               "text":"Оплата мобільного зв’язку"},
             {"value": "socialsupport257",
-              "text":"socialsupport258"},
+              "text":"Оплата проїзду"},
             {"value": "socialsupport259",
               "text":"Допомога на оздоровлення"},
             {"value": "socialsupport260",
@@ -1440,7 +1440,7 @@ export const json = {
       "name": "page38",
       "elements": [
         {
-          "type": "chekbox",
+          "type": "checkbox",
           "visibleIf": "{coloborationcpto} = true",
           "name": "coloborationttrue",
           "title": "У  чому полягає Ваша співпраця з Центрами професійно – технічної освіти Державної служби зайнятості?",
@@ -1637,7 +1637,7 @@ export const json = {
       "name": "page44",
       "elements": [
         {
-          "type": "chekbox",
+          "type": "checkbox",
           "name": "faqdcz",
           "title": "З яких питань Ви б хотіли отримати додаткову інформацію?",
           "clearIfInvisible": "none",
