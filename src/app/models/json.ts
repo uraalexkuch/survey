@@ -1454,12 +1454,14 @@ export const json = {
         },
       ]
     },
+   
     {
       "name": "page44",
       "elements": [
         {
           "type": "checkbox",
           "name": "faqdcz",
+          "visibleIf": "{coloborationdcz} = true",
           "title": "З яких питань Ви б хотіли отримати додаткову інформацію?",
           "clearIfInvisible": "none",
           "choices": [
@@ -1492,29 +1494,9 @@ export const json = {
         }
       ]
     },
-    {
-      "name": "page45",
-      "elements": [
-        {
-          "type": "checkbox",
-          "name": "zgoda",
-          "title": "З яких питань Ви б хотіли отримати додаткову інформацію?",
-          "clearIfInvisible": "none",
-          "choices": [
-            {
-              "value": "zgoda1",
-              "isRequired": true,
-              "text":"Так"},
-            {
-              "value": "zgoda2",
-              "text":"Ні"},
-          ],
 
-          "minSelectedChoices": 1,
-          "isRequired": true
-        }
-      ]
-    },
+
+
     {
       "name": "page46",
       "type": "panel",
@@ -1523,7 +1505,7 @@ export const json = {
         {
           "type": "text",
           "title": "Email",
-          "isRequired": true,
+
           "name": "contactemail",
           "width": "50%",
           "inputType": "email",
@@ -1532,6 +1514,7 @@ export const json = {
         {
           "type": "text",
           "title": "Телефон",
+          "isRequired": true,
           "name": "contacthone",
           "width": "50%",
           "startWithNewLine": false,
