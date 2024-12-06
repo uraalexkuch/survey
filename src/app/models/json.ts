@@ -1,7 +1,8 @@
 export const json = {
   "locale": "ua",
-
+  "showQuestionNumbers": "off",
   "pages": [
+
     {
       "name": "page1",
       "type": "panel",
@@ -522,31 +523,31 @@ export const json = {
           },
           "choices": [
             {
-              "value": "1",
+              "value": "workregim1",
               "text": {
                 "ua": "Робота на підприємстві"
               }
             },
             {
-              "value": "2",
+              "value": "workregim2",
               "text": {
                 "ua": "Дистанційна робота"
               }
             },
             {
-              "value": "3",
+              "value": "workregim3",
               "text": {
                 "ua": "Надомна робота"
               }
             },
             {
-              "value": "4",
+              "value": "workregim4",
               "text": {
                 "ua": "Гнучкий режим робочого часу"
               }
             },
             {
-              "value": "5",
+              "value": "workregim5",
               "text": {
                 "ua": "Вахтовий метод роботи"
               }
@@ -670,7 +671,7 @@ export const json = {
         },
       ]
     },
-        {
+    {
           "name": "page18",
           "elements": [
             {
@@ -681,27 +682,27 @@ export const json = {
               "clearIfInvisible": "none",
               "choices": [
                 {
-                  "value": "1",
+                  "value": "hiring251",
                   "text": "Так"
                 },
                 {
-                  "value": "2",
+                  "value": "hiring252",
                   "text": "Ні"
                 },
                 {
-                  "value": "3",
+                  "value": "hiring253",
                   "text": "Важко відповісти"
                 }
               ]
             }
           ]
         },
-        {
+    {
           "name": "page19",
           "elements": [
             {
               "type": "checkbox",
-              "visibleIf": "{hiring25} = '1'",
+              "visibleIf": "{hiring25} = 'hiring251'",
               "isRequired": true,
               "name": "hiringfuture25",
               "title": "На які робочі місця плануєте приймати працівників у 2025 році?",
@@ -729,7 +730,7 @@ export const json = {
         {
           "type": "matrixdynamic",
           "name": "hiringquality25",
-          "visibleIf": "{hiring25} = '1'",
+          "visibleIf": "{hiring25} = 'hiring251'",
           "title": "Працівників яких професій Ви плануєте наймати у 2025 році?",
           "clearIfInvisible": "none",
           "rowCount": 1,
@@ -746,6 +747,9 @@ export const json = {
               "choicesLazyLoadEnabled": true,
               "choicesLazyLoadPageSize": 25,
               "width": "50%",
+              "customCssClasses": {
+                "root": "responsive-field"
+              },
               "choices": []
             },
             {
@@ -755,6 +759,9 @@ export const json = {
               "inputType": "number",
               "width": "20%",
               "isRequired": true,
+              "customCssClasses": {
+                "root": "responsive-field"
+              },
               "validators": [
                 {
                   "type": "numeric",
@@ -770,6 +777,9 @@ export const json = {
               "isRequired": true,
               "width": "30%",
               "inputType": "number",
+              "customCssClasses": {
+                "root": "responsive-field"
+              },
               "validators": [
                 {
                   "type": "numeric",
@@ -853,15 +863,15 @@ export const json = {
           "clearIfInvisible": "none",
           "choices": [
             {
-              "value": "1",
+              "value": "hiringwomen251",
               "text": "Так"
             },
             {
-              "value": "2",
+              "value": "hiringwomen252",
               "text": "Ні"
             },
             {
-              "value": "3",
+              "value": "hiringwomen253",
               "text": "Важко відповісти"
             }
           ]
@@ -880,15 +890,15 @@ export const json = {
           "clearIfInvisible": "none",
           "choices": [
             {
-              "value": "1",
+              "value": "hiringforeign251",
               "text": "Так"
             },
             {
-              "value": "2",
+              "value": "hiringforeign252",
               "text": "Ні"
             },
             {
-              "value": "3",
+              "value": "hiringforeign253",
               "text": "Важко відповісти"
             }
           ]
@@ -914,38 +924,29 @@ export const json = {
       "elements": [
         {
           "type": "checkbox",
-          "name": "socialsupport25",
-          "title": "Які додаткові програми соціальної підтримки Ви  можете надати працівникам?",
+          "name": "socialsupport",
+          "title": "Які додаткові програми соціальної підтримки Ви можете надати працівникам?",
           "choices": [
-            {"value": "socialsupport251",
-              "text":"Надання/компенсація вартості житла (наймане житло або гуртожиток)"},
-            {"value": "socialsupport252",
-              "text":"Оплата проїзду"},
-            {"value": "socialsupport253",
-              "text":"Оплата навчання (іноземна мова, курси особистого розвитку тощо)"},
-            {"value": "socialsupport254",
-              "text":"Безкоштовне перевезення до місця роботи"},
-            {"value": "socialsupport255",
-              "text":"Оплата мобільного зв’язку"},
-            {"value": "socialsupport256",
-              "text":"Абонемент в спортзал/басейн"},
-            {"value": "socialsupport257",
-              "text":"Забезпечення харчуванням"},
-            {"value": "socialsupport259",
-              "text":"Приватне медичне страхування"},
-            {"value": "socialsupport260",
-              "text":"Допомога на оздоровлення"},
-            {"value": "socialsupport261",
-              "text":"Відсутні програми соціальної підтримки"}
+            { "value": "socialsupport1", "text": "Надання/компенсація вартості житла" },
+            { "value": "socialsupport2", "text": "Оплата проїзду" },
+            { "value": "socialsupport3", "text": "Оплата навчання" },
+            { "value": "socialsupport4", "text": "Безкоштовне перевезення до місця роботи" },
+            { "value": "socialsupport5", "text": "Оплата мобільного зв’язку" },
+            { "value": "socialsupport6", "text": "Абонемент в спортзал/басейн" },
+            { "value": "socialsupport7", "text": "Забезпечення харчуванням" },
+            { "value": "socialsupport8", "text": "Приватне медичне страхування" },
+            { "value": "socialsupport9", "text": "Допомога на оздоровлення" }
           ],
+          "hasNone": true,
+          "noneText": "Відсутні програми соціальної підтримки",
           "showOtherItem": true,
-          "minSelectedChoices": 1,
-          "isRequired": true,
           "otherText": "Інше (вкажіть)",
+          "isRequired": true,
           "colCount": 2
-        },
+        }
       ]
-    },
+    }
+    ,
     {
       "name": "page26",
       "elements": [
@@ -961,9 +962,7 @@ export const json = {
             {"value": "troubleinv3",
               "text":"Потрібні особливі умови праці на підприємстві"},
             {"value": "troubleinv4",
-              "text":"Брак знань, як поводитися з  людьми з інвалідністю"},
-            {"value": "troubleinv5",
-              "text":"Жодних перешкод немає"}
+              "text":"Брак знань, як поводитися з  людьми з інвалідністю"}
           ],
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",
@@ -971,7 +970,7 @@ export const json = {
           "isRequired": true,
           "maxSelectedChoices": 3,
           "minSelectedChoices": 1,
-          "choicesEnableIf": "{troubleinv} notcontains 'Жодних перешкод немає' or {item} = 'Жодних перешкод немає'"
+          "noneText": "Жодних перешкод немає",
         }
       ]
     },
@@ -991,16 +990,13 @@ export const json = {
             {"value": "profitinv3",
               "text":"Компенсаційні програми"},
             {"value": "profitinv4",
-              "text":"Навчальні тренінги для працівників"},
-            {"value": "profitinv5",
-              "text":"Підтримка не потрібна"}
+              "text":"Навчальні тренінги для працівників"}
           ],
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",
           "colCount": 2,
           "isRequired": true,
-          "choicesEnableIf": "{profitinv} notcontains 'Підтримка не потрібна' or {item} = 'Підтримка не потрібна'",
-          "maxSelectedChoices": 3,
+          "noneText": "Підтримка не потрібна",
           "minSelectedChoices": 1
         },
       ]
@@ -1019,13 +1015,11 @@ export const json = {
               "text":"Вимоги до високого рівня зарплати"},
             {"value": "troubleveteran3",
               "text":"Необхідні додаткові заходи для соціалізації та адаптації на робочому місці"},
-            {"value": "troubleveteran4",
-              "text":"Жодних перешкод немає"}
           ],
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",
           "colCount": 2,
-          "choicesEnableIf": "{troubleveteran} notcontains 'Жодних перешкод немає' or {item} = 'Жодних перешкод немає'",
+          "noneText": "Жодних перешкод немає",
           "maxSelectedChoices": 3,
           "minSelectedChoices": 1,
           "isRequired": true
@@ -1046,15 +1040,12 @@ export const json = {
               "text":"Компенсаційні програми"},
             {"value": "profitveteran3",
               "text":"Навчальні тренінги для працівників"},
-            {"value": "profitveteran4",
-              "text":"Підтримка не потрібна"}
           ],
           "showOtherItem": true,
-          "choicesEnableIf": "{profitveteran} notcontains 'Підтримка не потрібна' or {item} = 'Підтримка не потрібна'",
           "otherText": "Інше (вкажіть)",
           "colCount": 2,
-          "maxSelectedChoices": 3,
           "minSelectedChoices": 1,
+          "noneText": "Підтримка не потрібна",
           "isRequired": true
         },
       ]
@@ -1074,15 +1065,12 @@ export const json = {
             {"value": "troublevpo3",
               "text":"Відсутність необхідних документів"},
             {"value": "troublevpo4",
-              "text":"Низька мотивація до праці "},
-            {"value": "troublevpo5",
-              "text":"Жодних перешкод немає"}
+              "text":"Низька мотивація до праці "}
           ],
           "showOtherItem": true,
-          "choicesEnableIf": "{troublevpo} notcontains 'Жодних перешкод немає' or {item} = 'Жодних перешкод немає'",
+          "noneText": "Жодних перешкод немає",
           "otherText": "Інше (вкажіть)",
           "colCount": 2,
-          "maxSelectedChoices": 3,
           "minSelectedChoices": 1,
           "isRequired": true
         },
@@ -1101,15 +1089,12 @@ export const json = {
             {"value": "profitvpo2",
               "text":"Компенсаційні програми"},
             {"value": "profitvpo3",
-              "text":"Забезпечення житлом"},
-            {"value": "profitvpo4",
-              "text":"Підтримка не потрібна"}
+              "text":"Забезпечення житлом"}
           ],
           "showOtherItem": true,
-          "choicesEnableIf": "{profitvpo} notcontains 'Підтримка не потрібна' or {item} = 'Підтримка не потрібна'",
+          "noneText": "Підтримка не потрібна",
           "otherText": "Інше (вкажіть)",
           "colCount": 2,
-          "maxSelectedChoices": 3,
           "minSelectedChoices": 1,
           "isRequired": true,
         },
@@ -1130,15 +1115,13 @@ export const json = {
             {"value": "troubleold3",
               "text":"Низька мотивація до опанування сучасних технологій та інноваційних інструментів"},
             {"value": "troubleold4",
-              "text":"Небажання офіційно оформлюватися на роботу"},
-            {"value": "troubleold5",
-              "text":"Жодних перешкод немає"}
+              "text":"Небажання офіційно оформлюватися на роботу"}
           ],
           "showOtherItem": true,
-          "choicesEnableIf": "{troubleold} notcontains 'Жодних перешкод немає' or {item} = 'Жодних перешкод немає'",
+          "noneText": "Жодних перешкод немає",
           "otherText": "Інше (вкажіть)",
           "colCount": 2,
-          "maxSelectedChoices": 3,
+
           "minSelectedChoices": 1,
           "isRequired": true,
         },
@@ -1152,18 +1135,21 @@ export const json = {
           "name": "profitold",
           "title": " Які програми збільшать кількість працевлаштованих до Вас людей віком 60+?",
           "choices": [
-            {"value": "troubleold5",
-              "text":"Фінансування навчання"},
-            {"value": "troubleold5",
-              "text":"Компенсаційні виплати"},
-            {"value": "troubleold5",
-              "text": "Впровадження гнучких умов праці"},
-            {"value": "troubleold5",
+            {"value": "profitold1",
+              "text":"Фінансування навчання",
+              "otherEnableIf": "{profitold} notcontains 'profitold4'"},
+            {"value": "profitold2",
+              "text":"Компенсаційні виплати",
+              "otherEnableIf": "{profitold} notcontains 'profitold4'"},
+            {"value": "troubleold3",
+              "text": "Впровадження гнучких умов праці",
+              "otherEnableIf": "{profitold} notcontains 'profitold4'"},
+            {"value": "profitold4",
               "text":"Підтримка не потрібна"}
           ],
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",
-          "choicesEnableIf": "{profitold} notcontains 'Підтримка не потрібна' or {item} = 'Підтримка не потрібна'",
+          "otherEnableIf": "{profitold} notcontains 'profitold4'",
           "colCount": 2,
           "maxSelectedChoices": 3,
           "minSelectedChoices": 1,
@@ -1458,48 +1444,47 @@ export const json = {
         },
       ]
     },
-
     {
       "name": "page44",
       "elements": [
         {
           "type": "checkbox",
           "name": "faqdcz",
-          "visibleIf": "{coloborationdcz} = true",
           "title": "З яких питань Ви б хотіли отримати додаткову інформацію?",
           "clearIfInvisible": "none",
           "choices": [
             {
               "value": "faqdcz1",
-              "text":"Підбір фахівцями служби зайнятості кандидатів на вакансії"},
+              "text": "Підбір фахівцями служби зайнятості кандидатів на вакансії"},
             {
               "value": "faqdcz2",
-              "text":"Навчання працівників під потреби підприємства"},
+              "text": "Навчання працівників під потреби підприємства"},
             {
               "value": "faqdcz3",
-              "text":"Участь у  компенсаційних програмах"},
+              "text": "Участь у  компенсаційних програмах"},
             {
               "value": "faqdcz4",
-              "text":"Участь працівників у семінарах (тренінгах)"},
+              "text": "Участь працівників у семінарах (тренінгах)"},
             {
               "value": "faqdcz5",
-              "text":"Консультації з питань законодавства про зайнятість"},
+              "text": "Консультації з питань законодавства про зайнятість"},
             {
               "value": "faqdcz6",
-              "text":"Участь у грантових програмах"},
+              "text": "Участь у грантових програмах"},
             {
               "value": "faqdcz7",
-              "text":"Додаткова інформація непотрібна"}
+              "text": "Додаткова інформація непотрібна"
+            }
           ],
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",
           "minSelectedChoices": 1,
-          "isRequired": true
+          "isRequired": true,
+          "noneText": "Додаткова інформація непотрібна",
         }
       ]
-    },
-
-
+    }
+    ,
 
     {
       "name": "page46",
@@ -1509,23 +1494,36 @@ export const json = {
         {
           "type": "text",
           "title": "Email",
-
+          "width":"50%",
           "name": "contactemail",
-          "width": "50%",
           "inputType": "email",
-          "placeholder": "Email"
+          "placeholder": "Email",
+          "customCssClasses": {
+            "root": "responsive-field"
+          }
         },
         {
           "type": "text",
           "title": "Телефон",
+          "width":"50%",
           "isRequired": true,
           "name": "contacthone",
-          "width": "50%",
           "startWithNewLine": false,
-          "placeholder": "Телефон"
+          "validators": [
+            {
+              "type": "regex",
+              "regex": "^(\+38|\\+380|0)?\\s?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{2}[\\s.-]?\\d{2}$|^(\\+38|\\+380|0)?\\d{10,}$",
+              "text": "Невірний формат. Вірно: +38(XXX)XXXXXXX"
+            }
+          ],
+          "placeholder": "Телефон ",
+          "customCssClasses": {
+            "root": "responsive-field"
+          }
         }
       ]
     }
+
 
   ]
 }
