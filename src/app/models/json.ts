@@ -1406,6 +1406,9 @@ export const json = {
             }
 
           ],
+          "showOtherItem": true,
+          "otherText": "Інше (вкажіть)",
+          "minSelectedChoices": 1,
         },
       ]
     },
@@ -1413,7 +1416,7 @@ export const json = {
       "name": "page43",
       "elements": [
         {
-          "type": "dropdown",
+          "type": "checkbox",
           "name": "worstdcz",
           "isRequired": true,
           "title": "Які напрямки діяльності Державної служби зайнятості потрібно удосконалити?",
@@ -1445,6 +1448,9 @@ export const json = {
               "text": "Грантові програми"
             }
           ],
+          "showOtherItem": true,
+          "otherText": "Інше (вкажіть)",
+          "minSelectedChoices": 1,
         },
       ]
     },
