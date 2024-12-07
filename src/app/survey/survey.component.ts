@@ -12,7 +12,7 @@ import { KoattgItem } from '../models/koattg-item';
 import { SurveyDataService } from '../service/survey-data.service';
 import { HttpClientModule} from '@angular/common/http';
 import {EmployerItem} from '../models/employers';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-survey',
@@ -32,12 +32,20 @@ export class SurveyComponent implements OnInit {
   filteredRayon: KoattgItem[] = [];
   filteredGromada: KoattgItem[] = [];
   private edrpouParam: string | null = null;
-  constructor(private surveyDataService: SurveyDataService,private route: ActivatedRoute) {}
+  constructor(private surveyDataService: SurveyDataService,private route: ActivatedRoute, private routelink:Router) {}
 
   async ngOnInit() {
     try {
       this.route.paramMap.subscribe(params => {
-        this.edrpouParam = params.get('id');
+        this.route.paramMap.subscribe(params => {
+          const id = params.get('id');
+          if (!id || id.length < 7) {
+            this.routelink.navigateByUrl('/nonauth');
+          } else {
+            this.edrpouParam = id;
+          }
+        });
+
       });
       await this.loadClassifikator();
       await this.loadKoattg();
@@ -77,7 +85,11 @@ export class SurveyComponent implements OnInit {
       // Add event handlers
       survey.onChoicesLazyLoad.add(this.onChoicesLazyLoad.bind(this));
       survey.onComplete.add(this.surveyComplete.bind(this));
-
+      survey.onValueChanging.add((sender, options) => {
+        if (options.name === "contactPhone") {
+          options.value = this.formatPhoneNumber(options.value);
+        }
+      });
       this.model = survey;
     } catch (error) {
       console.error("Error initializing survey:", error);
@@ -106,7 +118,11 @@ export class SurveyComponent implements OnInit {
   loadEmployers(edrpouParam: string | null): void {
     this.surveyDataService.loadDbEmployers(edrpouParam).subscribe({
       next: (response) => {
-        this.employerItems = response;
+               if (response.length > 0) {
+          this.employerItems = response;
+        } else {
+                 this.routelink.navigateByUrl('/nonauth');
+               }
         console.log(this.employerItems);
 
         // Якщо параметр edrpouParam задано, знайдемо відповідне підприємство
@@ -187,19 +203,7 @@ export class SurveyComponent implements OnInit {
           }));
         }
       }
-      /*if (options.name === "edrpou") {
-        const selectedEdrpou = options.value;
-        const employer = this.employerItems.find(e => e.edrpou === selectedEdrpou);
-        if (employer) {
-          // Автоматично встановлюємо назву підприємства у поле namepou
-          sender.setValue("namepou", employer.name);
-          sender.setValue("qwed", employer.qwed);
-          // Передбачається, що qwed - це код КВЕД, який є у вашому файлі kved.json.
-        } else {
-          sender.setValue("namepou", "");
-          sender.setValue("qwed", "");
-        }
-      }*/
+
 
     });
   }
@@ -217,7 +221,26 @@ export class SurveyComponent implements OnInit {
       return item.category === "H" && item.rayon.slice(0, 7).toLowerCase() === searchTerm.slice(0, 7);
     });
   }
+  formatPhoneNumber(phone: string): string {
+    if (!phone) return ''; // Перевірка на порожнє значення
+    phone = phone.replace(/\D/g, ''); // Видаляємо всі нецифрові символи
 
+    if (phone.startsWith('38')) {
+      phone = phone.slice(2); // Видаляємо "38", якщо воно є на початку
+    } else if (phone.startsWith('0')) {
+      phone = phone.slice(1); // Видаляємо "0", якщо воно є на початку
+    }
+
+    if (phone.length > 10) {
+      phone = phone.slice(0, 10); // Якщо більше 10 цифр, обрізаємо
+    }
+
+    if (phone.length === 10) {
+      return `+38(${phone.slice(0, 3)})${phone.slice(3, 6)}-${phone.slice(6, 8)}-${phone.slice(8, 10)}`;
+    } else {
+      return `+38(${phone.slice(0, 3)})${phone.slice(3, 6)}-${phone.slice(6, 8)}-${phone.slice(8)}`.replace(/-$/, ''); // Формат для неповного номера
+    }
+  }
   onChoicesLazyLoad(sender: any, options: any) {
     try {
       const searchText = options.filter?.toLowerCase() || '';
@@ -263,6 +286,9 @@ export class SurveyComponent implements OnInit {
       console.error("Error during lazy loading choices:", error);
     }
   }
+
+
+
 
   flattenSurveyResult({ data }: { data: any }) {
     console.log(data)

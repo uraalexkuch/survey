@@ -21,6 +21,15 @@
   max-width: 100%!important; /* Обмежує ширину клітинки */
   overflow: hidden; /* Приховує зайвий текст */
 }
+:host ::ng-deep.responsive-field {
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+  :host ::ng-deep.responsive-field {
+    width: 100% !important;
+  }
+}
 
 
 .sd-body {
