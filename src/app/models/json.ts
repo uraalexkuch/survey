@@ -320,6 +320,7 @@ export const json = {
               "name": "count",
               "title": "Кількість",
               "cellType": "text",
+              "isRequired": true,
               "defaultValue": { "count": 0 },
               "minValue": 0,
               "placeholder": {
@@ -379,19 +380,17 @@ export const json = {
               "name": "count",
               "title": "Кількість",
               "cellType": "text",
+              "isRequired": true,
               "defaultValue": { "count": 0 },
               "minValue": 0,
               "placeholder": {
                 "ua": "Цифра або 0"
               },
-              "isRequired": true,
+            
               "validators": [
                 {
                   "type": "numeric",
-                  "minValue": 0,
-                  "placeholder": {
-                    "ua": "Цифра або 0"
-                  },
+
                   "text": "Кількість повинна бути не менше 0."
                 }
               ],
