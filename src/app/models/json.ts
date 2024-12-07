@@ -970,7 +970,8 @@ export const json = {
           "isRequired": true,
           "maxSelectedChoices": 3,
           "minSelectedChoices": 1,
-          "noneText": "Жодних перешкод немає",
+          "hasNone": true,
+          "noneText": "Жодних перешкод немає"
         }
       ]
     },
@@ -996,6 +997,7 @@ export const json = {
           "otherText": "Інше (вкажіть)",
           "colCount": 2,
           "isRequired": true,
+          "hasNone": true,
           "noneText": "Підтримка не потрібна",
           "minSelectedChoices": 1
         },
@@ -1019,6 +1021,7 @@ export const json = {
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",
           "colCount": 2,
+          "hasNone": true,
           "noneText": "Жодних перешкод немає",
           "maxSelectedChoices": 3,
           "minSelectedChoices": 1,
@@ -1045,6 +1048,7 @@ export const json = {
           "otherText": "Інше (вкажіть)",
           "colCount": 2,
           "minSelectedChoices": 1,
+          "hasNone": true,
           "noneText": "Підтримка не потрібна",
           "isRequired": true
         },
@@ -1068,6 +1072,7 @@ export const json = {
               "text":"Низька мотивація до праці "}
           ],
           "showOtherItem": true,
+          "hasNone": true,
           "noneText": "Жодних перешкод немає",
           "otherText": "Інше (вкажіть)",
           "colCount": 2,
@@ -1092,6 +1097,7 @@ export const json = {
               "text":"Забезпечення житлом"}
           ],
           "showOtherItem": true,
+          "hasNone": true,
           "noneText": "Підтримка не потрібна",
           "otherText": "Інше (вкажіть)",
           "colCount": 2,
@@ -1118,6 +1124,7 @@ export const json = {
               "text":"Небажання офіційно оформлюватися на роботу"}
           ],
           "showOtherItem": true,
+          "hasNone": true,
           "noneText": "Жодних перешкод немає",
           "otherText": "Інше (вкажіть)",
           "colCount": 2,
@@ -1475,6 +1482,7 @@ export const json = {
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",
           "minSelectedChoices": 1,
+          "hasNone": true,
           "isRequired": true,
           "noneText": "Додаткова інформація непотрібна",
         }
