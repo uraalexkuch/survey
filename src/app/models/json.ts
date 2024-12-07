@@ -1136,20 +1136,16 @@ export const json = {
           "title": " Які програми збільшать кількість працевлаштованих до Вас людей віком 60+?",
           "choices": [
             {"value": "profitold1",
-              "text":"Фінансування навчання",
-              "otherEnableIf": "{profitold} notcontains 'profitold4'"},
+              "text":"Фінансування навчання"},
             {"value": "profitold2",
-              "text":"Компенсаційні виплати",
-              "otherEnableIf": "{profitold} notcontains 'profitold4'"},
+              "text":"Компенсаційні виплати"},
             {"value": "troubleold3",
-              "text": "Впровадження гнучких умов праці",
-              "otherEnableIf": "{profitold} notcontains 'profitold4'"},
-            {"value": "profitold4",
-              "text":"Підтримка не потрібна"}
+              "text": "Впровадження гнучких умов праці"}
           ],
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",
-          "otherEnableIf": "{profitold} notcontains 'profitold4'",
+          "noneText": "Підтримка не потрібна",
+
           "colCount": 2,
           "maxSelectedChoices": 3,
           "minSelectedChoices": 1,
@@ -1505,22 +1501,25 @@ export const json = {
         {
           "type": "text",
           "title": "Телефон",
-          "width":"50%",
+          "width": "50%",
           "isRequired": true,
-          "name": "contacthone",
+          "name": "contactPhone",
           "startWithNewLine": false,
           "validators": [
             {
               "type": "regex",
-              "regex": "^(\+38|\\+380|0)?\\s?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{2}[\\s.-]?\\d{2}$|^(\\+38|\\+380|0)?\\d{10,}$",
-              "text": "Невірний формат. Вірно: +38(XXX)XXXXXXX"
+              "regex": "^\\+38\\(\\d{3}\\)\\d{3}-\\d{2}-\\d{2}$",
+              "text": "Невірний формат. Вірно: +38(XXX)XXX-XX-XX"
             }
           ],
-          "placeholder": "Телефон ",
+          "placeholder": "Телефон",
           "customCssClasses": {
             "root": "responsive-field"
-          }
+          },
+          "onValueChanged": "formatPhoneNumber" // Вказуємо подію для застосування
         }
+
+
       ]
     }
 
