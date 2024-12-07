@@ -247,45 +247,37 @@ export class SurveyComponent implements OnInit {
       const skip = options.skip || 0;
       const take = options.take || 25;
 
-      let filteredItems: any[] = [];
+      if (!this.classifikatorItems || this.classifikatorItems.length === 0) {
+        options.setItems([], 0);
+        return;
+      }
 
-      // Determine the dataset based on the question name
       if (options.question.name === "profession") {
-        // Filter for classifikatorItems (e.g., profession dropdown)
-        filteredItems = this.classifikatorItems.filter(item =>
+        // Фільтрація за текстом
+        const filteredItems = this.classifikatorItems.filter(item =>
           item.name_posad.toLowerCase().includes(searchText)
         );
 
-        // Map results to Survey.js choices format
+        // Пагінація
         const pagedItems = filteredItems.slice(skip, skip + take);
+
+        // Форматування даних для Survey.js
         const choices = pagedItems.map(({ cod_group_posad, name_posad }) => ({
-          value: cod_group_posad,
-          text: name_posad,
+          value: `${cod_group_posad};${name_posad}`, // Зберігати унікальний value
+          text: name_posad // Відображати назву професії
         }));
 
-        options.setItems(choices, filteredItems.length);
-      } else if (options.question.name === "edrpou") {
-        console.log(searchText)
-        // Filter for employerItems (e.g., EDRPOU dropdown)
-        filteredItems = this.employerItems.filter(item =>
-          item.edrpou.toLowerCase().includes(searchText)
-        );
-
-        // Map results to Survey.js choices format
-        const pagedItems = filteredItems.slice(skip, skip + take);
-        const choices = pagedItems.map(({ edrpou, name }) => ({
-          value: edrpou,
-          text: edrpou,
-        }));
-
+        // Встановлення вибору
         options.setItems(choices, filteredItems.length);
       } else {
-        console.warn("No matching dataset for question:", options.question.name);
+        options.setItems([], 0);
       }
     } catch (error) {
       console.error("Error during lazy loading choices:", error);
+      options.setItems([], 0);
     }
   }
+
 
 
 

@@ -1500,11 +1500,9 @@ export const json = {
         },
         {
           "type": "text",
-          "title": "Телефон",
-          "width": "50%",
-          "isRequired": true,
           "name": "contactPhone",
-          "startWithNewLine": false,
+          "title": "Телефон",
+          "isRequired": true,
           "validators": [
             {
               "type": "regex",
@@ -1512,13 +1510,8 @@ export const json = {
               "text": "Невірний формат. Вірно: +38(XXX)XXX-XX-XX"
             }
           ],
-          "placeholder": "Телефон",
-          "customCssClasses": {
-            "root": "responsive-field"
-          },
-          "onValueChanged": "formatPhoneNumber" // Вказуємо подію для застосування
+          "placeholder": "Введіть ваш номер телефону"
         }
-
 
       ]
     }
