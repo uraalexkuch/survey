@@ -320,11 +320,16 @@ export const json = {
               "name": "count",
               "title": "Кількість",
               "cellType": "text",
-              "isRequired": true,
+              "defaultValue": { "count": 0 },
+              "minValue": 0,
+              "placeholder": {
+                "ua": "Цифра або 0"
+              },
               "validators": [
                 {
                   "type": "numeric",
                   "minValue": 0,
+                  "defaultValue": { "count": 0 },
                   "text": "Кількість повинна бути не менше 0."
                 }
               ],
@@ -335,33 +340,26 @@ export const json = {
           "rows": [
             {
               "value": "manager",
-              "text": "Керівники/менеджери",
-              "defaultValue": { "count": 0 },
+              "text": "Керівники/менеджери"
 
             },
             {
               "value": "prof",
-              "text": "Професіонали та Спеціалісти",
-              "defaultValue": { "count": 0 },
+              "text": "Професіонали та Спеціалісти"
 
             },
             {
               "value": "servants",
-              "text": "Службовці та адміністративні працівники",
-              "defaultValue": { "count": 0 },
+              "text": "Службовці та адміністративні працівники"
 
             },
             {
               "value": "qwalwork",
-              "text": "Кваліфіковані робітники",
-              "defaultValue": { "count": 0 },
-
+              "text": "Кваліфіковані робітники"
             },
             {
               "value": "notqwalwork",
-              "text": "Некваліфіковані робітники",
-              "defaultValue": { "count": 0 },
-
+              "text": "Некваліфіковані робітники"
             }
           ]
         },
@@ -381,11 +379,19 @@ export const json = {
               "name": "count",
               "title": "Кількість",
               "cellType": "text",
+              "defaultValue": { "count": 0 },
+              "minValue": 0,
+              "placeholder": {
+                "ua": "Цифра або 0"
+              },
               "isRequired": true,
               "validators": [
                 {
                   "type": "numeric",
                   "minValue": 0,
+                  "placeholder": {
+                    "ua": "Цифра або 0"
+                  },
                   "text": "Кількість повинна бути не менше 0."
                 }
               ],
@@ -396,15 +402,11 @@ export const json = {
           "rows": [
             {
               "value": "man",
-              "text": "Чоловіки",
-              "defaultValue": { "count": 0 },
-              "isRequired": true
+              "text": "Чоловіки"
             },
             {
               "value": "woman",
-              "text": "Жінки",
-              "defaultValue": { "count": 0 },
-              "isRequired": true
+              "text": "Жінки"
             }
           ]
         },
@@ -425,11 +427,19 @@ export const json = {
               "title": "Кількість",
               "cellType": "text",
               "isRequired": true,
+              "defaultValue": { "count": 0 },
+              "minValue": 0,
+              "placeholder": {
+                "ua": "Цифра або 0"
+              },
               "validators": [
                 {
                   "type": "numeric",
                   "minValue": 0,
-                  "text": "Кількість повинна бути не менше 0."
+                  "text": "Кількість повинна бути не менше 0.",
+                  "placeholder": {
+                    "ua": "Цифра або 0"
+                  }
                 }
               ],
               "inputType": "number"
@@ -440,15 +450,11 @@ export const json = {
 
             {
               "value": "young",
-              "text": "Молодь у віці до 25 років",
-              "defaultValue": { "count": 0 },
-
+              "text": "Молодь у віці до 25 років"
             },
             {
               "value": "old",
-              "text": "Люди віком 60+",
-              "defaultValue": { "count": 0 },
-
+              "text": "Люди віком 60+"
             }
 
           ]
@@ -470,6 +476,11 @@ export const json = {
               "title": "Кількість",
               "isRequired": true,
               "cellType": "text",
+              "defaultValue": { "count": 0 },
+              "minValue": 0,
+              "placeholder": {
+                "ua": "Цифра або 0"
+              },
               "validators": [
                 {
                   "type": "numeric",
@@ -485,26 +496,20 @@ export const json = {
 
             {
               "value": "inv",
-              "text": "Люди з інвалідністю",
-              "defaultValue": { "count": 0 }
-
+              "text": "Люди з інвалідністю"
 
             },
             {
               "value": "vpo",
-              "text": "Внутрішньо переміщені особи",
-              "defaultValue": { "count": 0 }
-
+              "text": "Внутрішньо переміщені особи"
             },
             {
               "value": "veteran",
-              "text": "Ветерани (ветеранки) війни",
-              "defaultValue": { "count": 0 }
+              "text": "Ветерани (ветеранки) війни"
             },
             {
               "value": "foreign",
-              "text": "Іноземні громадяни",
-              "defaultValue": { "count": 0 }
+              "text": "Іноземні громадяни"
             },
 
           ]
