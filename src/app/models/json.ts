@@ -1128,7 +1128,6 @@ export const json = {
           "noneText": "Жодних перешкод немає",
           "otherText": "Інше (вкажіть)",
           "colCount": 2,
-
           "minSelectedChoices": 1,
           "isRequired": true,
         },
@@ -1152,7 +1151,7 @@ export const json = {
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",
           "noneText": "Підтримка не потрібна",
-
+          "hasNone": true,
           "colCount": 2,
           "maxSelectedChoices": 3,
           "minSelectedChoices": 1,
@@ -1482,8 +1481,8 @@ export const json = {
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",
           "minSelectedChoices": 1,
-          "hasNone": true,
           "isRequired": true,
+          "hasNone": true,
           "noneText": "Додаткова інформація непотрібна",
         }
       ]
