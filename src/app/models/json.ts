@@ -15,9 +15,8 @@ export const json = {
           "width":"100%",
           "name": "namepou",
 
-          "title": {
-            "ua": "Назва Вашого підприємства (установи, організації, ФОП)"
-          },
+          "title":  "Назва Вашого підприємства (установи, організації, ФОП)"
+          ,
 
 
         },
@@ -32,12 +31,8 @@ export const json = {
           "choices": [],
           "colCount": 1,
           "name": "edrpou",
-          "title": {
-            "ua": "ЄДРПОУ(РНОКПП для ФОП)"
-          },
-
+          "title":  "ЄДРПОУ(РНОКПП для ФОП)",
         },
-
         {
           "type": "comment",
           "name": "qwed_text",
@@ -45,182 +40,125 @@ export const json = {
           "startWithNewLine": false,
           "readOnly": true,
           "width":"50%",
-
-          "title": {
-            "ua": "Основний вид діяльності згідно  з КВЕД  "
-          },
-
+          "title":  "Основний вид діяльності згідно  з КВЕД  ",
         }
       ]
     },
-
     {
       "name": "page5",
       "elements": [
         {
           "type": "dropdown",
           "name": "regionfact",
-          "title": {
-            "ua": "Регіон, де Ваше підприємство (установа, організація, ФОП) здійснює господарську діяльність"
-          },
+          "title": "Регіон, де Ваше підприємство (установа, організація, ФОП) здійснює господарську діяльність",
           "isRequired": true,
-
           "choices": [
             {
               "value": "UA05",
-              "text": {
-                "ua": "Вінницька"
-              }
+              "text": "Вінницька"
             },
             {
               "value": "UA07",
-              "text": {
-                "ua": "Волинська"
-              }
+              "text":  "Волинська"
             },
             {
               "value": "UA12",
-              "text": {
-                "ua": "Дніпропетровська"
-              }
+              "text":  "Дніпропетровська"
             },
             {
               "value": "UA14",
-              "text": {
-                "ua": "Донецька"
-              }
+              "text":  "Донецька"
+
             },
             {
               "value": "UA18",
-              "text": {
-                "ua": "Житомирська"
-              }
+              "text":"Житомирська"
+
             },
             {
               "value": "UA21",
-              "text": {
-                "ua": "Закарпатська"
-              }
+              "text":  "Закарпатська"
             },
             {
               "value": "UA23",
-              "text": {
-                "ua": "Запорізька"
-              }
+              "text": "Запорізька"
             },
             {
               "value": "UA26",
-              "text": {
-                "ua": "Івано-Франківська"
-              }
+              "text":"Івано-Франківська"
             },
             {
               "value": "UA32",
-              "text": {
-                "ua": "Київська"
-              }
+              "text": "Київська"
             },
             {
               "value": "UA35",
-              "text": {
-                "ua": "Кіровоградська"
-              }
+              "text":  "Кіровоградська"
             },
             {
               "value": "UA44",
-              "text": {
-                "ua": "Луганська"
-              }
+              "text": "Луганська"
             },
             {
               "value": "UA46",
-              "text": {
-                "ua": "Львівська"
-              }
+              "text": "Львівська"
             },
             {
               "value": "UA48",
-              "text": {
-                "ua": "Миколаївська"
-              }
+              "text": "Миколаївська"
             },
             {
               "value": "UA51",
-              "text": {
-                "ua": "Одеська"
-              }
+              "text": "Одеська"
+
             },
             {
               "value": "UA53",
-              "text": {
-                "ua": "Полтавська"
-              }
+              "text":"Полтавська"
             },
             {
               "value": "UA56",
-              "text": {
-                "ua": "Рівненська"
-              }
+              "text":  "Рівненська"
             },
             {
               "value": "UA59",
-              "text": {
-                "ua": "Сумська"
-              }
+              "text": "Сумська"
+
             },
             {
               "value": "UA61",
-              "text": {
-                "ua": "Тернопільська"
-              }
+              "text":  "Тернопільська"
             },
             {
               "value": "UA63",
-              "text": {
-                "ua": "Харківська"
-              }
+              "text": "Харківська"
             },
             {
               "value": "UA65",
-              "text": {
-                "ua": "Херсонська"
-              }
+              "text": "Херсонська"
             },
             {
               "value": "UA68",
-              "text": {
-                "ua": "Хмельницька"
-              }
+              "text":  "Хмельницька"
             },
             {
               "value": "UA71",
-              "text": {
-                "ua": "Черкаська"
-              }
+              "text":  "Черкаська"
             },
             {
               "value": "UA73",
-              "text": {
-                "ua": "Чернівецька"
-              }
+              "text": "Чернівецька"
             },
             {
               "value": "UA74",
-              "text": {
-                "ua": "Чернігівська"
-              }
+              "text":  "Чернігівська"
             },
             {
               "value": "UA80",
-              "text": {
-                "ua": "Київ"
-              }
+              "text": "Київ"
             }
           ],
-          "placeholder": {
-            "ua": "Вибрати область..."
-          }
-
+          "placeholder":  "Вибрати область..."
         },
       ]
     },
@@ -231,16 +169,10 @@ export const json = {
           "type": "dropdown",
           "visibleIf": "{regionfact} != '' and {regionfact} != 'UA80'",
           "name": "rayonselectfact",
-          "title": {
-            "ua": "Вкажіть район, де Ваше підприємство (установа, організація, ФОП) здійснює господарську діяльність ?"
-          },
+          "title": "Вкажіть район, де Ваше підприємство (установа, організація, ФОП) здійснює господарську діяльність ?",
           "isRequired": true,
-
           "choices": [],
-          "placeholder": {
-            "ua": "Вибрати район..."
-          }
-
+          "placeholder":  "Вибрати район..."
         },
       ]
     },
@@ -251,16 +183,10 @@ export const json = {
           "type": "dropdown",
           "visibleIf": "{rayonselectfact} != ''",
           "name": "gromadaselectfact",
-          "title": {
-            "ua": "Вкажіть громаду, де Ваше підприємство (установа, організація, ФОП) здійснює господарську діяльність ?"
-          },
+          "title": "Вкажіть громаду, де Ваше підприємство (установа, організація, ФОП) здійснює господарську діяльність ?",
           "isRequired": true,
-
           "choices": [],
-          "placeholder": {
-            "ua": "Вибрати громаду..."
-          }
-
+          "placeholder":  "Вибрати громаду..."
         },
       ]
     },
@@ -276,11 +202,7 @@ export const json = {
           },
           "inputType": "number",
           "isRequired": true,
-          "placeholder": {
-            "ua": "Напишіть цифрами..."
-
-          }
-
+          "placeholder": "Напишіть цифрами..."
         },
       ]
     },
@@ -291,14 +213,9 @@ export const json = {
           "type": "text",
           "inputType": "number",
           "name": "staff010125",
-          "title": {
-            "ua": "Орієнтовна середньоспискова чисельність персоналу станом на 01.01.2025р."
-          },
+          "title": "Орієнтовна середньоспискова чисельність персоналу станом на 01.01.2025р.",
           "isRequired": true,
-          "placeholder": {
-            "ua": "Напишіть цифрами..."
-
-          }
+          "placeholder":  "Напишіть цифрами..."
 
         },
       ]
@@ -320,9 +237,7 @@ export const json = {
               "isRequired": true,
               "defaultValue": { "count": 0 },
               "minValue": 0,
-              "placeholder": {
-                "ua": "Цифра або 0"
-              },
+              "placeholder":  "Цифра або 0",
               "validators": [
                 {
                   "type": "numeric",
@@ -425,17 +340,13 @@ export const json = {
               "isRequired": true,
               "defaultValue": { "count": 0 },
               "minValue": 0,
-              "placeholder": {
-                "ua": "Цифра або 0"
-              },
+              "placeholder":  "Цифра або 0",
               "validators": [
                 {
                   "type": "numeric",
                   "minValue": 0,
                   "text": "Кількість повинна бути не менше 0.",
-                  "placeholder": {
-                    "ua": "Цифра або 0"
-                  }
+                  "placeholder": "Цифра або 0"
                 }
               ],
               "inputType": "number"
@@ -474,9 +385,7 @@ export const json = {
               "cellType": "text",
               "defaultValue": { "count": 0 },
               "minValue": 0,
-              "placeholder": {
-                "ua": "Цифра або 0"
-              },
+              "placeholder":  "Цифра або 0",
               "validators": [
                 {
                   "type": "numeric",
@@ -489,11 +398,9 @@ export const json = {
           ],
           "cellType": "text",
           "rows": [
-
             {
               "value": "inv",
               "text": "Люди з інвалідністю"
-
             },
             {
               "value": "vpo",
@@ -507,7 +414,6 @@ export const json = {
               "value": "foreign",
               "text": "Іноземні громадяни"
             },
-
           ]
         },
       ]
@@ -519,39 +425,28 @@ export const json = {
           "type": "checkbox",
           "name": "workregim",
           "isRequired": true,
-          "title": {
-            "ua": "Які форми  організації праці у Вас використовуються?"
-          },
+          "title": "Які форми  організації праці у Вас використовуються?",
           "choices": [
             {
               "value": "workregim1",
-              "text": {
-                "ua": "Робота на підприємстві"
-              }
+              "text":  "Робота на підприємстві"
             },
             {
               "value": "workregim2",
-              "text": {
-                "ua": "Дистанційна робота"
-              }
+              "text": "Дистанційна робота"
             },
             {
               "value": "workregim3",
-              "text": {
-                "ua": "Надомна робота"
-              }
+              "text":  "Надомна робота"
+
             },
             {
               "value": "workregim4",
-              "text": {
-                "ua": "Гнучкий режим робочого часу"
-              }
+              "text":"Гнучкий режим робочого часу"
             },
             {
               "value": "workregim5",
-              "text": {
-                "ua": "Вахтовий метод роботи"
-              }
+              "text":  "Вахтовий метод роботи"
             }
           ]
         },
@@ -660,9 +555,9 @@ export const json = {
               "text":"Підтвердження повної або часткової професійної кваліфікації осіб у кваліфікаційних центрах"},
             {"value": "educationform245",
               "text":"Постійно діючі внутрішні тренінгові програми"},
-            {"value": "educationform247",
+            {"value": "educationform246",
               "text":"Освітні онлайн платформи (Coursera, Prometheus тощо)"},
-            {"value": "educationform248",
+            {"value": "educationform247",
               "text":"Отримання  міжнародних та професійних  сертифікацій"}
           ],
           "showOtherItem": true,
@@ -798,7 +693,7 @@ export const json = {
       "elements": [
         {
           "type": "panel",
-          "visibleIf": "{hiring25} = true",
+          "visibleIf": "{hiring25} = 'hiring251'",
           "name": "hiringgategory25",
           "isRequired": true,
           "title": "Чи плануєте Ви наймати працівників з нижчеперелічених категорій осіб у 2025 році?",
