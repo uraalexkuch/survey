@@ -4,6 +4,7 @@ import {map, Observable} from 'rxjs';
 import { ClassifikatorItem } from '../models/classifikator-item';
 import { KoattgItem } from '../models/koattg-item';
 import { EmployerItem } from '../models/employers';
+import {KvedItem} from '../models/kved-item';
 
 @Injectable({
   providedIn: 'root' // Ensure it's provided in root
@@ -22,7 +23,14 @@ export class SurveyDataService {
       })
     );
   }
-
+  /*loadQwed(qwedParam: string | null): Observable<KvedItem[]> {
+    return this.http.get<KvedItem[]>('./assets/kved.json').pipe(
+      map((employers: KvedItem[]) => {
+        // Фільтруємо масив за значенням edrpou
+        return employers.filter((employer: KvedItem) => employer.kved_number === qwedParam);
+      })
+    );
+  }*/
   loadKoattg(): Observable<KoattgItem[]> {
   return this.http.get<KoattgItem[]>('./assets/cod.json');
   }

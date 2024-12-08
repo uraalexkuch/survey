@@ -14,7 +14,7 @@ export const json = {
           "readOnly": true,
           "width":"100%",
           "name": "namepou",
-          "colCount": 2,
+
           "title": {
             "ua": "Назва Вашого підприємства (установи, організації, ФОП)"
           },
@@ -39,8 +39,9 @@ export const json = {
         },
 
         {
-          "type": "dropdown",
-          "name": "qwed",
+          "type": "comment",
+          "name": "qwed_text",
+          "colCount": 1,
           "startWithNewLine": false,
           "readOnly": true,
           "width":"50%",
@@ -48,11 +49,7 @@ export const json = {
           "title": {
             "ua": "Основний вид діяльності згідно  з КВЕД  "
           },
-          "choicesByUrl": {
-            "url": "/assets/kved.json",
-            "valueName": "kved_number",
-            "titleName": "kved_text"
-          },
+
         }
       ]
     },
@@ -1477,7 +1474,7 @@ export const json = {
             {
               "value": "faqdcz6",
               "text": "Участь у грантових програмах"},
-           
+
           ],
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",

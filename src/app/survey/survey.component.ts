@@ -13,6 +13,7 @@ import { SurveyDataService } from '../service/survey-data.service';
 import { HttpClientModule} from '@angular/common/http';
 import {EmployerItem} from '../models/employers';
 import {ActivatedRoute, Router} from '@angular/router';
+import {KvedItem} from '../models/kved-item';
 
 @Component({
   selector: 'app-survey',
@@ -29,6 +30,7 @@ export class SurveyComponent implements OnInit {
   classifikatorItems: ClassifikatorItem[] = [];
   koattgItems: KoattgItem[] = [];
   employerItems: EmployerItem[] = [];
+  qwedItems: KvedItem[] = [];
   filteredRayon: KoattgItem[] = [];
   filteredGromada: KoattgItem[] = [];
   private edrpouParam: string | null = null;
@@ -127,17 +129,19 @@ export class SurveyComponent implements OnInit {
 
         // Якщо параметр edrpouParam задано, знайдемо відповідне підприємство
         if (edrpouParam) {
-          const employer = this.employerItems.find(e => e.edrpou === edrpouParam);
+          const employer = this.employerItems[0]//.find(e => e.edrpou === edrpouParam);
           if (employer && this.model) {
             // Встановлюємо значення в модель безпосередньо
             this.model.setValue("edrpou", employer.edrpou);
             this.model.setValue("namepou", employer.name);
-            this.model.setValue("qwed", employer.qwed);
+            this.model.setValue("qwed_text", employer.qwed_text);
+
           } else {
             // Якщо не знайдено, очистимо поля
             this.model.setValue("edrpou", "");
             this.model.setValue("namepou", "");
-            this.model.setValue("qwed", "");
+            this.model.setValue("qwed_text", "");
+
           }
         }
       },
@@ -147,7 +151,21 @@ export class SurveyComponent implements OnInit {
       }
     });
   }
-
+ /* loadQwed(qwedParam: string | null): void {
+    this.surveyDataService.loadQwed(qwedParam).subscribe({
+      next: (response) => {
+        if (response.length > 0) {
+          this.qwedItems = response;
+          this.qwedItems.find(e => e.kved_number === qwedParam);
+          console.log(this.qwedItems);
+        }
+      },
+      error: (error) => {
+        console.error("Error loading kved.json:", error);
+        this.qwedItems = [];
+      }
+    });
+  }*/
   loadKoattg(): void {
     this.surveyDataService.loadKoattg().subscribe({
       next: (response) => {
@@ -203,7 +221,6 @@ export class SurveyComponent implements OnInit {
           }));
         }
       }
-
 
     });
   }
@@ -277,29 +294,16 @@ export class SurveyComponent implements OnInit {
       options.setItems([], 0);
     }
   }
-
-
-
-
-
   flattenSurveyResult({ data }: { data: any }) {
     console.log(data)
     return {
-      info: data?.info || '',
-      region: data?.region || '',
-      professionvoucher: data?.professionvoucher || '',
-      workbefore: data?.workbefore ? 1 : 0,
-      profworkbefore: data?.profworkbefore || '',
-      yearvoucherend: data?.yearvoucherend || '',
-      voucherafterinfluence: data?.voucherafterinfluence || '',
-      voucherafterlife: data?.voucherafterlife || '',
-      category: data?.category || '',
-      ratevoucher: data?.ratevoucher || 0,
-      rateserviceoffice: data?.rateserviceoffice || 0,
-      response: data?.response || '',
+      namepou: data?.namepou || '',
+      edrpou: data?.edrpou|| '',
+      codkatottg: this.employerItems[0].codkatottg || '',
+      kved_number: this.employerItems[0].qwed || 0,
+      kved_text: this.employerItems[0].qwed_text|| '',
     };
   }
-
   surveyComplete(survey: Model) {
     const results = survey.data;
 
@@ -344,6 +348,8 @@ export class SurveyComponent implements OnInit {
 
     console.log("Final results with text:", results);
     const flattenedResult = this.flattenSurveyResult({ data: results });
+    console.log("Final results post:", flattenedResult );
+
     saveSurveyResults("http://localhost:3000/api/post", { flattenedResult });
   }
 
