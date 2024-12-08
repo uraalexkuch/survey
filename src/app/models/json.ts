@@ -619,7 +619,6 @@ export const json = {
             }
           ]
         },
-
     {
       "name": "page20",
       "elements": [
@@ -753,7 +752,7 @@ export const json = {
         {
           "type": "dropdown",
           "name": "hiringwomen25",
-          "visibleIf": "{hiring25} = true",
+          "visibleIf": "{hiring25} = 'hiring251'",
           "isRequired": true,
           "title": "Чи готові Ви наймати жінок на вакансії за умовно чоловічими професіями?",
           "clearIfInvisible": "none",
