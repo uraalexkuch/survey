@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Model, surveyLocalization } from "survey-core";
-import { SurveyModule } from 'survey-angular-ui';
+import {Component, OnInit} from '@angular/core';
+import {Model, surveyLocalization} from "survey-core";
+import {SurveyModule} from 'survey-angular-ui';
 
 import "survey-core/i18n/ukrainian.js";
-import { json } from "../models/json"; // Ensure this path is correct
-surveyLocalization.defaultLocale = "uk";
-import { BreadcrumbComponent } from 'xng-breadcrumb';
-import { NgIf } from '@angular/common';
-import { ClassifikatorItem } from '../models/classifikator-item';
-import { KoattgItem } from '../models/koattg-item';
-import { SurveyDataService } from '../service/survey-data.service';
-import { HttpClientModule} from '@angular/common/http';
+import {json} from "../models/json"; // Ensure this path is correct
+import {BreadcrumbComponent} from 'xng-breadcrumb';
+import {NgIf} from '@angular/common';
+import {ClassifikatorItem} from '../models/classifikator-item';
+import {KoattgItem} from '../models/koattg-item';
+import {SurveyDataService} from '../service/survey-data.service';
+import {HttpClientModule} from '@angular/common/http';
 import {EmployerItem} from '../models/employers';
 import {ActivatedRoute, Router} from '@angular/router';
 import {KvedItem} from '../models/kved-item';
+
+surveyLocalization.defaultLocale = "uk";
 
 @Component({
   selector: 'app-survey',
@@ -34,7 +35,9 @@ export class SurveyComponent implements OnInit {
   filteredRayon: KoattgItem[] = [];
   filteredGromada: KoattgItem[] = [];
   private edrpouParam: string | null = null;
-  constructor(private surveyDataService: SurveyDataService,private route: ActivatedRoute, private routelink:Router) {}
+
+  constructor(private surveyDataService: SurveyDataService, private route: ActivatedRoute, private routelink: Router) {
+  }
 
   async ngOnInit() {
     try {
@@ -51,7 +54,7 @@ export class SurveyComponent implements OnInit {
       });
       await this.loadClassifikator();
       await this.loadKoattg();
-      await this. loadEmployers(this.edrpouParam);
+      await this.loadEmployers(this.edrpouParam);
 
       // Deep copy the JSON object and modify it
       const surveyJson = JSON.parse(JSON.stringify(json));
@@ -120,11 +123,11 @@ export class SurveyComponent implements OnInit {
   loadEmployers(edrpouParam: string | null): void {
     this.surveyDataService.loadDbEmployers(edrpouParam).subscribe({
       next: (response) => {
-               if (response.length > 0) {
+        if (response.length > 0) {
           this.employerItems = response;
         } else {
-                 this.routelink.navigateByUrl('/nonauth');
-               }
+          this.routelink.navigateByUrl('/nonauth');
+        }
         console.log(this.employerItems);
 
         // Якщо параметр edrpouParam задано, знайдемо відповідне підприємство
@@ -147,7 +150,7 @@ export class SurveyComponent implements OnInit {
       },
       error: (error) => {
         console.error("Error loading koattg.json:", error);
-        this.employerItems= [];
+        this.employerItems = [];
       }
     });
   }
@@ -224,6 +227,7 @@ export class SurveyComponent implements OnInit {
       return item.category === "H" && item.rayon.slice(0, 7).toLowerCase() === searchTerm.slice(0, 7);
     });
   }
+
   formatPhoneNumber(phone: string): string {
     if (!phone) return ''; // Перевірка на порожнє значення
     phone = phone.replace(/\D/g, ''); // Видаляємо всі нецифрові символи
@@ -244,6 +248,7 @@ export class SurveyComponent implements OnInit {
       return `+38(${phone.slice(0, 3)})${phone.slice(3, 6)}-${phone.slice(6, 8)}-${phone.slice(8)}`.replace(/-$/, ''); // Формат для неповного номера
     }
   }
+
   onChoicesLazyLoad(sender: any, options: any) {
     try {
       const searchText = options.filter?.toLowerCase() || '';
@@ -262,7 +267,7 @@ export class SurveyComponent implements OnInit {
         // Пагінація
         const pagedItems = filteredItems.slice(skip, skip + take);
         // Форматування даних для Survey.js
-        const choices = pagedItems.map(({ cod_group_posad, name_posad }) => ({
+        const choices = pagedItems.map(({cod_group_posad, name_posad}) => ({
           value: `${cod_group_posad};${name_posad}`, // Зберігати унікальний value
           text: name_posad // Відображати назву професії
         }));
@@ -277,48 +282,50 @@ export class SurveyComponent implements OnInit {
       options.setItems([], 0);
     }
   }
-  flattenSurveyResult({ data }: { data: any }) {
+
+  flattenSurveyResult({data}: { data: any }) {
+    console.log(data?.hiringwomen25);
     return {
       namepou: data?.namepou || '',
       edrpou: data?.edrpou || '',
-      kved_number: this.employerItems[0]?.qwed || 0,
-      kved_text: this.employerItems[0]?.qwed_text || '',
-      regionplan: this.employerItems[0]?.codkatottg || '',
+      kved_number: this.employerItems[0].qwed || 0,
+      kved_text: this.employerItems[0].qwed_text || '',
+      regionplan: this.employerItems[0].codkatottg || '',
       regionfact: data?.regionfact || '',
       rayonfact: data?.rayonselectfact || '',
-      rayonfact_text: data?.rayonfact_text || '',
+      rayonfact_text: data?.regionfact_text || '',
       gromadafact: data?.gromadaselectfact || '',
       gromadafact_text: data?.gromadaselectfact_text || '',
       staff010124: data?.staff010124 || 0,
       staff010125: data?.staff010125 || 0,
-      staffquality_manager: data?.staffquality?.manager?.count || 0,
-      staffquality_manager_text: data?.staffquality?.manager_text || '',
-      staffquality_prof: data?.staffquality?.prof?.count || 0,
-      staffquality_prof_text: data?.staffquality?.prof_text || '',
-      staffquality_servants: data?.staffquality?.servants?.count || 0,
-      staffquality_servants_text: data?.staffquality?.servants_text || '',
-      staffquality_qwalwork: data?.staffquality?.qwalwork?.count || 0,
-      staffquality_qwalwork_text: data?.staffquality?.qwalwork_text || '',
-      staffquality_notqwalwork: data?.staffquality?.notqwalwork?.count || 0,
-      staffquality_notqwalwork_text: data?.staffquality?.notqwalwork_text || '',
-      staffgender_man: data?.staffgender?.man?.count || 0,
-      staffgender_man_text: data?.staffgender?.man_text || '',
-      staffgender_woman: data?.staffgender?.woman?.count || 0,
-      staffgender_woman_text: data?.staffgender?.woman_text || '',
-      staffyears_young: data?.staffyears?.young?.count || 0,
-      staffyears_young_text: data?.staffyears?.young_text || '',
-      staffyears_old: data?.staffyears?.old?.count || 0,
-      staffyears_old_text: data?.staffyears?.old_text || '',
-      staffqualitynow_inv: data?.staffqualitynow?.inv?.count || 0,
-      staffqualitynow_inv_text: data?.staffqualitynow?.inv_text || '',
-      staffqualitynow_vpo: data?.staffqualitynow?.vpo?.count || 0,
-      staffqualitynow_vpo_text: data?.staffqualitynow?.vpo_text || '',
-      staffqualitynow_veteran: data?.staffqualitynow?.veteran?.count || 0,
-      staffqualitynow_veteran_text: data?.staffqualitynow?.veteran_text || '',
-      staffqualitynow_foreign: data?.staffqualitynow?.foreign?.count || 0,
-      staffqualitynow_foreign_text: data?.staffqualitynow?.foreign_text || '',
+      staffquality_manager: data?.staffquality.manager.count || 0,
+      staffquality_manager_text: data?.staffquality.manager_text || '',
+      staffquality_prof: data?.staffquality.prof.count || 0,
+      staffquality_prof_text: data?.staffquality.prof_text || '',
+      staffquality_servants: data?.staffquality.servants.count || 0,
+      staffquality_servants_text: data?.staffquality.servants_text || '',
+      staffquality_qwalwork: data?.staffquality.qwalwork.count || 0,
+      staffquality_qwalwork_text: data?.staffquality.qwalwork_text || '',
+      staffquality_notqwalwork: data?.staffquality.notqwalwork.count || 0,
+      staffquality_notqwalwork_text: data?.staffquality.notqwalwork_text || '',
+      staffgender_man: data?.staffgender.man.count || 0,
+      staffgender_man_text: data?.staffgender.man_text || '',
+      staffgender_woman: data?.staffgender.woman.count || 0,
+      staffgender_woman_text: data?.staffgender.woman_text || '',
+      staffyears_young: data?.staffyears.young.count || 0,
+      staffyears_young_text: data?.staffyears.young_text || '',
+      staffyears_old: data?.staffyears.old.count || 0,
+      staffyears_old_text: data?.staffyears.old_text || '',
+      staffqualitynow_inv: data?.staffqualitynow.inv.count || 0,
+      staffqualitynow_inv_text: data?.staffqualitynow.inv_text || '',
+      staffqualitynow_vpo: data?.staffqualitynow.vpo.count || 0,
+      staffqualitynow_vpo_text: data?.staffqualitynow.vpo_text || '',
+      staffqualitynow_veteran: data?.staffqualitynow.veteran.count || 0,
+      staffqualitynow_veteran_text: data?.staffqualitynow.veteran_text || '',
+      staffqualitynow_foreign: data?.staffqualitynow.foreign.count || 0,
+      staffqualitynow_foreign_text: data?.staffqualitynow.foreign_text || '',
       workregim_workregim1: data?.workregim_withText?.find((i: any) => i.value === 'workregim1')?.value || 0,
-      workregim_workregim1_text: data?.workregim_withText?.find((i: any) => i.value === 'workregim1')?.text || '',
+      workregim_workregim1_text: data?.workregim_withText.find((i: any) => i.value === 'workregim1')?.text || '',
       workregim_workregim2: data?.workregim_withText?.find((i: any) => i.value === 'workregim2')?.value || 0,
       workregim_workregim2_text: data?.workregim_withText?.find((i: any) => i.value === 'workregim2')?.text || '',
       workregim_workregim3: data?.workregim_withText?.find((i: any) => i.value === 'workregim3')?.value || 0,
@@ -327,22 +334,81 @@ export class SurveyComponent implements OnInit {
       workregim_workregim4_text: data?.workregim_withText?.find((i: any) => i.value === 'workregim4')?.text || '',
       workregim_workregim5: data?.workregim_withText?.find((i: any) => i.value === 'workregim5')?.value || 0,
       workregim_workregim5_text: data?.workregim_withText?.find((i: any) => i.value === 'workregim5')?.text || '',
-      halfwork: data?.halfwork || '',
-      hiring24: data?.hiring2024 || '',
+      halfwork: data?.halfwork,
+      hiring24: data?.hiring2024,
       hiring24_trouble241: data?.trouble24_withText?.find((i: any) => i.value === 'trouble241')?.value || 0,
       hiring24_trouble241_text: data?.trouble24_withText?.find((i: any) => i.value === 'trouble241')?.text || '',
+      hiring24_trouble242: data?.trouble24_withText?.find((i: any) => i.value === 'trouble242')?.value || 0,
+      hiring24_trouble242_text: data?.trouble24_withText?.find((i: any) => i.value === 'trouble242')?.text || '',
+      hiring24_trouble243: data?.trouble24_withText?.find((i: any) => i.value === 'trouble243')?.value || 0,
+      hiring24_trouble243_text: data?.trouble24_withText?.find((i: any) => i.value === 'trouble243')?.text || '',
+      hiring24_trouble244: data?.trouble24_withText?.find((i: any) => i.value === 'trouble244')?.value || 0,
+      hiring24_trouble244_text: data?.trouble24_withText?.find((i: any) => i.value === 'trouble244')?.text || '',
+      hiring24_trouble245: data?.trouble24_withText?.find((i: any) => i.value === 'trouble245')?.value || 0,
+      hiring24_trouble245_text: data?.trouble24_withText?.find((i: any) => i.value === 'trouble245')?.text || '',
+      hiring24_trouble246: data?.trouble24_withText?.find((i: any) => i.value === 'trouble246')?.value || 0,
+      hiring24_trouble246text: data?.trouble24_withText?.find((i: any) => i.value === 'trouble246')?.text || '',
+      hiring24_troubleOther: data?.trouble24_withText?.find((i: any) => i.value === 'other')?.value || 0,
       hiring24_troubleOthertext: data?.['trouble24-Comment'] || '',
-      hiring25: data?.hiring25 || '',
-      hiring25_text: data?.hiring25_text || '',
-      hiringquality25_profession: data?.hiringquality25
-        ?.map((item: any) => item.profession?.split(';').map((profession: string) => profession.trim()).join(';'))
-        .join('||') || '',
-      hiringquality25_count: data?.hiringquality25?.map((item: any) => item.count).join('||') || 0,
-      hiringquality25_salary: data?.hiringquality25?.map((item: any) => item.salary).join('||') || '',
+      education24: data?.education24,
+      education24_educationform241: data?.educationform24_withText?.find((i: any) => i.value === 'educationform241')?.value || 0,
+      education24_educationform241_text: data?.educationform24_withText?.find((i: any) => i.value === 'educationform241')?.text || '',
+      education24_educationform242: data?.educationform24_withText?.find((i: any) => i.value === 'educationform242')?.value || 0,
+      education24_educationform242_text: data?.educationform24_withText?.find((i: any) => i.value === 'educationform242')?.text || '',
+      education24_educationform243: data?.educationform24_withText.find((i: any) => i.value === 'educationform243')?.value || 0,
+      education24_educationform243_text: data?.educationform24_withText.find((i: any) => i.value === 'educationform243')?.text || '',
+      education24_educationform244: data?.educationform24_withText.find((i: any) => i.value === 'educationform244')?.value || 0,
+      education24_educationform244_text: data?.educationform24_withText.find((i: any) => i.value === 'educationform244')?.text || '',
+      education24_educationform245: data?.educationform24_withText.find((i: any) => i.value === 'educationform245')?.value || 0,
+      education24_educationform245_text: data?.educationform24_withText.find((i: any) => i.value === 'educationform245')?.text || '',
+      education24_educationform246: data?.educationform24_withText.find((i: any) => i.value === 'educationform246')?.value || 0,
+      education24_educationform246_text: data?.educationform24_withText.find((i: any) => i.value === 'educationform246')?.text || '',
+      education24_educationform247: data?.educationform24_withText.find((i: any) => i.value === 'educationform247')?.value || 0,
+      education24_educationform247_text: data?.educationform24_withText.find((i: any) => i.value === 'educationform247')?.text || '',
+      education24_educationformOther: data?.educationform24_withText.find((i: any) => i.value === 'other')?.value || 0,
+      education24_educationformOthertext: data?.['educationform24-Comment'] || '',
+      hiring25: data?.hiring25,
+      hiring25_text: data?.hiring25_text,
+      hiringfuture25_vac: data?.hiringfuture25_withText?.find((i: any) => i.value === 'vac')?.value || '',
+      hiringfuture25_vac_text: data?.hiringfuture25_withText?.find((i: any) => i.value === 'vac')?.text || '',
+      hiringfuture25_new: data?.hiringfuture25_withText?.find((i: any) => i.value === 'new')?.value || '',
+      hiringfuture25_new_text: data?.hiringfuture25_withText?.find((i: any) => i.value === 'new')?.text || '',
+      hiringquality25_profession: data?.hiringquality25.map((item: any) => item.profession?.split(';').map((profession: string) => profession.trim()).join(';')).join('||') || '',
+      hiringquality25_count: data?.hiringquality25.map((item: any) => item.count).join('||') || 0,
+      hiringquality25_salary: data?.hiringquality25.map((item: any) => item.salary).join('||') || '',
+      hiringgategory25_inv: data?.inv || '',
+      hiringgategory25_veteran: data?.veteran || '',
+      hiringgategory25_vpo: data?.vpo || '',
+      hiringgategory25_old: data?.old || '',
       hiringwomen25: data?.hiringwomen25 || '',
       hiringwomen25_text: data?.hiringwomen25_text || '',
-    };
+      hiringforeign25_: data?.hiringforeign25 || '',
+      hiringforeign25_text: data?.hiringforeign25_text || '',
+      salary25: data?.salary25 || '',
+      socialsupport1: data?.socialsupport_withText?.find((i: any) => i.value === 'socialsupport1')?.value || 0,
+      socialsupport1_text: data?.socialsupport_withText?.find((i: any) => i.value === 'socialsupport1')?.text || '',
+      socialsupport2: data?.socialsupport_withText?.find((i: any) => i.value === 'socialsupport2')?.value || 0,
+      socialsupport2_text: data?.socialsupport_withText?.find((i: any) => i.value === 'socialsupport2')?.text || '',
+      socialsupport3: data?.socialsupport_withText?.find((i: any) => i.value === 'socialsupport3')?.value || 0,
+      socialsupport3_text: data?.socialsupport_withText?.find((i: any) => i.value === 'socialsupport3')?.text || '',
+      socialsupport4: data?.socialsupport_withText?.find((i: any) => i.value === 'socialsupport4')?.value || 0,
+      socialsupport4_text: data?.socialsupport_withText?.find((i: any) => i.value === 'socialsupport4')?.text || '',
+      socialsupport5: data?.socialsupport_withText?.find((i: any) => i.value === 'socialsupport5')?.value || 0,
+      socialsupport5_text: data?.socialsupport_withText?.find((i: any) => i.value === 'socialsupport5')?.text || '',
+      socialsupport6: data?.socialsupport_withText?.find((i: any) => i.value === 'socialsupport6')?.value || 0,
+      socialsupport6_text: data?.socialsupport_withText?.find((i: any) => i.value === 'socialsupport6')?.text || '',
+      socialsupport7: data?.socialsupport_withText?.find((i: any) => i.value === 'socialsupport7')?.value || 0,
+      socialsupport7_text: data?.socialsupport_withText?.find((i: any) => i.value === 'socialsupport7')?.text || '',
+      socialsuppor8: data?.socialsupport_withText?.find((i: any) => i.value === 'socialsupport8')?.value || 0,
+      socialsupport8_text: data?.socialsupport_withText?.find((i: any) => i.value === 'socialsupport8')?.text || '',
+      socialsupport9: data?.educationform24_withText?.find((i: any) => i.value === 'socialsupport9')?.value || 0,
+      socialsupport9_text: data?.socialsupport_withText?.find((i: any) => i.value === 'socialsupport9')?.text || '',
+      socialsupport10_: data?.socialsupport_withText?.find((i: any) => i.value === 'none')?.value || '',
+      socialsupportOther: data?.socialsupport_withText?.find((i: any) => i.value === 'other')?.value || 0,
+      socialsupportOthertext: data?.['socialsupport-Comment'] || '',
+    }
   }
+
   surveyComplete(survey: Model) {
     const results = survey.data;
 
@@ -387,10 +453,10 @@ export class SurveyComponent implements OnInit {
 
     });
     console.log("Final results with text:", results);
-    const flattenedResult = this.flattenSurveyResult({ data: results });
-    console.log("Final results post:", flattenedResult );
+    const flattenedResult = this.flattenSurveyResult({data: results});
+    console.log("Final results post:", flattenedResult);
 
-    saveSurveyResults("http://localhost:3000/api/post", { flattenedResult });
+    saveSurveyResults("http://localhost:3000/api/post", {flattenedResult});
   }
 
   onChoice() {
