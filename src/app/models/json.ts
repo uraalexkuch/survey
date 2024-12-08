@@ -386,7 +386,7 @@ export const json = {
               "placeholder": {
                 "ua": "Цифра або 0"
               },
-            
+
               "validators": [
                 {
                   "type": "numeric",
@@ -1477,10 +1477,7 @@ export const json = {
             {
               "value": "faqdcz6",
               "text": "Участь у грантових програмах"},
-            {
-              "value": "faqdcz7",
-              "text": "Додаткова інформація непотрібна"
-            }
+           
           ],
           "showOtherItem": true,
           "otherText": "Інше (вкажіть)",
