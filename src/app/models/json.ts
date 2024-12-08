@@ -779,7 +779,7 @@ export const json = {
         {
           "type": "dropdown",
           "name": "hiringforeign25",
-          "visibleIf": "{hiring25} = true",
+          "visibleIf": "{hiring25} = 'hiring251'",
           "isRequired": true,
           "title": "Чи розглядаєте Ви можливість залучення іноземних працівників у 2025 році?",
           "clearIfInvisible": "none",
