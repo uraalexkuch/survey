@@ -264,51 +264,7 @@ export const json = {
         },
       ]
     },
-    {
-      "name": "page9",
-      "elements": [
-        {
-          "type": "matrixdropdown",
-          "name": "staffgender",
-          "isRequired": true,
-          "title": "Кількість працівників за гендерною ознакою, які сьогодні у Вас працюють? ",
-          "clearIfInvisible": "none",
-          "columns": [
-            {
-              "name": "count",
-              "title": "Кількість",
-              "cellType": "text",
-              "isRequired": true,
-              "defaultValue": { "count": 0 },
-              "minValue": 0,
-              "placeholder": {
-                "ua": "Цифра або 0"
-              },
 
-              "validators": [
-                {
-                  "type": "numeric",
-
-                  "text": "Кількість повинна бути не менше 0."
-                }
-              ],
-              "inputType": "number"
-            }
-          ],
-          "cellType": "text",
-          "rows": [
-            {
-              "value": "man",
-              "text": "Чоловіки"
-            },
-            {
-              "value": "woman",
-              "text": "Жінки"
-            }
-          ]
-        },
-      ]
-    },
     {
       "name": "page10",
       "elements": [
@@ -1354,10 +1310,10 @@ export const json = {
           "isRequired": true,
           "validators": [
             {
-              "type": "regex",
-              "regex": "^\\+38\\(\\d{3}\\)\\d{3}-\\d{2}-\\d{2}$",
-              "text": "Невірний формат. Вірно: +38(XXX)XXX-XX-XX"
-            }
+              "regex": "^\\d{3} \\d{3}-\\d{2}-\\d{2}$",
+              "text": "Невірний формат. Вірно: XXX XXX-XX-XX"
+
+        }
           ],
           "placeholder": "Введіть ваш номер телефону"
         }
