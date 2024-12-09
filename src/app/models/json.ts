@@ -1,6 +1,6 @@
 export const json = {
   "locale": "ua",
-  "showQuestionNumbers": "off",
+  showQuestionNumbers: "on",
   "pages": [
 
     {
@@ -173,20 +173,6 @@ export const json = {
           "isRequired": true,
           "choices": [],
           "placeholder":  "Вибрати район..."
-        },
-      ]
-    },
-    {
-      "name": "page5g",
-      "elements": [
-        {
-          "type": "dropdown",
-          "visibleIf": "{rayonselectfact} != ''",
-          "name": "gromadaselectfact",
-          "title": "Вкажіть громаду, де Ваше підприємство (установа, організація, ФОП) здійснює господарську діяльність ?",
-          "isRequired": true,
-          "choices": [],
-          "placeholder":  "Вибрати громаду..."
         },
       ]
     },
@@ -571,25 +557,14 @@ export const json = {
           "name": "page18",
           "elements": [
             {
-              "type": "dropdown",
+              "type": "boolean",
               "name": "hiring25",
-              "isRequired": true,
               "title": "Чи плануєте приймати працівників у 2025 році?",
               "clearIfInvisible": "none",
-              "choices": [
-                {
-                  "value": "hiring251",
-                  "text": "Так"
-                },
-                {
-                  "value": "hiring252",
-                  "text": "Ні"
-                },
-                {
-                  "value": "hiring253",
-                  "text": "Важко відповісти"
-                }
-              ]
+              "labelTrue": "Так",
+              "labelFalse": "Ні",
+              "isRequired": true,
+              "swapOrder": true
             }
           ]
         },
@@ -598,7 +573,7 @@ export const json = {
           "elements": [
             {
               "type": "checkbox",
-              "visibleIf": "{hiring25} = 'hiring251'",
+              "visibleIf": "{hiring25} = true",
               "isRequired": true,
               "name": "hiringfuture25",
               "title": "На які робочі місця плануєте приймати працівників у 2025 році?",
@@ -625,7 +600,7 @@ export const json = {
         {
           "type": "matrixdynamic",
           "name": "hiringquality25",
-          "visibleIf": "{hiring25} = 'hiring251'",
+          "visibleIf": "{hiring25} = true",
           "title": "Працівників яких професій Ви плануєте наймати у 2025 році?",
           "clearIfInvisible": "none",
           "rowCount": 1,
@@ -692,7 +667,7 @@ export const json = {
       "elements": [
         {
           "type": "panel",
-          "visibleIf": "{hiring25} = 'hiring251'",
+          "visibleIf": "{hiring25} = true",
           "name": "hiringgategory25",
           "isRequired": true,
           "title": "Чи плануєте Ви наймати працівників з нижчеперелічених категорій осіб у 2025 році?",
@@ -750,26 +725,14 @@ export const json = {
       "name": "page22",
       "elements": [
         {
-          "type": "dropdown",
+          "type": "boolean",
           "name": "hiringwomen25",
-          "visibleIf": "{hiring25} = 'hiring251'",
-          "isRequired": true,
+          "visibleIf": "{hiring25} = true",
           "title": "Чи готові Ви наймати жінок на вакансії за умовно чоловічими професіями?",
-          "clearIfInvisible": "none",
-          "choices": [
-            {
-              "value": "hiringwomen251",
-              "text": "Так"
-            },
-            {
-              "value": "hiringwomen252",
-              "text": "Ні"
-            },
-            {
-              "value": "hiringwomen253",
-              "text": "Важко відповісти"
-            }
-          ]
+          "labelTrue": "Так",
+          "labelFalse": "Ні",
+          "isRequired": true,
+          "swapOrder": true
         },
       ]
     },
@@ -777,26 +740,15 @@ export const json = {
       "name": "page23",
       "elements": [
         {
-          "type": "dropdown",
+          "type": "boolean",
           "name": "hiringforeign25",
-          "visibleIf": "{hiring25} = 'hiring251'",
-          "isRequired": true,
+          "visibleIf": "{hiring25} = true",
           "title": "Чи розглядаєте Ви можливість залучення іноземних працівників у 2025 році?",
           "clearIfInvisible": "none",
-          "choices": [
-            {
-              "value": "hiringforeign251",
-              "text": "Так"
-            },
-            {
-              "value": "hiringforeign252",
-              "text": "Ні"
-            },
-            {
-              "value": "hiringforeign253",
-              "text": "Важко відповісти"
-            }
-          ]
+          "labelTrue": "Так",
+          "labelFalse": "Ні",
+          "isRequired": true,
+          "swapOrder": true
         },
       ]
     },
@@ -840,8 +792,7 @@ export const json = {
           "colCount": 2
         }
       ]
-    }
-    ,
+    },
     {
       "name": "page26",
       "elements": [
@@ -870,7 +821,6 @@ export const json = {
         }
       ]
     },
-
     {
       "name": "page27",
       "elements": [
@@ -1079,7 +1029,7 @@ export const json = {
           "clearIfInvisible": "none",
           "choices": [
             {"value": "coloborationtrue1",
-              "text":"Підбір фахівцями служби зайнятості кандидатів на вакансії"},
+              "text":"Підбір кандидатів на вакансії"},
             {"value": "coloborationtrue2",
               "text":"Навчання працівників під потреби підприємства"},
             {"value": "coloborationtrue3",
@@ -1269,7 +1219,7 @@ export const json = {
 
             {
               "value": "bestdcz1",
-              "text": "Підбір фахівцями служби зайнятості кандидатів на вакансії"
+              "text": "Підбір кандидатів на вакансії"
             },
             {
               "value": "bestdcz2",
@@ -1312,7 +1262,7 @@ export const json = {
 
             {
               "value": "worstdcz1",
-              "text": "Підбір фахівцями служби зайнятості кандидатів на вакансії"
+              "text": "Підбір кандидатів на вакансії"
             },
             {
               "value": "worstdcz2",
@@ -1352,7 +1302,7 @@ export const json = {
           "choices": [
             {
               "value": "faqdcz1",
-              "text": "Підбір фахівцями служби зайнятості кандидатів на вакансії"},
+              "text": "Підбір кандидатів на вакансії"},
             {
               "value": "faqdcz2",
               "text": "Навчання працівників під потреби підприємства"},
