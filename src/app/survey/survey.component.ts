@@ -20,7 +20,7 @@ surveyLocalization.defaultLocale = "uk";
   selector: 'app-survey',
   standalone: true,
   providers: [SurveyDataService],
-  imports: [SurveyModule, BreadcrumbComponent, NgIf, HttpClientModule],
+  imports: [SurveyModule, NgIf, HttpClientModule, BreadcrumbComponent],
   templateUrl: './survey.component.html',
   styleUrls: ['./survey.component.css']
 })
@@ -90,11 +90,11 @@ export class SurveyComponent implements OnInit {
       // Add event handlers
       survey.onChoicesLazyLoad.add(this.onChoicesLazyLoad.bind(this));
       survey.onComplete.add(this.surveyComplete.bind(this));
-      survey.onValueChanging.add((sender, options) => {
+      /*survey.onValueChanging.add((sender, options) => {
         if (options.name === "contactPhone") {
           options.value = this.formatPhoneNumber(options.value);
         }
-      });
+      });*/
       this.model = survey;
     } catch (error) {
       console.error("Error initializing survey:", error);
@@ -228,7 +228,7 @@ export class SurveyComponent implements OnInit {
     });
   }
 
-  formatPhoneNumber(phone: string): string {
+ /* formatPhoneNumber(phone: string): string {
     if (!phone) return ''; // Перевірка на порожнє значення
     phone = phone.replace(/\D/g, ''); // Видаляємо всі нецифрові символи
 
@@ -247,7 +247,7 @@ export class SurveyComponent implements OnInit {
     } else {
       return `+38(${phone.slice(0, 3)})${phone.slice(3, 6)}-${phone.slice(6, 8)}-${phone.slice(8)}`.replace(/-$/, ''); // Формат для неповного номера
     }
-  }
+  }*/
 
   onChoicesLazyLoad(sender: any, options: any) {
     try {
@@ -284,7 +284,6 @@ export class SurveyComponent implements OnInit {
   }
 
   flattenSurveyResult({data}: { data: any }) {
-    console.log(data?.hiringwomen25);
     return {
       namepou: data?.namepou || '',
       edrpou: data?.edrpou || '',
@@ -406,6 +405,28 @@ export class SurveyComponent implements OnInit {
       socialsupport10_: data?.socialsupport_withText?.find((i: any) => i.value === 'none')?.value || '',
       socialsupportOther: data?.socialsupport_withText?.find((i: any) => i.value === 'other')?.value || 0,
       socialsupportOthertext: data?.['socialsupport-Comment'] || '',
+      troubleinv1: data?.troubleinv_withText?.find((i: any) => i.value === 'troubleinv1')?.value || 0,
+      troubleinv1_text: data?.troubleinv_withText?.find((i: any) => i.value === 'troubleinv1')?.text || '',
+      troubleinv2: data?.troubleinv_withText?.find((i: any) => i.value === 'troubleinv2')?.value || 0,
+      troubleinv2_text: data?.troubleinv_withText?.find((i: any) => i.value === 'troubleinv2')?.text || '',
+      troubleinv3: data?.troubleinv_withText?.find((i: any) => i.value === 'troubleinv3')?.value || 0,
+      troubleinv3_text: data?.troubleinv_withText?.find((i: any) => i.value === 'troubleinv3')?.text || '',
+      troubleinv4: data?.troubleinv_withText?.find((i: any) => i.value === 'troubleinv4')?.value || 0,
+      troubleinv4_text: data?.troubleinv_withText?.find((i: any) => i.value === 'troubleinv4')?.text || '',
+      troubleinv5: data?.troubleinv_withText?.find((i: any) => i.value === 'none')?.value || '',
+      troubleinvOther: data?.troubleinv_withText?.find((i: any) => i.value === 'other')?.value || 0,
+      troubleinvOthertext: data?.['troubleinv-Comment'] || '',
+      profitinv1: data?.profitinv_withText?.find((i: any) => i.value === 'profitinv1')?.value || 0,
+      profitinv1_text: data?.profitinv_withText?.find((i: any) => i.value === 'profitinv1')?.text || '',
+      profitinv2: data?.profitinv_withText?.find((i: any) => i.value === 'profitinv2')?.value || 0,
+      profitinv2_text: data?.profitinv_withText?.find((i: any) => i.value === 'profitinv2')?.text || '',
+      profitinv3: data?.profitinv_withText?.find((i: any) => i.value === 'profitinv3')?.value || 0,
+      profitinv3_text: data?.profitinv_withText?.find((i: any) => i.value === 'profitinv3')?.text || '',
+      profitinv4: data?.profitinv_withText?.find((i: any) => i.value === 'profitinv4')?.value || 0,
+      profitinv4_text: data?.profitinv_withText?.find((i: any) => i.value === 'profitinv4')?.text || '',
+      profitinv5: data?.profitinv_withText?.find((i: any) => i.value === 'none')?.value || '',
+      profitinvOther: data?.profitinv_withText?.find((i: any) => i.value === 'other')?.value || 0,
+      profitinvOthertext: data?.['profitinv-Comment'] || '',
     }
   }
 

@@ -454,7 +454,7 @@ export const json = {
             },
             {
               "value": "trouble246",
-              "text": "Відсутність у кандидатів необхідних документів (втрачені документи)"
+              "text": "Відсутність у претендентів необхідних документів (втрачені документи)"
             },
           ],
           "showOtherItem": true,
@@ -985,7 +985,7 @@ export const json = {
           "clearIfInvisible": "none",
           "choices": [
             {"value": "coloborationtrue1",
-              "text":"Підбір кандидатів на вакансії"},
+              "text":"Підбір претендентів на вакансії"},
             {"value": "coloborationtrue2",
               "text":"Навчання працівників під потреби підприємства"},
             {"value": "coloborationtrue3",
@@ -1175,7 +1175,7 @@ export const json = {
 
             {
               "value": "bestdcz1",
-              "text": "Підбір кандидатів на вакансії"
+              "text": "Підбір претендентів на вакансії"
             },
             {
               "value": "bestdcz2",
@@ -1218,7 +1218,7 @@ export const json = {
 
             {
               "value": "worstdcz1",
-              "text": "Підбір кандидатів на вакансії"
+              "text": "Підбір претендентів на вакансії"
             },
             {
               "value": "worstdcz2",
@@ -1258,7 +1258,7 @@ export const json = {
           "choices": [
             {
               "value": "faqdcz1",
-              "text": "Підбір кандидатів на вакансії"},
+              "text": "Підбір претендентів на вакансії"},
             {
               "value": "faqdcz2",
               "text": "Навчання працівників під потреби підприємства"},
