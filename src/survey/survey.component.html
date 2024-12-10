@@ -1,0 +1,21 @@
+<div class="parent6" style="padding-left: 6% !important;
+  padding-right: 5% !important;" xmlns="http://www.w3.org/1999/html">
+  <xng-breadcrumb></xng-breadcrumb></div>
+<section class="section section-lg bg-gray-100 " style="margin-top: 1rem;margin-bottom: 1rem;padding-left:0;padding-right: 0">
+  <div *ngIf="!isSurvey" >
+    <div class="col-12 nameposlug">
+      <h4 class="  fw-bold" style='text-align: center;font-weight: bold'>Шановний роботодавцю!</h4>
+    </div>
+
+    <h5 style='display: block; width: 100%; text-align: center'>Державна служба зайнятості є Вашим надійним партнером на ринку праці.<br/> Пройдіть, будь ласка, опитування і ми знайдемо найкращі рішення для Вашої команди.
+    </h5>
+   </div>
+  <div *ngIf="isSurvey" >
+    <div class="col-12 nameposlug" *ngIf="completedHtml">
+      <h5 class="  fw-bold" style='text-align: center;font-weight: bold'>Опитування  щодо потреб роботодавців для  відновлення та розвитку економіки України</h5>
+    </div>
+    </div>
+<div *ngIf="!isSurvey" style=" text-align: center">  <button class="btn h7 cabinet " (click)="onChoice()" style="width: 50%; text-align: center">Розпочати опитування</button>
+</div>
+  <survey *ngIf="isSurvey" [model]="model" ></survey>
+</section>

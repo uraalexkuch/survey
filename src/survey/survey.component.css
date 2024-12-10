@@ -1,0 +1,103 @@
+.sv-components-row{
+  width: 50%!important;
+  justify-items: center!important;
+}
+/* Забезпечення переносу тексту для таблиці SurveyJS */
+:host ::ng-deep.sd-dropdown__value {
+  white-space: normal !important; /* Дозволяє перенос тексту */
+  word-wrap: break-word; /* Переносить слова, які не влазять */
+  overflow-wrap: anywhere; /* Додатковий параметр для переносу слів */
+  text-align: left; /* Вирівнювання тексту для покращення читабельності */
+}
+:host ::ng-deep.sd-input.sd-input {
+  word-wrap: normal!important;
+  white-space: normal!important;
+}
+:host ::ng-deep.sd-input.sd-input--readonly {
+  word-wrap: normal!important;
+  white-space: normal!important;
+}
+:host ::ng-deep.sv_matrix_dynamic .sv_matrix_cell .wrap-text {
+  max-width: 100%!important; /* Обмежує ширину клітинки */
+  overflow: hidden; /* Приховує зайвий текст */
+}
+:host ::ng-deep.responsive-field {
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+  :host ::ng-deep.responsive-field {
+    width: 100% !important;
+  }
+}
+
+
+.sd-body {
+  max-width: 50%!important;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+:host ::ng-deep.sd-root-modern.sd-root-modern--full-container {
+  width: 70%;
+  height: 100%;
+  overflow: auto;
+  position: relative;
+
+}
+@media (max-width: 768px) { /* for tablets and smaller devices */
+  :host ::ng-deep.sd-root-modern.sd-root-modern--full-container {
+    width: 100%;
+  }
+  :host ::ng-deep.sd-dropdown__value{
+    white-space: pre-wrap;
+  }
+}
+survey{
+ display: flex;
+  justify-content: center;
+  height: 100%;
+
+}
+:host ::ng-deep.sv-components-row > .sv-components-column--expandable{
+  background:no-repeat  url("/assets/images/fonvaucher.png");
+  background-size: cover;
+
+}
+:host ::ng-deep.sd-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color: black!important;
+  font-family: e-Ukraine, sans-serif!important;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  border: none;
+  outline: none;
+}
+:host ::ng-deep.sd-btn--action {
+  background-color:  #868080;
+  color:  #fff;
+}
+.cabinet {
+  margin: 0;
+  padding:  0.625rem;
+  font-size: 0.813rem;
+  color: #264493;
+  font-family: e-Ukraine, sans-serif;
+  font-weight: 400;
+  line-height: 1rem;
+  border: 1px #1c1717 solid;
+  border-radius: 40px;
+  background-image: linear-gradient(90deg, #264493 0%, #4477EEFF 63%);
+  background-size: 0 100%; /* Змініть розмір фону на 0, щоб спочатку його не було видно */
+  background-position: 0 100%; /* Почніть фон з крайнього правого краю */
+  background-repeat: no-repeat; /* Забороніть повторення фону */
+  transition: background-size 0.5s ease; /* Додайте анімацію */
+}
+
+.cabinet:hover {
+  background-size: 100% 100%;
+  color: #fff;
+}
